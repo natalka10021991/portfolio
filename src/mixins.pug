@@ -5,3 +5,24 @@ mixin icon(name, className)
 
 mixin image(path, className)
   img(src=require(`images/${path}`) class=className)
+
+mixin nav(className, theme, items)
+  nav(class=`${className} ${className}_theme_${theme}`)
+    ul(class=`${className}__list`)
+      each item in items
+        li(class=`${className}__item`)
+          a.nav__link(class=`${className}__link` href='#')= item
+
+mixin socials(className, items)
+  ul(class=`${className}`)
+    each item in items
+      li(class=`${className}__item`)
+        a(class=`${className}__link ${className}__link_${item}`)
+          +icon(`${item}`, 'social-icon')
+
+mixin about-me__list(className, items)
+  ul(class=`${className}__list`)
+    each value, key in items
+      li(class=`${className}__item`)
+        span(class=`${className}__title`)= `${key}: `
+        span(class=`${className}__value`)= value
