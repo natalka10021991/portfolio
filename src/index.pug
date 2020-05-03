@@ -1,6 +1,6 @@
 include ./mixins.pug
 
-- var obj = { Проживаю: 'Санкт-Петербург', Возраст: '29 лет', Родилась: '10 февраля 1991'}
+
 
 <!DOCTYPE html>
 html(lang="en")
@@ -12,99 +12,175 @@ html(lang="en")
   body
     .wrapper
       .maincontent
-        +image('content/user.jpg', 'user-pic')
-        +icon('link', 'link-class')
-        .icon-bg
-        section.section.main-section
-          header.header
-            .header__logo НБ
+        //+image('content/user.jpg', 'user-pic')
+        //+icon('link', 'link-class')
+        //.icon-bg
+        .sections-wrapper-baloon
+          .container
+            section.hero.fullscreen-section
+              header.header
+                .header__logo
+                  .logo НБ
 
-            +nav('nav', 'light', ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться'] )
+                .header__nav
+                  +nav('nav', 'light', ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться'], '' )
+                .header__socials
+                  +socials('socials', '', ['insta', 'vk', 'github'])
             
-            +socials('socials', ['insta', 'vk', 'github'])
-        
-          .main-section__site-name
-            p.main-section__site-description Личный сайт веб разработчика
-            h1.main-section__site-title Наталья Быстрова
-          
-          a.main-section__scroll
-            span.main-section__scroll-text Скролл
+              .hero__site-name
+                p.hero__site-description Личный сайт веб разработчика
+                h1.hero__site-title Наталья Быстрова
+              
+              a.hero__scroll
+                span.hero__scroll-text Скролл
+                +icon('scroll', 'hero__scroll-icon')
 
-        section.section.about-me
-          .about-me__photo
-          .about-me__info
-            p.about-me__text Привет, меня зовут
-            h2.about-me__title Наталья Быстрова
-            p.about-me__text Я занимаюсь разработкой сайтов
+            section.about-me
+              .about-me__wrapper
+                .about-me__user-info
+                  .about-me__avatar
+                    .avatar
+                      +image('content/user.jpg', 'avatar__photo')
+                  - var obj = { Проживаю: 'Санкт-Петербург', Возраст: '29 лет', Родилась: '10 февраля 1991'};
+                    table.about-me__data
+                      tbody.about-me__data-body
+                        each value, key in obj 
+                          tr
+                            td= `${key}: `
+                            td= value 
 
-          +about-me__list('about-me', obj)
-        
-          p.about-me__text.about-me__text_style_italic Этот сайт я сделала в рамках обучения в школе онлайн образования.
+                .about-me__user-description         
+                  .about-me__greeting
+                    p.about-me__text Привет, меня зовут
+                    h2.about-me__title Наталья Быстрова
+                    p.about-me__text Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+                  p.about-me__text.about-me__text_style_italic Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
 
-        section.section.skills
-          h3.section__title.section__title_type_h3 Чем я могу быть полезной вам
-          p.section__description Этот сайт я сделала в рамках обучения в школе онлайн образования.
-          .skills__block
-            h4.skills__block-title Front-end
-            .skills__skill-item
-              .skills__skill-item-title HTML5
-              .skills__skill-item-bg 
-              .skills__skill-item-value
-        section.section.portfolio
-          .section__title Мои работы
-          .portfolio__wrapper
-            .portfolio__slider
-            .portfolio__slider-description
-              .portfolio__tags
-              .portfolio__title Сайт школы образования
-              .portfolio__text Эта работа - редизайн старого сайта для школы №23
-              a.portfolio__link(href='#') Посмотреть сайт
         
-        section.section.feedback
-          .section__title Что обо мне говорят
-          .feedback__slider
-            .feedback__slider-buttons
-              button.feedback__button.feedback__button_type_back Назад
-              button.feedback__button.feedback__button_type_front Вперед
-            .feedback__slider-item
-              .feedback__slider-item-unit
-                .feedback__text Этот код выдержит любые испытания
-                .feedback__user
-                  .feedback__user-photo
-                  .feedback__user-name Ковальчук Дмитрий
-                  .feedback__user-position Основатель Loftschool
-        section.section.feedback-form
-          h3.section__title Связаться со мной
-          form.feedback-form__form
-            .feedback-form__column
-              .feedback-form__row
-                label.feedback-form__block
-                  .feedback-form__block-title Введите ваше имя
-                  input.input.feedback-form__input(
-                    type='text'
-                    placeholder='Наталья Быстрова'
-                  )
-                  span.feedback-form__block-error
-                label.feedback-form__block
-                  .feedback-form__block-title Введите ваш email
-                  input.input.feedback-form__input(
-                    type='email'
-                    placeholder='n.a.bystrova@gmail.com'
-                  )
-                  span.feedback-form__block-error
-              .feedback-form__row
-                label.feedback-form__block
-                  .feedback-form__block-title Сообщение к письму
-                  textarea.textarea.feedback-form__textarea(
-                    type='text'
-                    placeholder='Требуется ваша помощь в создании сайта'
-                  )
-                  span.feedback-form__block-error
-            
-            button.button.button_type_submit Отправить
+        section.skills
+          .skills__triangles
+            svg(viewbox="0 0 1000 100" preserveAspectRatio="none").skills__triangles-item.triangle
+              polygon(points="0,0 0,100, 1000,100")
+            svg(viewbox="0 0 1000 100" preserveAspectRatio="none").skills__triangles-item.triangle
+              polygon(points="1000,0 1000,100, 0,100")
+          .skills__wrapper
+            h3.skills__title Чем я могу быть полезной вам
+            p.skills__subtitle Этот сайт я сделала в рамках обучения в школе онлайн образования.
+            .skills__contents
+              -
+                var items = [
+                  ["Frontend", ["HTML5", "CSS3", "Javascript", "jQuery и Vue.js"]],
+                  ["Workflow", ["GIT", "Terminal", "Gulp", "Webpack"]]
+                ];
+
+              ul.skills-list
+                each row in items
+                  li.skills-list__item.skills-row
+                    .skills-row__title #{row[0]}
+                    ul.skills-row__list
+                      each cell in row[1]
+                        li.skills-row__item
+                          .skill
+                            .skill__circle
+                              svg(viewbox="0 0 100 100")
+                                circle(r="40" cx="50" cy="50" fill="none" stroke="#e9e9e9" stroke-width="10")
+                            .skill__circle
+                            .skill__title= cell
+
+        section.portfolio
+          .container
+            .portfolio__title.title_type_h3 Мои работы
+            .portfolio__wrapper
+              .portfolio__slider
+                +image('content/portfolio-preview.png', 'portfolio__preview')
+                ul.portfolio__small-preview-list
+                  li.portfolio__small-preview-item
+                    a.portfolio__small-preview-link(href='#')
+                      +image('content/small-preview-item1.png', 'portfolio__small-preview-image')
+                  li.portfolio__small-preview-item
+                    a.portfolio__small-preview-link(href='#')
+                      +image('content/small-preview-item2.png', 'portfolio__small-preview-image')
+                  li.portfolio__small-preview-item
+                    a.portfolio__small-preview-link(href='#')
+                      +image('content/small-preview-item3.png', 'portfolio__small-preview-image')
+                  li.portfolio__small-preview-item
+                    a.portfolio__small-preview-link(href='#')
+                      +image('content/small-preview-item4.png', 'portfolio__small-preview-image')   
+                .portfolio__buttons
+                  button.portfolio__button.portfolio__button_type_up
+                    icon('arrow-down', 'portfolio__button-icon')
+                  button.portfolio__button.portfolio__button_type_down
+                    icon('arrow-down', 'portfolio__button-icon')
+              .portfolio__slider-description
+                ul.portfolio__tags
+                  li.portfolio__tags-item 
+                    span.portfolio__tags-value HTML
+                  li.portfolio__tags-item 
+                    .portfolio__tags-value JavaScript
+                  li.portfolio__tags-item
+                    .portfolio__tags-value Css
+                .portfolio__slider-title Сайт школы образования
+                .portfolio__text Эта работа - редизайн старого сайта для школы №23
+                a.portfolio__link(href='#') 
+                  +icon('link', 'portfolio__link-icon')
+                  span.portfolio__link-text Посмотреть сайт
+        .sections-wrapper-budda
+          section.feedback
+            .container
+              .title_type_h3.feedback__title Что обо мне говорят
+              .feedback__slider
+                .feedback__slider-buttons
+                  button.feedback__button.feedback__button_type_back 
+                    +icon('arrow-down', 'feedback__button-icon')
+                  button.feedback__button.feedback__button_type_front
+                    +icon('arrow-down', 'feedback__button-icon')
+                ul.feedback__slider-list
+                  li.feedback__slider-item
+                    .feedback__text Этот код выдержит любые испытания
+                    .feedback__user
+                      +image('content/feedback-user1.png', 'feedback__user-photo')   
+
+                      .feedback__user-name Ковальчук Дмитрий
+                      .feedback__user-position Основатель Loftschool
+                  li.feedback__slider-item
+                    .feedback__text Этот код выдержит любые испытания Этот код выдержит любые испытания Этот код выдержит любые испытания
+                    .feedback__user
+                      +image('content/feedback-user2.png', 'feedback__user-photo')   
+                      .feedback__user-name Ковальчук Дмитрий               
+                      .feedback__user-position Основатель Loftschool
+          section.feedback-form
+            .container.feedback-form__wrapper
+              h3.title_type_h3.feedback-form__title Связаться со мной
+              form.feedback-form__form
+                .feedback-form__column
+                  .feedback-form__row
+                    label.feedback-form__block
+                      .label.feedback-form__block-title Введите ваше имя
+                      input.input.feedback-form__input(
+                        type='text'
+                        placeholder='Наталья Быстрова'
+                      )
+                      span.feedback-form__block-error
+                    label.feedback-form__block
+                      .label.feedback-form__block-title Введите ваш email
+                      input.input.feedback-form__input(
+                        type='email'
+                        placeholder='n.a.bystrova@gmail.com'
+                      )
+                      span.feedback-form__block-error
+                  .feedback-form__row
+                    label.feedback-form__block
+                      .label.feedback-form__block-title Сообщение к письму
+                      textarea.textarea.feedback-form__textarea(
+                        type='text'
+                        placeholder='Требуется ваша помощь в создании сайта'
+                      )
+                      span.feedback-form__block-error
+                
+                button.button.button_type_submit Отправить
 
         footer.footer
-          .footer__wrapper
+          .container.footer__wrapper
             .footer__left
               .footer__date &copy; 2019
               .footer__owner
@@ -112,11 +188,11 @@ html(lang="en")
                 p.footer__name-description Личный сайт веб-разработчика
 
             .footer__right
-              +nav('nav', 'dark', ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться'] )
+              +nav('nav', 'dark', ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться'] ,'footer__nav')
               .footer__right-bottom
                 .footer__owner-info
                   .footer__site-description Этот сайт я сделала в рамках обучения в Школе онлайн образования Loftschool
-                  +socials('socials', ['insta', 'vk', 'github'])
+                  +socials('socials','bordered', ['insta', 'vk', 'github'])
                 .footer__slogan
                   blockquote.footer__blockquote
                     | Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает, где вы живете
