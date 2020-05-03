@@ -17,5 +17,5 @@ mixin socials(className, theme, items)
   ul(class=`${className} ${className}_${theme} `)
     each item in items
       li(class=`${className}__item`)
-        a(class=`${className}__link`)
+        a(class=`${className}__link` href='#' target='_blank')
           +icon(`${item}`, `${className}__icon`)

@@ -7,16 +7,13 @@
 	padding-bottom: 100px;
 }
 
-.feedback-form__wrapper {
-	
-}
-
 .feedback-form__title {
 	margin-bottom: 97px;
 }
 
 .feedback-form__column {
 	margin-bottom: 60px;
+	max-width: 850px;
 }
 
 .feedback-form__row {
@@ -30,6 +27,7 @@
 
 .feedback-form__block {
 	margin-right: 100px;
+	width: 100%;
 
 	&:last-child {
 		margin-right: 0;
@@ -38,4 +36,29 @@
 
 .feedback-form__block-title {
 	margin-bottom: 30px;
+}
+
+.feedback-form__input {
+
+}
+
+.feedback-form__input_name {
+	background-image: svg-load('user.svg', fill=#464d62, width=100%, height=100%, opacity=0.3);
+	background-size: 26px 30px;
+	background-position: 0 22px;
+	background-repeat: no-repeat;
+}
+
+.feedback-form__input_email {
+	background-image: svg-load('envelope.svg', fill=#464d62, width=100%, height=100%, opacity=0.3);
+	background-size: 30px 23px;
+	background-position: 0 25px;
+	background-repeat: no-repeat;
+}
+
+.feedback-form__textarea {
+	background-image: svg-load('message.svg', fill=#464d62, width=100%, height=100%, opacity=0.3);
+	background-size: 30px 23px;
+	background-position: 0 25px;
+	background-repeat: no-repeat;
 }

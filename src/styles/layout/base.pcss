@@ -88,6 +88,60 @@ img {
   max-height: 100%;
 }
 
+::-webkit-input-placeholder {
+  color: $text-color;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 36px;
+  max-width: 400px;
+}
+
+::-moz-placeholder {
+  color: $text-color;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 36px;
+  max-width: 400px;
+}
+
+:-moz-placeholder {
+  color: $text-color;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 36px;
+  max-width: 400px;
+}
+
+:-ms-input-placeholder {
+  color: $text-color;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 36px;
+  max-width: 400px;
+}
+
+.arrow {
+    width: 8px;
+    height: 10px;
+    fill: currentColor;
+  
+    &_back {
+      transform: rotate(180deg);
+    }
+
+    &_front {
+      transform: rotate(0deg);
+    }
+
+    &_up {
+      transform: rotate(-90deg);
+    }
+
+    &_down {
+      transform: rotate(90deg);
+    }
+}
+
 .sections-wrapper-baloon {
   background-image: url('../images/content/mountain_baloon.png');
   background-size: cover;
@@ -100,7 +154,7 @@ img {
   background-repeat: no-repeat;
 }
 
-.title_type_h3 {
+.title_h3 {
 	font-size: 36px;
 	font-weight: 700;
 	line-height: 48px;

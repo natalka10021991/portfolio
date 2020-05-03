@@ -25,6 +25,7 @@ html(lang="en")
                 .header__nav
                   +nav('nav', 'light', ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться'], '' )
                 .header__socials
+                  //- var links = { insta: 'https://www.instagram.com/natali_bystrova/', vk: 'https://vk.com/bystrova_natali', github: 'https://github.com/natalka10021991'}; 
                   +socials('socials', '', ['insta', 'vk', 'github'])
             
               .hero__site-name
@@ -64,35 +65,59 @@ html(lang="en")
             svg(viewbox="0 0 1000 100" preserveAspectRatio="none").skills__triangles-item.triangle
               polygon(points="1000,0 1000,100, 0,100")
           .skills__wrapper
-            h3.skills__title Чем я могу быть полезной вам
-            p.skills__subtitle Этот сайт я сделала в рамках обучения в школе онлайн образования.
-            .skills__contents
-              -
-                var items = [
-                  ["Frontend", ["HTML5", "CSS3", "Javascript", "jQuery и Vue.js"]],
-                  ["Workflow", ["GIT", "Terminal", "Gulp", "Webpack"]]
-                ];
+            .skills__photo
+              +image('content/bag.png', 'skills__image')
+            .skills__content
+              h3.skills__title Чем я могу быть полезной вам
+              p.skills__subtitle Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+              .skills__contents
+                -
+                  var items = [
+                    ["Frontend", ["HTML5", "CSS3", "Javascript", "jQuery и Vue.js"]],
+                    ["Workflow", ["GIT", "Terminal", "Gulp", "Webpack"]]
+                  ];
 
-              ul.skills-list
-                each row in items
-                  li.skills-list__item.skills-row
-                    .skills-row__title #{row[0]}
-                    ul.skills-row__list
-                      each cell in row[1]
-                        li.skills-row__item
-                          .skill
-                            .skill__circle
-                              svg(viewbox="0 0 100 100")
-                                circle(r="40" cx="50" cy="50" fill="none" stroke="#e9e9e9" stroke-width="10")
-                            .skill__circle
-                            .skill__title= cell
+                ul.skills-list
+                  each row in items
+                    li.skills-list__item.skills-row
+                      .skills-row__title #{row[0]}
+                      ul.skills-row__list
+                        each cell in row[1]
+                          li.skills-row__item
+                            .skill
+                              .skill__circle
+                                svg(viewbox="0 0 200 200")
+                                  circle(
+                                    r="80" 
+                                    cx="100" 
+                                    cy="100" 
+                                    fill="transparent" 
+                                    stroke="#e9e9e9" 
+                                    stroke-width="10"
+                                    )
+                                  circle(
+                                    cx="100" 
+                                    cy="100" 
+                                    r="80" 
+                                    fill="transparent" 
+                                    stroke="url(#gradient)" 
+                                    stroke-width="20px" 
+                                    stroke-dasharray="502.4" 
+                                    stroke-dashoffset="376.8"
+                                    )
+                              .skill__title= cell
+                            svg(style="width:0; height:0; position: absolute;" aria-hidden="true")
+                              linearGradient(id="gradient" x1="0%" y1="0%" x2="100%" y2="0")
+                                stop(offset="0%" stop-color='#4a00ed')
+                                stop(offset="100%" stop-color='#9300e8')
 
         section.portfolio
           .container
-            .portfolio__title.title_type_h3 Мои работы
+            .portfolio__title.title_h3 Мои работы
             .portfolio__wrapper
               .portfolio__slider
                 +image('content/portfolio-preview.png', 'portfolio__preview')
+                +image('content/4.png', 'portfolio__slide-number')
                 ul.portfolio__small-preview-list
                   li.portfolio__small-preview-item
                     a.portfolio__small-preview-link(href='#')
@@ -107,10 +132,10 @@ html(lang="en")
                     a.portfolio__small-preview-link(href='#')
                       +image('content/small-preview-item4.png', 'portfolio__small-preview-image')   
                 .portfolio__buttons
-                  button.portfolio__button.portfolio__button_type_up
-                    icon('arrow-down', 'portfolio__button-icon')
-                  button.portfolio__button.portfolio__button_type_down
-                    icon('arrow-down', 'portfolio__button-icon')
+                  button.portfolio__button
+                    +icon('arrow-down', 'arrow arrow_up')
+                  button.portfolio__button.portfolio__button_active
+                    +icon('arrow-down', 'arrow arrow_down')
               .portfolio__slider-description
                 ul.portfolio__tags
                   li.portfolio__tags-item 
@@ -120,52 +145,61 @@ html(lang="en")
                   li.portfolio__tags-item
                     .portfolio__tags-value Css
                 .portfolio__slider-title Сайт школы образования
-                .portfolio__text Эта работа - редизайн старого сайта для школы №23
+                .portfolio__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
                 a.portfolio__link(href='#') 
                   +icon('link', 'portfolio__link-icon')
                   span.portfolio__link-text Посмотреть сайт
         .sections-wrapper-budda
           section.feedback
             .container
-              .title_type_h3.feedback__title Что обо мне говорят
-              .feedback__slider
+              .feedback__header
+                .title_h3.feedback__title Что обо мне говорят
                 .feedback__slider-buttons
-                  button.feedback__button.feedback__button_type_back 
-                    +icon('arrow-down', 'feedback__button-icon')
-                  button.feedback__button.feedback__button_type_front
-                    +icon('arrow-down', 'feedback__button-icon')
+                  button.feedback__button
+                    +icon('arrow-down', 'arrow arrow_back')
+                  button.feedback__button
+                    +icon('arrow-down', 'arrow arrow_front')
+              .feedback__slider
                 ul.feedback__slider-list
                   li.feedback__slider-item
-                    .feedback__text Этот код выдержит любые испытания
+                    .feedback__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
                     .feedback__user
-                      +image('content/feedback-user1.png', 'feedback__user-photo')   
+                      .feedback__user-avatar
+                        .avatar
+                          +image('content/feedback-user1.png', 'avatar__photo')
 
-                      .feedback__user-name Ковальчук Дмитрий
-                      .feedback__user-position Основатель Loftschool
+                      .feedback__avatar-description
+                        .feedback__user-name Ковальчук Дмитрий
+                        .feedback__user-position Основатель Loftschool
                   li.feedback__slider-item
-                    .feedback__text Этот код выдержит любые испытания Этот код выдержит любые испытания Этот код выдержит любые испытания
+                    .feedback__text Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
                     .feedback__user
-                      +image('content/feedback-user2.png', 'feedback__user-photo')   
-                      .feedback__user-name Ковальчук Дмитрий               
-                      .feedback__user-position Основатель Loftschool
+                      .feedback__user-avatar
+                        .avatar
+                          +image('content/feedback-user1.png', 'avatar__photo')   
+                      .feedback__avatar-description
+                        .feedback__user-name Владимир Сабанцев               
+                        .feedback__user-position Преподаватель
           section.feedback-form
             .container.feedback-form__wrapper
-              h3.title_type_h3.feedback-form__title Связаться со мной
+              h3.title_h3.feedback-form__title Связаться со мной
               form.feedback-form__form
                 .feedback-form__column
                   .feedback-form__row
                     label.feedback-form__block
                       .label.feedback-form__block-title Введите ваше имя
-                      input.input.feedback-form__input(
+                      input.input.feedback-form__input.feedback-form__input_name(
                         type='text'
                         placeholder='Наталья Быстрова'
+                        required=''
                       )
                       span.feedback-form__block-error
                     label.feedback-form__block
                       .label.feedback-form__block-title Введите ваш email
-                      input.input.feedback-form__input(
+                      input.input.feedback-form__input.feedback-form__input_email(
                         type='email'
                         placeholder='n.a.bystrova@gmail.com'
+                        required=''
                       )
                       span.feedback-form__block-error
                   .feedback-form__row
@@ -173,11 +207,11 @@ html(lang="en")
                       .label.feedback-form__block-title Сообщение к письму
                       textarea.textarea.feedback-form__textarea(
                         type='text'
-                        placeholder='Требуется ваша помощь в создании сайта'
+                        placeholder='Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса'
                       )
                       span.feedback-form__block-error
                 
-                button.button.button_type_submit Отправить
+                button.button.button_type_submit(type='submit') Отправить
 
         footer.footer
           .container.footer__wrapper
