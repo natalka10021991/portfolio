@@ -1,0 +1,38 @@
+section.portfolio
+	.container
+		.portfolio__title.title_h3 Мои работы
+		.portfolio__wrapper
+			.portfolio__slider
+				+image('content/portfolio-preview.png', 'portfolio__preview')
+				+image('content/4.png', 'portfolio__slide-number')
+				ul.portfolio__small-preview-list
+					li.portfolio__small-preview-item
+						a.portfolio__small-preview-link(href='#')
+							+image('content/small-preview-item1.png', 'portfolio__small-preview-image')
+					li.portfolio__small-preview-item
+						a.portfolio__small-preview-link(href='#')
+							+image('content/small-preview-item2.png', 'portfolio__small-preview-image')
+					li.portfolio__small-preview-item
+						a.portfolio__small-preview-link(href='#')
+							+image('content/small-preview-item3.png', 'portfolio__small-preview-image')
+					li.portfolio__small-preview-item
+						a.portfolio__small-preview-link.portfolio__small-preview-link_active(href='#')
+							+image('content/small-preview-item4.png', 'portfolio__small-preview-image')   
+				.portfolio__buttons
+					button.portfolio__button
+						+icon('arrow-down', 'arrow arrow_up')
+					button.portfolio__button.portfolio__button_active
+						+icon('arrow-down', 'arrow arrow_down')
+			.portfolio__slider-description
+				ul.portfolio__tags
+					li.portfolio__tags-item 
+						span.portfolio__tags-value HTML
+					li.portfolio__tags-item 
+						.portfolio__tags-value JavaScript
+					li.portfolio__tags-item
+						.portfolio__tags-value Css
+				.portfolio__slider-title Сайт школы образования
+				.portfolio__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+				a.portfolio__link(href='#') 
+					+icon('link', 'portfolio__link-icon')
+					span.portfolio__link-text Посмотреть сайт

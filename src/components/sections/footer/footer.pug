@@ -1,0 +1,18 @@
+footer.footer
+	.container.footer__wrapper
+		.footer__left
+			.footer__date &copy; 2019
+			.footer__owner
+				p.footer__name Быстрова Наталья
+				p.footer__name-description Личный сайт веб-разработчика
+
+		.footer__right
+			+nav('nav', 'dark', ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться'] ,'footer__nav')
+			.footer__right-bottom
+				.footer__owner-info
+					.footer__site-description Этот сайт я сделала в рамках обучения в Школе онлайн образования Loftschool
+					+socials('socials','bordered', ['insta', 'vk', 'github'])
+				.footer__slogan
+					blockquote.footer__blockquote
+						| Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает, где вы живете
+					cite.footer__blockquote-cite Martin Golding

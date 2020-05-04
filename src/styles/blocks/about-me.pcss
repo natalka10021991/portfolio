@@ -20,8 +20,8 @@
 .about-me__avatar {
 	width: 200px;
 	height: 200px;
+	margin: 0 auto;
 	margin-bottom: 70px;
-	margin-left: auto;
 }
 
 .about-me__data {
@@ -56,4 +56,20 @@
 	opacity: 0.5;
 	font-weight: 600;
 	line-height: 30px;
+
+	&_with-icon {
+		font-style: italic;
+		position: relative;
+
+		&:before {
+			content: '';
+			display: block;
+			width: 22px;
+			height: 22px;
+			position: absolute;
+			top: 0;
+			left: -50px;
+			background-image: url('../images/content/snowflake.png');
+		}
+	}
 }

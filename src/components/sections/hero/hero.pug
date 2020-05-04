@@ -1,0 +1,18 @@
+section.hero.fullscreen-section
+	header.header
+		.header__logo
+			.logo НБ
+
+		.header__nav
+			+nav('nav', 'light', ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться'], '' )
+		.header__socials
+			//- var links = { insta: 'https://www.instagram.com/natali_bystrova/', vk: 'https://vk.com/bystrova_natali', github: 'https://github.com/natalka10021991'}; 
+			+socials('socials', '', ['insta', 'vk', 'github'])
+
+	.hero__site-name
+		p.hero__site-description Личный сайт веб разработчика
+		h1.hero__site-title Наталья Быстрова
+	
+	a.hero__scroll
+		span.hero__scroll-text Скролл
+		+icon('scroll', 'hero__scroll-icon')
