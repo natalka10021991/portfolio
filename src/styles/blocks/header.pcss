@@ -4,3 +4,27 @@
 	align-items: center;
 	margin-top: 64px;
 }
+
+.header__nav {
+	@include tablets {
+		display: none;
+	}
+}
+
+.header__socials {
+	display: flex;
+	align-items: center;
+}
+
+.header__mobile-menu-button {
+	display: none;
+	width: 24px;
+	height: 20px;
+	background-color: transparent;
+
+	@include tablets {
+		display: block;
+		background-image: url('../images/content/menu.png');
+		margin-left: 90px;
+	}
+}

@@ -7,7 +7,7 @@ mixin image(path, className)
   img(src=require(`images/${path}`) class=className)
 
 mixin nav(className, theme, items, blockClassName)
-  nav(class=`${className} ${blockClassName} ${className}_theme_${theme}`)
+  nav(class=`${className} ${blockClassName} ${className}_${theme}`)
     ul(class=`${className}__list`)
       each item in items
         li(class=`${className}__item`)
@@ -17,5 +17,5 @@ mixin socials(className, theme, items)
   ul(class=`${className} ${className}_${theme} `)
     each item in items
       li(class=`${className}__item`)
-        a(class=`${className}__link`)
+        a(class=`${className}__link` href='#' target='_blank')
           +icon(`${item}`, `${className}__icon`)

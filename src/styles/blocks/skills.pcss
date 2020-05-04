@@ -1,13 +1,23 @@
 .skills {
-	background-image: url('../images/content/bag.png');
-	background-repeat: no-repeat;
-	background-position: left center;
 	display: flex;
 	justify-content: center;
 	position: relative;
 	height: 100vh;
 	align-items: center;
-  justify-content: center;
+	justify-content: center;
+	margin-bottom: 70px;
+	
+	@include tablets {
+		height: auto;
+	}
+}
+
+.skills__wrapper {
+	display: flex;
+
+	@include tablets {
+		flex-direction: column;
+	}
 }
 
 .skills__triangles {
@@ -24,22 +34,79 @@
 	height: 100px;
 }
 
+.skills__photo {
+	margin-top: 120px;
+
+	@include tablets {
+		order: 4;
+		margin-top: 0;
+	}
+}
+
 .skills__title {
 	font-size: 30px;
 	font-weight: 700;
 	line-height: 36px;
 	margin-bottom: 60px;
+
+	@include tablets {
+		text-align: center;
+		max-width: 270px;
+		margin: 0 auto;
+		margin-bottom: 30px;
+	}
 }
 
 .skills__subtitle {
 	font-size: 16px;
-	font-weight: 700;
+	font-weight: 600;
+	opacity: 0.5;
 	line-height: 30px;
-	text-align: center;
+	max-width: 585px;
+	margin-bottom: 90px;
+
+	@include tablets {
+		font-size: 14px;
+		line-height: 24px;
+		text-align: center;
+		max-width: 440px;
+		margin: 0 auto;
+		margin-bottom: 60px;
+		
+	}
+}
+
+.skills__contents {
+	margin-left: 130px;
+
+	@include tablets {
+		margin-left: 0;
+		margin-bottom: 120px;
+	}
+}
+
+.skills-list__item {
+	margin-bottom: 60px;
+}
+
+.skills-row__title {
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 48px;
+	margin-bottom: 45px;
+
+	@include tablets {
+		margin-bottom: 30px;
+		text-align: center;
+	}
 }
 
 .skills-row__list {
 	display: flex;
+
+	@include tablets {
+		justify-content: center;
+	}
 }
 
 .skills-row__item {
@@ -47,6 +114,10 @@
 
 	&:last-child {
 		margin-right: 0;
+	}
+
+	@include tablets {
+		margin-right: 30px;
 	}
 }
 

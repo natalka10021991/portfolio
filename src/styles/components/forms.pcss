@@ -1,21 +1,39 @@
 .input {
+	color: $text-color;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 36px;
+  max-width: 400px;
 	border: none;
-	border-bottom: 2px solid #464d62;
+	border-bottom: 2px solid $text-color;
 	background-color: transparent;
 	width: 100%;
 	max-width: 380px;
-	padding: 18px 47px;
+	padding: 10px 47px;
+
+	&:hover,
+	&:focus {
+		outline: none;
+		border-bottom: 2px solid $purple;
+	}
 }
 
 .textarea {
+	color: $text-color;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 36px;
 	border: none;
-	border-bottom: 2px solid #464d62;
+	border-bottom: 2px solid $text-color;
 	background-color: transparent;
 	width: 100%;
-	max-width: 380px;
+	min-width: 380px;
+	min-height: 100px;
+	resize: none;
+	padding: 15px 47px;
 
-	&:focus {
-		outline: none;
+	@include tablets {
+    min-height: 80px;
 	}
 }
 
@@ -24,6 +42,10 @@
 	font-size: 16px;
 	font-weight: 600;
 	line-height: 30px;
+
+	@include tablets {
+		font-size: 14px;
+	}
 }
 
 .button {
@@ -39,6 +61,6 @@
 
 	&:hover,
 	&:focus {
-		background-image: linear-gradient(90deg,#9300C7 0,#4A00D5);
+		background-image: linear-gradient(to right, #bb00ff 0%, #5900ff 100%);
 	}
 }
