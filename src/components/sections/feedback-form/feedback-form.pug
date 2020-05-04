@@ -5,7 +5,7 @@ section.feedback-form
 			.feedback-form__column
 				.feedback-form__row
 					label.feedback-form__block
-						.label.feedback-form__block-title Введите ваше имя
+						.label.feedback-form__label Введите ваше имя
 						input.input.feedback-form__input.feedback-form__input_name(
 							type='text'
 							placeholder='Наталья Быстрова'
@@ -13,7 +13,7 @@ section.feedback-form
 						)
 						span.feedback-form__block-error
 					label.feedback-form__block
-						.label.feedback-form__block-title Введите ваш email
+						.label.feedback-form__label Введите ваш email
 						input.input.feedback-form__input.feedback-form__input_email(
 							type='email'
 							placeholder='n.a.bystrova@gmail.com'
@@ -22,11 +22,11 @@ section.feedback-form
 						span.feedback-form__block-error
 				.feedback-form__row
 					label.feedback-form__block
-						.label.feedback-form__block-title Сообщение к письму
+						.label.feedback-form__label Сообщение к письму
 						textarea.textarea.feedback-form__textarea(
 							type='text'
 							placeholder='Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса'
 						)
 						span.feedback-form__block-error
 			
-			button.button.button_type_submit(type='submit') Отправить
+			button.button.button_type_submit.feedback-form__button(type='submit') Отправить

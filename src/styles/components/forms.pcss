@@ -9,15 +9,13 @@
 	background-color: transparent;
 	width: 100%;
 	max-width: 380px;
-	padding: 18px 47px;
+	padding: 10px 47px;
 
 	&:hover,
 	&:focus {
 		outline: none;
 		border-bottom: 2px solid $purple;
-
 	}
-	
 }
 
 .textarea {
@@ -32,7 +30,11 @@
 	min-width: 380px;
 	min-height: 100px;
 	resize: none;
-	padding: 18px 47px;
+	padding: 15px 47px;
+
+	@include tablets {
+    min-height: 80px;
+	}
 }
 
 .label {
@@ -40,6 +42,10 @@
 	font-size: 16px;
 	font-weight: 600;
 	line-height: 30px;
+
+	@include tablets {
+		font-size: 14px;
+	}
 }
 
 .button {

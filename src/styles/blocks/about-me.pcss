@@ -26,6 +26,10 @@
 
 .about-me__data {
 
+	@include tablets {
+		font-size: 14px;
+	}
+
 	td {
 		padding: 5px;
 		min-width: 160px;
@@ -33,6 +37,12 @@
 		&:nth-child(2) {
 			font-weight: 600;
 			opacity: 1;
+		}
+
+		&:nth-child(1) {
+			@include tablets {
+				min-width: 110px;
+			}
 		}
 	}
 }
@@ -46,6 +56,10 @@
 	font-weight: 700;
 	line-height: 48px;
 	margin: 10px 0 20px 0;
+
+	@include tablets {
+		font-size: 30px;
+	}
 }
 
 .about-me__greeting {
@@ -56,6 +70,11 @@
 	opacity: 0.5;
 	font-weight: 600;
 	line-height: 30px;
+
+	@include tablets {
+		font-size: 14px;
+		line-height: 24px;
+	}
 
 	&_with-icon {
 		font-style: italic;

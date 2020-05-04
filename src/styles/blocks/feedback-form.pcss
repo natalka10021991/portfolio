@@ -7,13 +7,30 @@
 	padding-bottom: 100px;
 }
 
+.feedback-form__wrapper {
+	
+	@include tablets {
+		display: flex;
+    flex-direction: column;
+    align-items: center;
+	}
+}
+
 .feedback-form__title {
 	margin-bottom: 97px;
+
+	@include tablets {
+		margin-bottom: 60px;
+	}
 }
 
 .feedback-form__column {
 	margin-bottom: 60px;
 	max-width: 850px;
+
+	@include tablets {
+		margin-bottom: 30px;
+	}
 }
 
 .feedback-form__row {
@@ -34,12 +51,15 @@
 	}
 }
 
-.feedback-form__block-title {
+.feedback-form__label {
 	margin-bottom: 30px;
-}
 
-.feedback-form__input {
-
+	@include tablets {
+    font-size: 14px;
+		line-height: 24px;
+		margin-left: 45px;
+		margin-bottom: 0;
+	}
 }
 
 .feedback-form__input_name {
@@ -61,4 +81,9 @@
 	background-size: 30px 23px;
 	background-position: 0 25px;
 	background-repeat: no-repeat;
+}
+
+.feedback-form__button {
+	display: block;
+	margin: 0 auto;
 }

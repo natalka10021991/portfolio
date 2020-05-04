@@ -23,6 +23,10 @@
 
 .nav__list {
 	display: flex;
+
+	@include tablets {
+		flex-wrap: wrap;
+	}	
 }
 
 .nav__item  {
@@ -31,6 +35,10 @@
 	&:last-child {
 		margin-right: 0;
 	}
+
+	@include tablets {
+		margin-bottom: 30px;
+	}	
 }
 
 .nav__link {
