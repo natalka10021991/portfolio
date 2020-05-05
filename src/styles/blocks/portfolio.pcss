@@ -2,6 +2,10 @@
 	min-height: 900px;
 	display: flex;
 	align-items: center;
+
+	@include phones {
+    min-height: 560px;
+  }
 }
 
 .portfolio__wrapper {
@@ -15,6 +19,11 @@
 
 .portfolio__title {
 	margin-bottom: 90px;
+
+	@include phones {
+		margin: 0 auto;
+		margin-bottom: 30px;
+	}
 }
 
 .portfolio__slider {
@@ -24,12 +33,21 @@
 	@include tablets {
 		margin-bottom: 120px;
 	}
+
+	@include phones {
+		margin-right: 0;
+		margin-bottom: 60px;
+	}
 }
 
 .portfolio__small-preview-list {
 	position: absolute;
 	right: 0;
 	bottom: 0;
+
+	@include phones {
+		display: none;
+	}
 }
 
 .portfolio__small-preview-link {
@@ -68,6 +86,11 @@
 	position: absolute;
 	right: 0;
 	top: 100%;
+
+	@include phones {
+		top: auto;
+		bottom: 0;
+	}
 }
 
 .portfolio__button {
@@ -95,18 +118,9 @@
     flex-direction: column;
     align-items: center;
 	}
-}
 
-.portfolio__slider-title {
-	font-size: 30px;
-	font-weight: 700;
-	line-height: 48px;
-	margin-bottom: 45px;
-	max-width: 205px;
-
-	@include tablets {
-		max-width: none;
-		margin-bottom: 30px;
+	@include phones {
+		align-items: flex-start;
 	}
 }
 
@@ -116,6 +130,10 @@
 
 	@include tablets {
 		margin-bottom: 30px;
+	}
+
+	@include phones {
+		margin-bottom: 20px;
 	}
 }
 
@@ -135,7 +153,29 @@
 	color: $text-color;
 	font-size: 15px;
 	font-weight: 600;
-	text-transform: uppercase;
+
+	@include phones {
+		font-size: 13px;
+	}
+}
+
+.portfolio__slider-title {
+	font-size: 30px;
+	font-weight: 700;
+	line-height: 48px;
+	margin-bottom: 45px;
+	max-width: 205px;
+
+	@include tablets {
+		max-width: none;
+		margin-bottom: 30px;
+	}
+
+	@include phones {
+		font-size: 24px;
+		line-height: 30px;
+		margin-bottom: 20px;
+	}
 }
 
 .portfolio__text {
@@ -149,6 +189,13 @@
 		text-align: center;
 		margin-bottom: 30px;
 	}
+
+
+	@include phones {
+		text-align: left;
+		font-size: 14px;
+		line-height: 24px;
+	}
 }
 
 .portfolio__link {
@@ -157,6 +204,12 @@
 	font-weight: 700;
 	line-height: 48px;
 	text-decoration: none;
+
+	@include phones {
+		text-align: left;
+		font-size: 14px;
+		line-height: 24px;
+	}
 
 	&:hover,
 	&:focus {
