@@ -10,9 +10,24 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     title Portfolio | main page
   body
-    .wrapper
+    .wrapper#app
       .maincontent
-        .sections-wrapper-baloon
+        section.parallax
+          .parallax__layer
+            img(src=require("images/content/parallax/baloon/Sky.png")).parallax__image
+          .parallax__layer
+            img(src=require("images/content/parallax/baloon/Mountain.png")).parallax__image
+          .parallax__layer
+            img(src=require("images/content/parallax/baloon/Baloon.png")).parallax__image
+          .parallax__layer
+            img(src=require("images/content/parallax/baloon/Cloud.png")).parallax__image
+          .parallax__layer
+            img(src=require("images/content/parallax/baloon/Man.png")).parallax__image
+          .parallax__layer
+            img(src=require("images/content/parallax/baloon/Mountain1.png")).parallax__image
+          .parallax__layer
+            img(src=require("images/content/parallax/baloon/White.png")).parallax__image
+
           .container
             include ./components/sections/hero/hero
             include ./components/sections/about-me/about-me
@@ -21,11 +36,32 @@ html(lang="en")
         include ./components/sections/portfolio/portfolio
         
 
-        .sections-wrapper-budda
+        section.parallax.parallax_budda
+          .parallax__layer
+            img(src=require("images/content/parallax/budda/layer2.png")).parallax__image
+          .parallax__layer
+            img(src=require("images/content/parallax/budda/layer3.png")).parallax__image
+          .parallax__layer
+            img(src=require("images/content/parallax/budda/layer4.png")).parallax__image
+          .parallax__layer
+            img(src=require("images/content/parallax/budda/layer5.png")).parallax__image
+          .parallax__layer
+            img(src=require("images/content/parallax/budda/layer6.png")).parallax__image
+          .parallax__layer
+            img(src=require("images/content/parallax/budda/layer7.png")).parallax__image
+
           include ./components/sections/feedback/feedback
           include ./components/sections/feedback-form/feedback-form
         include ./components/sections/footer/footer
 
-  
+      .mobile-menu#mobileMenu
+        .mobile-menu__wrapper
+          button.mobile-menu__close-btn.close-btn
+            +icon('cross', 'close-btn__icon')
+          .mobile-menu__nav
+            +nav('nav', 'mobile', ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться'], '' )
+          .mobile-menu__socials
+            +socials('socials', '', ['insta', 'vk', 'github'])
+
 
           
