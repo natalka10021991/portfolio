@@ -2,6 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	position: relative;
 
 	@include tablets {
 		justify-content: flex-start;
@@ -12,7 +13,6 @@
 .hero__site-name {
 	margin: 0 auto;
 	text-align: center;
-	z-index: 1;
 
 	@include desktop {
 		display: flex;
@@ -72,7 +72,6 @@
 	display: flex;
 	align-items: center;
 	margin-bottom: 30px;
-	z-index: 1;
 
 	@include tablets {
 		display: none;
