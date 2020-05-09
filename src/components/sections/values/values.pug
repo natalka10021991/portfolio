@@ -1,0 +1,21 @@
+section.values
+	.triangles
+		svg(viewbox="0 0 1000 100" preserveAspectRatio="none").triangles-item.triangle
+			polygon(points="0,0 0,100, 1000,100")
+		svg(viewbox="0 0 1000 100" preserveAspectRatio="none").triangles-item.triangle
+			polygon(points="1000,0 1000,100, 0,100")
+	.container
+		.values__wrapper
+			.values__photo
+				+image('content/bag.png', 'skills__image')
+			.values__content
+				h3.values__title Чем я могу быть полезной вам
+				p.values__subtitle Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+				-
+					var items = [
+						["Frontend", ["HTML5", "CSS3", "Javascript", "jQuery и Vue.js"]],
+						["Workflow", ["GIT", "Terminal", "Gulp", "Webpack"]]
+					];
+				.values__widget
+					#skills-component
+					

@@ -30,7 +30,7 @@ html(lang="en")
             include ./components/sections/hero/hero
             include ./components/sections/about-me/about-me
 
-        include ./components/sections/skills/skills
+        include ./components/sections/values/values
         include ./components/sections/portfolio/portfolio
         
         section.parallax.parallax_budda
@@ -59,3 +59,5 @@ html(lang="en")
             +nav('nav', 'mobile', ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться'], '' )
           .mobile-menu__socials
             +socials('socials', '', ['insta', 'vk', 'github'])
+
+      include ./templates/entry.pug
