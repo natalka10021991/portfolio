@@ -29,6 +29,18 @@
 .portfolio__slider {
 	position: relative;
 	margin-right: 20px;
+	max-width: 977px;
+
+	&:before {
+		content: attr(data-slide);
+		position: absolute;
+		right: -150px;
+		top: 150px;
+		color: #e6e6e6;
+		font-size: 400px;
+		font-weight: 800;
+		line-height: 48px;
+	}
 
 	@include tablets {
 		margin-bottom: 120px;
@@ -40,7 +52,16 @@
 	}
 }
 
-.portfolio__small-preview-list {
+.portfolio__preview {
+	min-width: 500px;
+	width: 100%;
+	background: #f2f2f2;
+	position: relative;
+}
+
+.portfolio__thumbs-list {
+	max-width: 178px;
+  background: #c1c1c1;
 	position: absolute;
 	right: 0;
 	bottom: 0;
@@ -50,14 +71,16 @@
 	}
 }
 
-.portfolio__small-preview-link {
-	position: relative;
-	display: block;
-
+.portfolio__thumbs-item {
 	&_active {
 		outline: 3px solid $purple;
 		z-index: 1;
-	}	
+	}
+}
+
+.portfolio__thumbs-link {
+	position: relative;
+	display: block;	
 
 	&:hover,
 	&:focus {
@@ -76,16 +99,11 @@
 	}
 }
 
-.portfolio__slide-number {
-	position: absolute;
-	right: -150px;
-	top: 100px;
-}
-
 .portfolio__buttons {
 	position: absolute;
 	right: 0;
 	top: 100%;
+	display: flex;
 
 	@include phones {
 		top: auto;
@@ -94,19 +112,25 @@
 }
 
 .portfolio__button {
+	display: block;
 	width: 50px;
 	height: 50px;
 	background-color: $dark-gray-buttons;
-	color: rgba(256,256,256,0.3);
 	transition: background-color .3s;
+	background: svg-load('arrow-down.svg', fill=#fff, fill-opacity="0.3", width=10px, height=8px) center center no-repeat;
+	background-color: $dark-gray-buttons;
 
-	&_active {
-		color: rgba(256,256,256,1);
+	&_up {
+		transform: rotate(-90deg);
+	}
+
+	&_down {
+		transform: rotate(90deg);
 	}
 
 	&:hover,
 	&:focus {
-		background-color: $purple;
+		color: rgba(256,256,256,1);
 	}
 }
 
@@ -199,11 +223,16 @@
 }
 
 .portfolio__link {
+	display: block;
 	color: #586ed3;
 	font-size: 18px;
 	font-weight: 700;
 	line-height: 48px;
 	text-decoration: none;
+	padding-left: 20px;
+	background: svg-load('link.svg', fill=#586ed3, width=15px, height=15px) left center no-repeat;
+
+
 
 	@include phones {
 		text-align: left;
@@ -215,11 +244,4 @@
 	&:focus {
 		text-decoration: underline;
 	}
-}
-
-.portfolio__link-icon {
-	width: 15px;
-	height: 15px;
-	fill: #586ed3;
-	margin-right: 20px;
 }
