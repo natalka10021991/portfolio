@@ -12,8 +12,9 @@ script(type="text/x-template")#slider-container
 		
 
 script(type="text/x-template")#slider-display
-	.portfolio__slider(:data-slide="currentIndex + 1")
-		img(:src="currentWork.photo").portfolio__preview
+	.portfolio__slider
+		.portfolio__preview-wrapper(:data-slide="currentIndex + 1")
+			img(:src="currentWork.photo").portfolio__preview
 		thumbs(
 			:works="reversedWorks",
 			:currentWork="currentWork"
@@ -48,8 +49,7 @@ script(type="text/x-template")#slider-info
 			span.portfolio__link-text Посмотреть сайт
 
 script(type="text/x-template")#slider-tags
-	div
-		ul.portfolio__tags
-			li.portfolio__tags-item(v-for="tag in tags" :key="tag")
-				span.portfolio__tags-value {{tag}}
+	ul.portfolio__tags
+		li.portfolio__tags-item(v-for="tag in tags" :key="tag")
+			span.portfolio__tags-value {{tag}}
 		
