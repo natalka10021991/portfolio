@@ -30,7 +30,7 @@ script(type="text/x-template")#slider-thumbs
 			:key="item.id"
 			:class="{'portfolio__thumbs-item_active': currentWork.id === item.id}"
 			)
-			a.portfolio__thumbs-link(href='#')
+			button.portfolio__thumbs-link
 				img.portfolio__thumbs-image(:src="item.photo")
 
 script(type="text/x-template")#slider-buttons
