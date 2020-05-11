@@ -3,12 +3,10 @@
   font-size: 18px;
   font-weight: 700;
   line-height: 36px;
-  max-width: 400px;
 	border: none;
 	border-bottom: 2px solid $text-color;
 	background-color: transparent;
 	width: 100%;
-	max-width: 380px;
 	padding: 10px 47px;
 
 	&:hover,
@@ -26,14 +24,12 @@
 	border: none;
 	border-bottom: 2px solid $text-color;
 	background-color: transparent;
-	width: 100%;
-	min-width: 380px;
-	min-height: 100px;
+	width: 100%;	
 	resize: none;
 	padding: 15px 47px;
 
-	@include tablets {
-    min-height: 80px;
+	@include phones {
+		padding-right: 0;
 	}
 }
 
@@ -62,5 +58,10 @@
 	&:hover,
 	&:focus {
 		background-image: linear-gradient(to right, #bb00ff 0%, #5900ff 100%);
+	}
+
+	@include phones {
+		font-size: 16px;
+		padding: 6px 80px;
 	}
 }

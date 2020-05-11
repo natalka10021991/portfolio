@@ -3,6 +3,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	position: relative;
 }
 
 .about-me__wrapper {
@@ -11,10 +12,19 @@
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
+
+	@include phones {
+		flex-direction: column;
+	}
 }
 
 .about-me__user-info {
 	width: 30%;
+
+	@include phones {
+		width: 100%;
+		margin-bottom: 40px;
+	}
 }
 
 .about-me__avatar {
@@ -22,6 +32,10 @@
 	height: 200px;
 	margin: 0 auto;
 	margin-bottom: 70px;
+
+	@include phones {
+		margin-bottom: 20px;
+	}
 }
 
 .about-me__data {
@@ -49,6 +63,10 @@
 
 .about-me__user-description {
 	width: 55%;
+
+	@include phones {
+		width: 100%;
+	}
 }
 
 .about-me__title {
@@ -60,10 +78,20 @@
 	@include tablets {
 		font-size: 30px;
 	}
+
+	@include phones {
+		font-size: 30px;
+		line-height: 36px;
+		margin: 10px 0 40px 0;
+	}
 }
 
 .about-me__greeting {
 	margin-bottom: 100px;
+
+	@include phones {
+		margin-bottom: 50px;
+	}
 }
 
 .about-me__text {
@@ -79,6 +107,10 @@
 	&_with-icon {
 		font-style: italic;
 		position: relative;
+
+		@include phones {
+			padding-bottom: 80px;
+		}
 
 		&:before {
 			content: '';

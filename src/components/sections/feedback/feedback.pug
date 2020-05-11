@@ -1,30 +1,9 @@
 section.feedback
+	.triangles.triangles_reverse
+		svg(viewbox="0 0 1000 100" preserveAspectRatio="none").triangles-item.triangle
+			polygon(points="0,0 0,100, 1000,100")
+		svg(viewbox="0 0 1000 100" preserveAspectRatio="none").triangles-item.triangle
+			polygon(points="1000,0 1000,100, 0,100")
 	.container
-		.feedback__header
-			.title_h3.feedback__title Что обо мне говорят
-			.feedback__slider-buttons
-				button.feedback__button
-					+icon('arrow-down', 'arrow arrow_back')
-				button.feedback__button
-					+icon('arrow-down', 'arrow arrow_front')
-		.feedback__slider
-			ul.feedback__slider-list
-				li.feedback__slider-item
-					.feedback__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-					.feedback__user
-						.feedback__user-avatar
-							.avatar
-								+image('content/feedback-user1.png', 'avatar__photo')
-
-						.feedback__avatar-description
-							.feedback__user-name Ковальчук Дмитрий
-							.feedback__user-position Основатель Loftschool
-				li.feedback__slider-item
-					.feedback__text Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
-					.feedback__user
-						.feedback__user-avatar
-							.avatar
-								+image('content/feedback-user1.png', 'avatar__photo')   
-						.feedback__avatar-description
-							.feedback__user-name Владимир Сабанцев               
-							.feedback__user-position Преподаватель
+		#feedback-slider-component
+		

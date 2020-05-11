@@ -1,14 +1,27 @@
 .feedback {
 	padding-top: 250px;
 	margin-bottom: 150px;
+	position: relative;
+
+	@include phones {
+		padding-top: 200px;
+		margin-bottom: 50px;
+  }
 }
 
 .feedback__header {
 	display: flex;
 	margin-bottom: 100px;
+	z-index: 1;
 
-		@include tablets {
-			margin-bottom: 70px;
+	@include tablets {
+		margin-bottom: 70px;
+	}
+
+	@include phones {
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 30px;
 	}
 }
 
@@ -17,7 +30,12 @@
 
 	@include tablets {
 		margin-right: 30px;
-}
+	}
+
+	@include phones {
+		margin-right: 0;
+		margin-bottom: 30px;
+	}
 }
 
 .feedback__button {
@@ -27,6 +45,16 @@
 	border-radius: 50%;
 	background-color: transparent;
 	margin-right: 30px;
+	transition: background-color .3s;
+	background: svg-load('arrow-down.svg', fill=$text-color, width=10px, height=8px) center center no-repeat;
+
+	&_left {
+		transform: rotate(-180deg);
+	}
+
+	&_right {
+		transform: rotate(0deg);
+	}
 
 	&:last-child {
 		margin-right: 0;
@@ -36,7 +64,6 @@
 	&:focus {
 		background-color: rgba(256, 256, 256, 0.5);
 		color: $purple;
-
 	}
 }
 
@@ -46,6 +73,11 @@
 
 .feedback__slider-list {
 	display: flex;
+
+	@include phones {
+		flex-direction: column;
+		
+	}
 }
 
 .feedback__slider-item {
@@ -59,6 +91,11 @@
 
 	@include tablets {
 		padding-left: 40px;
+	}
+
+	@include phones {
+		margin-right: 0;
+		padding-left: 0;
 	}
 
 	&:last-child {
@@ -81,6 +118,10 @@
 		@include tablets {
 			width: 30px;
 			height: 26px;
+		}
+
+		@include phones {
+			display: none;
 		}
 	}
 }
@@ -108,6 +149,7 @@
 
 	@include tablets {
 		font-size: 16px;
+		line-height: 30px;
 	}
 }
 

@@ -1,7 +1,5 @@
 include ./mixins.pug
 
-
-
 <!DOCTYPE html>
 html(lang="en")
   head
@@ -10,22 +8,72 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     title Portfolio | main page
   body
-    .wrapper
+    .wrapper#app
       .maincontent
-        .sections-wrapper-baloon
+        .welcome
+          .parallax
+            picture.parallax__layer(data-speed="0.1")
+              source(media="(min-width: 769px)" type="image/png" srcset=require("./images/content/parallax/baloon/Sky.png"))
+              source(media="(max-width: 768px)" type="image/jpg" srcset=require("./images/content/parallax/baloon/MountainBaloon.jpg"))
+              img(src=require("./images/content/parallax/baloon/MountainBaloon.jpg")).parallax__image
+            picture.parallax__layer(data-speed="0.13")
+              source(media="(min-width: 769px)" type="image/png" srcset=require("./images/content/parallax/baloon/Mountain.png"))
+              source(media="(max-width: 768px)" type="image/jpg" srcset=require("./images/content/parallax/baloon/MountainBaloon.jpg"))
+              img(src="" alt="").parallax__image
+            picture.parallax__layer(data-speed="0.2")
+              source(media="(min-width: 769px)" type="image/png" srcset=require("./images/content/parallax/baloon/Baloon.png"))
+              source(media="(max-width: 768px)" type="image/jpg" srcset=require("./images/content/parallax/baloon/MountainBaloon.jpg"))
+              img(src="" alt="").parallax__image
+            picture.parallax__layer(data-speed="0.21")
+              source(media="(min-width: 769px)" type="image/png" srcset=require("./images/content/parallax/baloon/Cloud.png"))
+              source(media="(max-width: 768px)" type="image/jpg" srcset=require("images/content/parallax/baloon/MountainBaloon.jpg"))
+              img(src="" alt="").parallax__image
+            picture.parallax__layer(data-speed="0.26")
+              source(media="(min-width: 769px)" type="image/png" srcset=require("./images/content/parallax/baloon/Man.png"))
+              source(media="(max-width: 768px)" type="image/jpg" srcset=require("images/content/parallax/baloon/MountainBaloon.jpg"))
+              img(src="" alt="").parallax__image
+            picture.parallax__layer(data-speed="0.3")
+              source(media="(min-width: 769px)" type="image/png" srcset=require("./images/content/parallax/baloon/Mountain1.png"))
+              source(media="(max-width: 768px)" type="image/jpg" srcset=require("./images/content/parallax/baloon/MountainBaloon.jpg"))
+              img(src="" alt="").parallax__image
+            picture.parallax__layer(data-speed="0.31")
+              source(media="(min-width: 769px)" type="image/png" srcset=require("./images/content/parallax/baloon/White.png"))
+              source(media="(max-width: 768px)" type="image/jpg" srcset=require("./images/content/parallax/baloon/MountainBaloon.jpg"))
+              img(src="" alt="").parallax__image
+
           .container
             include ./components/sections/hero/hero
             include ./components/sections/about-me/about-me
 
-        include ./components/sections/skills/skills
+        include ./components/sections/values/values
         include ./components/sections/portfolio/portfolio
-        include ./components/sections/feedback/feedback
+        
+        .feedback-blocks-wrapper
+          .parallax.parallax_budda
+            .parallax__layer
+              img(src=require("images/content/parallax/budda/layer2.png")).parallax__image
+            .parallax__layer
+              img(src=require("images/content/parallax/budda/layer3.png")).parallax__image
+            .parallax__layer
+              img(src=require("images/content/parallax/budda/layer4.png")).parallax__image
+            .parallax__layer
+              img(src=require("images/content/parallax/budda/layer5.png")).parallax__image
+            .parallax__layer
+              img(src=require("images/content/parallax/budda/layer6.png")).parallax__image
+            .parallax__layer
+              img(src=require("images/content/parallax/budda/layer7.png")).parallax__image
 
-        .sections-wrapper-budda
-          
+          include ./components/sections/feedback/feedback
           include ./components/sections/feedback-form/feedback-form
         include ./components/sections/footer/footer
 
-  
+      .mobile-menu#mobileMenu
+        .mobile-menu__wrapper
+          button.mobile-menu__close-btn.close-btn
+            +icon('cross', 'close-btn__icon')
+          .mobile-menu__nav
+            +nav('nav', 'mobile', ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться'], '' )
+          .mobile-menu__socials
+            +socials('socials', '', ['insta', 'vk', 'github'])
 
-          
+      include ./templates/entry.pug
