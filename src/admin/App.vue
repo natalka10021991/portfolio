@@ -64,8 +64,52 @@
             button.button.button_cancel.feedback-form__button(type="button") Отмена
             button.button.button_save.feedback-form__button(type='submit') Сохранить
 
+    section.about-me
+      .about-me__header
+        h2.about__title Блок "Обо мне"
+        button.button-add 
+          span.button-add__plus.plus 
+          span.button__text Добавить группу
+      .about-me__body
+        ul.about-me__blocks
+          li.about-me__item
+            .about-me__item-header
+              input.input.about-me__item-name(type="text" placeholder="Название новой группы") 
+              .about-me__item-buttons-group
+                span.about-me__button-done
+                span.about-me__button-close
+            .about-me__item-body
+              table
+            .about-me__item-footer
+              input.input.about-me__item-skill(type="text" placeholder="Новый навык")  
+              input.input.about-me__item-percent(type="text" placeholder="100%") 
+              button.button-add
+          li.about-me__item
+            .about-me__item-header
+              input.input.about-me__item-name(type="text" placeholder="Название новой группы" value="Workflow") 
+              .about-me__item-buttons-group
+                span.about-me__button-done
+                span.about-me__button-close
+            .about-me__item-body
+              table
+            .about-me__item-footer
+              input.input.about-me__item-skill(type="text" placeholder="Новый навык")  
+              input.input.about-me__item-percent(type="text" placeholder="100%") 
+              button.button-add
+          li.about-me__item
+            .about-me__item-header
+              input.input.about-me__item-name(type="text" placeholder="Название новой группы" value="Frontend") 
+              .about-me__item-buttons-group
+                span.about-me__button-done
+                span.about-me__button-close
+            .about-me__item-body
+              table
+            .about-me__item-footer
+              input.input.about-me__item-skill(type="text" placeholder="Новый навык")  
+              input.input.about-me__item-percent(type="text" placeholder="100%") 
+              button.button-add
 
-    
+
 </template>
 
 <style lang="postcss">
@@ -74,6 +118,37 @@
   @import "../styles/layout/base.pcss";
   @import "../styles/blocks/forms.pcss";
   @import "../styles/blocks/avatar.pcss";
+
+  .about-me__blocks {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .about-me__item {
+    min-height: 387px;
+    width: 50%;
+    box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
+    padding: 30px;
+  }
+
+  .about-me__item-header {
+    display: flex;
+    padding: 14px 0;
+    position: relative;
+
+    &:after {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 100%;
+      background-color: rgba(31,35,45,0.15);
+      opacity: 0.5;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
   .header {
     min-height: 80px;
     padding: 0 60px;
