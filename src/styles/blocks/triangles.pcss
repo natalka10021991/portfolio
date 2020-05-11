@@ -6,6 +6,11 @@
 	display: flex;
 	color: #fff;
 
+	@include phones {
+		left: -500px;
+		right: -500px;
+	}
+
 	&_reverse {
 		bottom: auto;
 		top: 0;
