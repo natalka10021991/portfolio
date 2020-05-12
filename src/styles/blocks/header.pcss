@@ -11,9 +11,19 @@
 	}
 }
 
+.header__buttons__wrapper {
+	@include tablets {
+		display: flex;
+	}
+}
+
 .header__socials {
 	display: flex;
 	align-items: center;
+
+	@include tablets {
+		margin-right: 90px;
+	}
 
 	@include phones {
 		display: none;
@@ -29,6 +39,5 @@
 	@include tablets {
 		display: block;
 		background-image: url('../images/content/menu.png');
-		margin-left: 90px;
 	}
 }
