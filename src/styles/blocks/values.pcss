@@ -110,33 +110,31 @@
 
 .skills-row__list {
 	display: flex;
-	flex-wrap: wrap;
 
 	@include tablets {
 		justify-content: center;
-		flex-wrap: wrap;
 	}
 
 	@include phones {
 		font-size: 18px;
+		flex-wrap: wrap;
 	}
 }
 
 .skills-row__item {
 	position: relative;
+	margin-right: 20px;
+
+	&:last-child {
+		margin-right: 0;
+	}
 
 	@include tablets {
-		margin-right: 30px;
+		
 	}
 
 	@include phones {
-		width: 120px;
-		height: 120px;
-		margin-right: 20px;
-
-		&:nth-child(even) {
-			margin-right: 0;
-		}
+		margin-right: 0;
 	}
 }
 

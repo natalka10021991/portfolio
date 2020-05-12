@@ -14,7 +14,7 @@
     nav.nav
       ul.nav__list
         li.nav__item
-          a.nav__link(href="#") Обо мне
+          a.nav__link.nav__link_active(href="#") Обо мне
         li.nav__item
           a.nav__link(href="#") Работы
         li.nav__item
@@ -233,7 +233,7 @@
   }
 
   .about-me__button {
-    color: #383bcf;
+    color: $bright-blue;
     font-size: 16px;
     font-weight: 600;
     display: flex;
@@ -333,6 +333,9 @@
   }
 
   .header__title {
+    opacity: 0.5;
+    color: #ffffff;
+    font-size: 14px;
 
     @include phones {
       display: none;
@@ -341,6 +344,7 @@
 
   .header__logout {
     color: #fff;
+    opacity: 0.7;
   }
 
   .nav {
@@ -354,16 +358,16 @@
     display: flex;
   }
 
-  .nav__item {
-    margin-right: 50px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-
   .nav__link {
     text-decoration: none;
+    display: block;
+    padding: 29px 25px;
+
+    &_active {
+      color: $bright-blue;
+      font-weight: 600;
+      border-bottom: 3px solid $bright-blue;
+    }
   }
 
   .feedback {
@@ -426,7 +430,7 @@
   }
 
   .feedback-form__file-label {
-    color: #383bcf;
+    color: $bright-blue;
     font-size: 16px;
     font-weight: 600;
     opacity: 1;

@@ -76,12 +76,11 @@
 
 	@include phones {
 		flex-direction: column;
-		
 	}
 }
 
 .feedback__slider-item {
-	margin-right: 95px;
+	padding-right: 35px;
 	position: relative;
 	padding-left: 95px;
 	display: flex;
@@ -94,7 +93,7 @@
 	}
 
 	@include phones {
-		margin-right: 0;
+		padding-right: 0;
 		padding-left: 0;
 	}
 
@@ -145,18 +144,19 @@
 .feedback__user-name {
 	font-size: 18px;
 	font-weight: 700;
-	line-height: 48px;
 
 	@include tablets {
 		font-size: 16px;
-		line-height: 30px;
+	}
+
+	@include phones {
+		font-size: 14px;
 	}
 }
 
 .feedback__user-position {
 	font-size: 16px;
 	font-weight: 600;
-	line-height: 30px;
 	opacity: 0.3;
 
 	@include tablets {
