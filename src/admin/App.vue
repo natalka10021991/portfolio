@@ -20,9 +20,9 @@
         li.nav__item
           a.nav__link(href="#") Отзывы
 
-    section.about-me
-      .about-me__header
-        h2.about-me__title Блок "Обо мне"
+    section.section.about-me
+      .section__header.about-me__header
+        h2.section__title.about-me__title Блок "Обо мне"
         button.about-me__button
           span.about-me__button-icon.plus +
           span.button__text Добавить группу
@@ -43,12 +43,11 @@
               tfoot
                 tr
                   td
-                  td
                     input.input.about-me__item-skill(type="text" placeholder="Новый навык") 
                   td 
                     input.input.about-me__item-percent(type="text" placeholder="100%") 
-                  td
-                    button.button-add
+                  td(colspan="2")
+                    button.button-add +
           li.about-me__item
             table
               thead
@@ -92,12 +91,11 @@
               tfoot
                 tr
                   td
-                  td
                     input.input.about-me__item-skill(type="text" placeholder="Новый навык") 
                   td 
                     input.input.about-me__item-percent(type="text" placeholder="100%") 
-                  td
-                    button.button-add
+                  td(colspan="2")
+                    button.button-add +
 
           li.about-me__item
             table
@@ -141,20 +139,79 @@
               tfoot
                 tr
                   td
-                  td
                     input.input.about-me__item-skill(type="text" placeholder="Новый навык") 
                   td 
                     input.input.about-me__item-percent(type="text" placeholder="100%") 
-                  td
-                    button.button-add
-  
-    section.feedback
-      h2.feedback__title Блок "Отзывы"
+                  td(colspan="2")
+                    button.button-add +
+    section.section.works
+      .section__header
+        h2.section__title Блок "Работы"
+      .works__works-form
+        form.admin-form.works-form
+          .admin-form__header.works-form__header
+            h3.form__title Редактирование Работы
+          .admin-form__body
+            .admin-form__column
+              .works__preview-loader
+                p.works__preview-loader-desc Перетащите или загрузите для загрузки изображения
+                label.feedback-form__file-block.input-type-file
+                  .label.feedback-form__file-label.input-type-file__label Загрузить
+                  input.input-type-file__input(type='file')
+            .admin-form__column
+              .admin-form__row
+                label.feedback-form__block
+                  .label.feedback-form__label Название
+                  input.input.input_without-icons.feedback-form__input(
+                    type='text'
+                    placeholder='Дизайн сайта для авто салона Porsche'
+                    required=''
+                  )
+                  span.feedback-form__block-error
+              .admin-form__row
+                label.feedback-form__block
+                  .label.feedback-form__label Ссылка
+                  input.input.input_without-icons.feedback-form__input(
+                    type='text'
+                    placeholder='https://www.porsche-pulkovo.ru'
+                    required=''
+                  )
+                  span.feedback-form__block-error
+              .admin-form__row
+                label.feedback-form__block.feedback-form__block_full-width
+                  .label.feedback-form__label Описание
+                  textarea.textarea.textarea_bordered.feedback-form__textarea(
+                    type='text'
+                    placeholder='Порше Центр Пулково - является официальным дилером марки Порше в Санкт-Петербурге и предоставляет полный цикл услуг по продаже и сервисному обслуживанию автомобилей'
+                  )
+                  span.feedback-form__block-error
+              .admin-form__row
+                label.feedback-form__block
+                  .label.feedback-form__label Добавление тэга
+                  input.input.input_without-icons.feedback-form__input(
+                    type='text'
+                    placeholder='Jquery, Vue.js, HTML5'
+                    required=''
+                  )
+                  span.feedback-form__block-error
+                  
+                
+
+
+
+          .buttons-group.feedback-form__buttons
+            button.button.button_cancel.works-form__button(type="button") Отмена
+            button.button.button_primary.works-form__button(type='submit') Сохранить
+
+
+    section.section.feedback
+      .section__header
+        h2.section__title.feedback__title Блок "Отзывы"
       .feedback__feedback-form
-        form.feedback-form
-          .feedback-form__header
-            h3.feedback-form__title Новый отзыв
-          .feedback-form__body
+        form.admin-form.feedback-form
+          .admin-form__header.feedback-form__header
+            h3.admin-form__title.feedback-form__title Новый отзыв
+          .admin-form__body.feedback-form__body
             .feedback-form__column
               .feedback-form__image-placeholder
                 .avatar
@@ -188,9 +245,9 @@
                     placeholder='Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!'
                   )
                   span.feedback-form__block-error
-          .feedback-form__buttons
+          .buttons-group.feedback-form__buttons
             button.button.button_cancel.feedback-form__button(type="button") Отмена
-            button.button.button_save.feedback-form__button(type='submit') Сохранить
+            button.button.button_primary.feedback-form__button(type='submit') Сохранить
 
     
 
@@ -214,7 +271,7 @@
     background-image: linear-gradient(to right, #006aed 0%, #3f35cb 100%);
   }
 
-  .about-me {
+  .section {
     padding: 60px;
 
     @include tablets {
@@ -222,10 +279,55 @@
     }
   }
 
+  .section__header {
+    margin-bottom: 60px;
+  }
+
+  .admin-form {
+    box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
+    padding: 30px;
+  }
+
+  .admin-form__header {
+    position: relative;
+    padding-bottom: 30px;
+
+    &:after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      content: "";
+      display: block;
+      height: 1px;
+      width: 100%;
+      background-color: #1f232d;
+      opacity: 0.15;
+    }
+  }
+
+  .admin-form__title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 34px;
+  }
+
+  .admin-form__body {
+    display: flex;
+    margin-bottom: 30px;
+
+    @include phones {
+      flex-direction: column;
+    }
+  }
+
+  .works__preview-loader {
+    border: 1px solid #a1a1a1;
+    background-color: #dee4ed;
+  }
+
   .about-me__header {
     display: flex;
     align-items: center;
-    margin-bottom: 60px;
   }
 
   .about-me__title {
@@ -254,7 +356,7 @@
     max-width: 525px;
     margin-right: 30px;
     margin-bottom: 30px;
-    width: 50%;
+    width: 46%;
     box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
     padding: 30px;
     display: flex;
@@ -306,6 +408,17 @@
 
   .about-me__item-percent {
     max-width: 74px;
+  }
+
+  .button-add {
+    font-size: 30px;
+    font-weight: 600;
+    color: #fff;
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
+    background-image: linear-gradient(to right, #006aed 0%, #3f35cb 100%);
+
   }
 
   .header {
@@ -370,55 +483,8 @@
     }
   }
 
-  .feedback {
-    padding: 60px;
-
-    @include tablets {
-      padding: 40px 20px;
-    }
-  }
-
-  .feedback__title {
-    margin-bottom: 60px;
-  }
-
-  .feedback-form {
-    box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
-    padding: 30px;
-
-  }
-
   .feedback-form__header {
-    position: relative;
-    padding-bottom: 30px;
     margin-bottom: 50px;
-
-    &:after {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      content: "";
-      display: block;
-      height: 1px;
-      width: 100%;
-      background-color: #1f232d;
-      opacity: 0.15;
-    }
-  }
-
-  .feedback-form__title {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 34px;
-  }
-
-  .feedback-form__body {
-    display: flex;
-    margin-bottom: 30px;
-
-    @include phones {
-      flex-direction: column;
-    }
   }
 
   .feedback-form__image-placeholder {
@@ -479,10 +545,5 @@
     &_full-width {
       width: 100%;
     }
-  }
-
-  .feedback-form__buttons {
-    display: flex;
-    justify-content: flex-end;
   }
 </style>
