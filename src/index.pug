@@ -79,14 +79,6 @@ html(lang="en")
           include ./components/sections/feedback/feedback
           include ./components/sections/feedback-form/feedback-form
         include ./components/sections/footer/footer
-
-      .mobile-menu#mobileMenu
-        .mobile-menu__wrapper
-          button.mobile-menu__close-btn.close-btn
-            +icon('cross', 'close-btn__icon')
-          .mobile-menu__nav
-            +nav('nav', 'mobile', ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться'], '' )
-          .mobile-menu__socials
-            +socials('socials', '', ['insta', 'vk', 'github'])
-
+      #mobile-menu-component
+      
       include ./templates/entry.pug
