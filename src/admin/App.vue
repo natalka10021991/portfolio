@@ -147,17 +147,18 @@
     section.section.works
       .section__header
         h2.section__title Блок "Работы"
-      .works__works-form
+      .admin-form__wrapper
         form.admin-form.works-form
           .admin-form__header.works-form__header
             h3.form__title Редактирование Работы
           .admin-form__body
             .admin-form__column
-              .works__preview-loader
-                p.works__preview-loader-desc Перетащите или загрузите для загрузки изображения
-                label.feedback-form__file-block.input-type-file
-                  .label.feedback-form__file-label.input-type-file__label Загрузить
-                  input.input-type-file__input(type='file')
+              .works__preview-loader-wrapper
+                .works__preview-loader
+                  p.works__preview-loader-desc Перетащите или загрузите для загрузки изображения
+                  label.input-type-file
+                    .button.button_primary.works__button Загрузить
+                    input.input-type-file__input(type='file')
             .admin-form__column
               .admin-form__row
                 label.feedback-form__block
@@ -194,20 +195,59 @@
                     required=''
                   )
                   span.feedback-form__block-error
-                  
-                
-
-
 
           .buttons-group.feedback-form__buttons
             button.button.button_cancel.works-form__button(type="button") Отмена
             button.button.button_primary.works-form__button(type='submit') Сохранить
 
 
+    
+      .works__list-wrapper
+        ul.works__list
+          li.works__item.works__item_adding
+            .works__add-work-wrapper
+              .works__add-work-button +
+              .works__add-work-label Добавить работу
+          li.works__item
+            .works__preview-wrapper
+              .works__preview
+                img(src="../images/content/previews/1.jpg")
+              .works__tags
+                ul.works__tags-list
+                  li.works__tags-item HTML
+            .works__desc-wrapper
+              h3.works__work-title Сайт школы образования
+              p.works__work-desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+              a(href="#").works__work-link http://loftschool.ru
+              .works__item-buttons-group
+                .works__item-button
+                  span.works__button-title Править
+                  span.works__button-icon
+                .works__item-button
+                  span.works__button-title Удалить
+                  span.works__button-icon
+          li.works__item.works__item_disabled
+            .works__preview-wrapper
+              .works__preview
+                img(src="../images/content/previews/1.jpg")
+              .works__tags
+                ul.works__tags-list
+                  li.works__tags-item HTML
+            .works__desc-wrapper
+              h3.works__work-title Сайт школы образования
+              p.works__work-desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+              a(href="#").works__work-link http://loftschool.ru
+              .works__item-buttons-group
+                .works__item-button
+                  span.works__button-title Править
+                  span.works__button-icon
+                .works__item-button
+                  span.works__button-title Удалить
+                  span.works__button-icon
     section.section.feedback
       .section__header
         h2.section__title.feedback__title Блок "Отзывы"
-      .feedback__feedback-form
+      .admin-form__wrapper
         form.admin-form.feedback-form
           .admin-form__header.feedback-form__header
             h3.admin-form__title.feedback-form__title Новый отзыв
@@ -248,9 +288,6 @@
           .buttons-group.feedback-form__buttons
             button.button.button_cancel.feedback-form__button(type="button") Отмена
             button.button.button_primary.feedback-form__button(type='submit') Сохранить
-
-    
-
 </template>
 
 <style lang="postcss">
@@ -259,6 +296,9 @@
   @import "../styles/layout/base.pcss";
   @import "./styles/forms.pcss";
   @import "../styles/blocks/avatar.pcss";
+
+  @import "./styles/about-me.pcss";
+  @import "./styles/works.pcss";
 
   .plus {
     color: #fff;
@@ -283,6 +323,11 @@
     margin-bottom: 60px;
   }
 
+  .admin-form__wrapper {
+    max-width: 1080px;
+    margin-bottom: 30px;
+  }
+
   .admin-form {
     box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
     padding: 30px;
@@ -291,6 +336,7 @@
   .admin-form__header {
     position: relative;
     padding-bottom: 30px;
+    margin-bottom: 50px;
 
     &:after {
       position: absolute;
@@ -320,95 +366,22 @@
     }
   }
 
-  .works__preview-loader {
-    border: 1px solid #a1a1a1;
-    background-color: #dee4ed;
-  }
-
-  .about-me__header {
-    display: flex;
-    align-items: center;
-  }
-
-  .about-me__title {
-    margin-right: 80px;
-  }
-
-  .about-me__button {
-    color: $bright-blue;
-    font-size: 16px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-  }
-
-  .about-me__button-icon {
-    margin-right: 13px;
-  }
-
-  .about-me__blocks {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .about-me__item {
-    min-height: 387px;
-    max-width: 525px;
+  .admin-form__column {
+    width: 50%;
     margin-right: 30px;
-    margin-bottom: 30px;
-    width: 46%;
-    box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
     &:last-child {
       margin-right: 0;
     }
-
-    td {
-      padding: 10px 0;
-    }
-
   }
 
-  .about-me__item-name {
-    max-width: 270px;
-  }
+   .admin-form__row {
+     margin-bottom: 30px;
 
-  .about-me__control-button {
-    display: block;
-    width: 15px;
-    height: 12px;
-
-    &_save {
-      background: svg-load('tick.svg', fill=currentColor;, width=100%, height=100%) center center no-repeat;
-      color: green;
-      margin-right: 16px;
-    }
-
-    &_close {
-      background: svg-load('cross.svg', fill=#00d70a;, width=100%, height=100%) center center no-repeat;
-    }
-
-    &_edit {
-      background: svg-load('pencil.svg', fill=#00d70a;, width=100%, height=100%) center center no-repeat;
-    }
-
-    &_remove {
-      background: svg-load('trash.svg', fill=#00d70a;, width=100%, height=100%) center center no-repeat;
-    }
-  }
-
-  .about-me__item-skill {
-    max-width: 218px;
-    margin-right: 10px;
-  }
-
-  .about-me__item-percent {
-    max-width: 74px;
-  }
+     &:last-child {
+       margin-bottom: 0;
+     }
+   }
 
   .button-add {
     font-size: 30px;
@@ -481,10 +454,6 @@
       font-weight: 600;
       border-bottom: 3px solid $bright-blue;
     }
-  }
-
-  .feedback-form__header {
-    margin-bottom: 50px;
   }
 
   .feedback-form__image-placeholder {
