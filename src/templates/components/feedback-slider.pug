@@ -8,7 +8,7 @@ script(type="text/x-template")#feedback-slider-container
 		.feedback__slider
 			Carousel.feedback__slider-list(
 				:perPage="1"
-				:perPageCustom="[[480, 2], [768, 2]]"
+				:perPageCustom="[[480, 1], [768, 2]]"
 				:paginationEnabled="false"
 				)
 				Slide.feedback__slider-item(v-for="slide in feedback" :key="slide.id")

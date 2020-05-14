@@ -33,8 +33,13 @@
 	margin-right: 130px;
 	margin-bottom: 50px;
 
+	@include desktop-mini {
+		margin-right: 30px;
+	}
+
 	@include tablets {
 		margin-bottom: 120px;
+		margin-right: 0;
 	}
 
 	@include phones {
@@ -45,6 +50,8 @@
 }
 
 .portfolio__preview-wrapper {
+	position: relative;
+
 	&:after {
 		content: attr(data-slide);
 		position: absolute;
@@ -54,6 +61,13 @@
 		font-size: 400px;
 		font-weight: 800;
 		line-height: 48px;
+	}
+
+	@include desktop-mini {
+
+		&:after {
+			display: none;
+		}
 	}
 }
 
@@ -153,6 +167,11 @@
 .portfolio__tags {
 	display: flex;
 	margin-bottom: 50px;
+	flex-wrap: wrap;
+
+	@include desktop-mini {
+		margin-bottom: 20px;
+	}
 
 	@include tablets {
 		margin-bottom: 30px;
@@ -168,6 +187,7 @@
 	background-color: rgba(133,158,194,0.1);
 	margin-right: 15px;
 	padding: 11px 20px;
+	margin-bottom: 15px;
 
 	&:last-child {
 		margin-right: 0;
@@ -191,6 +211,10 @@
 	font-weight: 700;
 	line-height: 48px;
 	margin-bottom: 45px;
+
+	@include desktop-mini {
+		margin-bottom: 20px;
+	}
 
 	@include tablets {
 		line-height: 30px;
