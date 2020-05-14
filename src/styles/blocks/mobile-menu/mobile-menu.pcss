@@ -1,25 +1,28 @@
 .mobile-menu {
-	display: none;
 	width: 0;
+	overflow: hidden;
 
 	@include tablets {
-		display: none;
+		display: block;
 		position: fixed;
 		right: 0;
 		top: 0;
 		bottom: 0;
 		width: 0;
 		z-index: 1;
-		transition: width 2s;
+		transition: width .5s;
 
 		&_opened {
-			display: block;
 			width: 40%;
 		}
 	}
 
 	@include phones {
-		width: 100%;
+		width: 0;
+
+		&_opened {
+			width: 100%;
+		}
 	}
 }
 
