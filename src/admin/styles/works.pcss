@@ -28,16 +28,22 @@
 
 .works__list {
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 .works__item {
 	background: #fff;
 	box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
-	width: 30%;
-	margin-right: 30px;
+	width: 31%;
+	margin-bottom: 30px;
 
-	&:last-child {
-		margin-right: 0;
+	@include desktop-mini {
+		width: 48%;
+	}
+
+	@include big-phones {
+		width: 100%;
 	}
 
 	&_adding {
@@ -71,9 +77,19 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+
+	@include big-phones {
+		flex-direction: row;
+		min-height: 100px;
+	}
 }
 
 .works__add-work-button {
+	font-size: 72px;
+	font-weight: 200;
+	color: #fff;
+	background: transparent;
+	cursor: pointer;
 	width: 150px;
 	height: 150px;
 	border: 2px solid #ffffff;	
@@ -82,6 +98,14 @@
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 30px;
+
+	@include big-phones {
+		font-size: 16px;
+		width: 50px;
+		height: 50px;
+		margin-bottom: 0;
+		margin-right: 15px;
+	}
 }
 
 .works__preview-wrapper {
@@ -130,6 +154,11 @@
 	text-decoration: none;
 	display: block;
 	margin-bottom: 46px;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
 }
 
 .works__item-buttons-group {
@@ -138,7 +167,34 @@
 	margin-bottom: 40px;
 }
 
+.works__item-button {
+	display: flex;
+	align-items: center;
+}
+
 .works__button-title {
-	opacity: 0.5;
+	font-size: 16px;
 	font-weight: 600;
+	opacity: 0.5;
+	margin-right: 10px;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+}
+
+.works__button-icon {
+	display: block;
+	width: 15px;
+	height: 15px;
+
+	&_edit {
+		background: svg-load('pencil.svg', fill=#383bcf, width=100%, height=100%) center center no-repeat;
+	}
+
+	&_remove {
+		background: svg-load('cross.svg', fill=#c92e2e, width=100%, height=100%) center center no-repeat;
+	}
+	
 }

@@ -24,7 +24,7 @@
       .section__header.about-me__header
         h2.section__title.about-me__title Блок "Обо мне"
         button.about-me__button
-          span.about-me__button-icon.plus +
+          span.about-me__button-icon +
           span.button__text Добавить группу
       .about-me__body
         ul.about-me__blocks
@@ -36,9 +36,9 @@
                     input.input.about-me__item-name(type="text" placeholder="Название новой группы") 
                   th
                   th
-                      span.about-me__control-button.about-me__control-button_save
+                      span.control-button.control-button_save
                   th
-                      span.about-me__control-button.about-me__control-button_close
+                      span.control-button.control-button_close
               tbody
               tfoot
                 tr
@@ -56,38 +56,38 @@
                     input.input.about-me__item-name(type="text" placeholder="Название новой группы" value="Workflow") 
                   th
                   th
-                      span.about-me__control-button.about-me__control-button_save
+                      span.control-button.control-button_save
                   th
-                      span.about-me__control-button.about-me__control-button_close
+                      span.control-button.control-button_close
               tbody
                 tr
                   td Git
                   td 100 %
                   td
-                    span.about-me__control-button.about-me__control-button_edit
+                    span.control-button.control-button_edit
                   td
-                    span.about-me__control-button.about-me__control-button_remove
+                    span.control-button.control-button_remove
                 tr
                   td Terminal
                   td 90 %
                   td
-                    span.about-me__control-button.about-me__control-button_edit
+                    span.control-button.control-button_edit
                   td
-                    span.about-me__control-button.about-me__control-button_remove
+                    span.control-button.control-button_remove
                 tr
                   td Gulp
                   td 80 %
                   td
-                    span.about-me__control-button.about-me__control-button_edit
+                    span.control-button.control-button_edit
                   td
-                    span.about-me__control-button.about-me__control-button_remove
+                    span.control-button.control-button_remove
                 tr
                   td Webpack
                   td 100 %
                   td
-                    span.about-me__control-button.about-me__control-button_edit
+                    span.control-button.control-button_edit
                   td
-                    span.about-me__control-button.about-me__control-button_remove
+                    span.control-button.control-button_remove
               tfoot
                 tr
                   td
@@ -106,36 +106,36 @@
                   th
                   th
                   th
-                      span.about-me__control-button.about-me__control-button_edit
+                      span.control-button.control-button_edit
               tbody
                 tr
                   td Html5
                   td 100 %
                   td
-                    span.about-me__control-button.about-me__control-button_edit
+                    span.control-button.control-button_edit
                   td
-                    span.about-me__control-button.about-me__control-button_remove
+                    span.control-button.control-button_remove
                 tr
                   td Css3
                   td 90 %
                   td
-                    span.about-me__control-button.about-me__control-button_save
+                    span.control-button.control-button_save
                   td
-                    span.about-me__control-button.about-me__control-button_close
+                    span.control-button.control-button_close
                 tr
                   td JavaScript
                   td 80 %
                   td
-                    span.about-me__control-button.about-me__control-button_edit
+                    span.control-button.control-button_edit
                   td
-                    span.about-me__control-button.about-me__control-button_remove
+                    span.control-button.control-button_remove
                 tr
                   td jQuery и Vue.js
                   td 100 %
                   td
-                    span.about-me__control-button.about-me__control-button_edit
+                    span.control-button.control-button_edit
                   td
-                    span.about-me__control-button.about-me__control-button_remove
+                    span.control-button.control-button_remove
               tfoot
                 tr
                   td
@@ -206,7 +206,7 @@
         ul.works__list
           li.works__item.works__item_adding
             .works__add-work-wrapper
-              .works__add-work-button +
+              button.works__add-work-button +
               .works__add-work-label Добавить работу
           li.works__item
             .works__preview-wrapper
@@ -220,12 +220,12 @@
               p.works__work-desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
               a(href="#").works__work-link http://loftschool.ru
               .works__item-buttons-group
-                .works__item-button
+                button.works__item-button
                   span.works__button-title Править
-                  span.works__button-icon
-                .works__item-button
+                  span.works__button-icon.works__button-icon_edit
+                button.works__item-button
                   span.works__button-title Удалить
-                  span.works__button-icon
+                  span.works__button-icon.works__button-icon_remove
           li.works__item.works__item_disabled
             .works__preview-wrapper
               .works__preview
@@ -238,12 +238,12 @@
               p.works__work-desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
               a(href="#").works__work-link http://loftschool.ru
               .works__item-buttons-group
-                .works__item-button
+                button.works__item-button
                   span.works__button-title Править
-                  span.works__button-icon
-                .works__item-button
+                  span.works__button-icon.works__button-icon_edit
+                button.works__item-button
                   span.works__button-title Удалить
-                  span.works__button-icon
+                  span.works__button-icon.works__button-icon_remove
     section.section.feedback
       .section__header
         h2.section__title.feedback__title Блок "Отзывы"
@@ -300,16 +300,29 @@
   @import "./styles/about-me.pcss";
   @import "./styles/works.pcss";
 
-  .plus {
-    color: #fff;
-    font-size: 15px;
-    font-weight: 400;
+  .control-button {
     display: block;
-    width: 21px;
-    height: 21px;
-    border-radius: 50%;
-    background-image: linear-gradient(to right, #006aed 0%, #3f35cb 100%);
-  }
+    width: 15px;
+    height: 12px;
+
+    &_save {
+      background: svg-load('tick.svg', fill=#00d70a, width=100%, height=100%) center center no-repeat;
+      color: green;
+      margin-right: 16px;
+    }
+
+    &_close {
+      background: svg-load('cross.svg', fill=#bf2929, width=100%, height=100%) center center no-repeat;
+    }
+
+    &_edit {
+      background: svg-load('pencil.svg', fill=#414c63, width=100%, height=100%) center center no-repeat;
+    }
+
+    &_remove {
+      background: svg-load('trash.svg', fill=#414c63, width=100%, height=100%) center center no-repeat;
+    }
+}
 
   .section {
     padding: 60px;
@@ -361,18 +374,27 @@
     display: flex;
     margin-bottom: 30px;
 
-    @include phones {
+    @include big-phones {
       flex-direction: column;
     }
   }
 
   .admin-form__column {
-    width: 50%;
+    flex: 1 0 auto;
+    flex-wrap: wrap;
     margin-right: 30px;
 
     &:last-child {
       margin-right: 0;
     }
+
+    @include big-phones {
+      margin-bottom: 30px;
+      margin-right: 0;
+    }
+
+
+
   }
 
    .admin-form__row {
@@ -461,6 +483,7 @@
     height: 200px;
     background-color: #dee4ed;
     border-radius: 50%;
+    margin: 0 auto;
     margin-bottom: 30px;
   }
 
@@ -483,6 +506,7 @@
 
     @include phones {
       margin-bottom: 40px;
+      margin-right: 0;
 
       &:last-child {
         margin-bottom: 0;
