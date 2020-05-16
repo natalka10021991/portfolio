@@ -29,7 +29,7 @@
       .about-me__body
         ul.about-me__blocks
           li.about-me__item
-            table
+            table(height="100%")
               thead
                 tr
                   th
@@ -199,9 +199,7 @@
           .buttons-group.feedback-form__buttons
             button.button.button_cancel.works-form__button(type="button") Отмена
             button.button.button_primary.works-form__button(type='submit') Сохранить
-
-
-    
+  
       .works__list-wrapper
         ul.works__list
           li.works__item.works__item_adding
@@ -288,6 +286,44 @@
           .buttons-group.feedback-form__buttons
             button.button.button_cancel.feedback-form__button(type="button") Отмена
             button.button.button_primary.feedback-form__button(type='submit') Сохранить
+
+      ul.feedback__list
+        li.feedback__item.feedback__item_adding
+          .feedback__add-work-wrapper
+            button.feedback__add-work-button +
+            .feedback__add-work-label Добавить отзыв
+        li.feedback__item
+          .feedback__item-header
+            .feedback__user-avatar
+              img.feedback__user-photo(src="")
+            .feedback__user-info
+              .feedback__user-name Владимир Сабанцев
+              .feedback__user-position Преподаватель
+          .feedback__desc-wrapper
+            p.feedback__work-desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+            .feedback__item-buttons-group
+              button.feedback__item-button
+                span.feedback__button-title Править
+                span.feedback__button-icon.works__button-icon_edit
+              button.feedback__item-button
+                span.feedback__button-title Удалить
+                span.feedback__button-icon.works__button-icon_remove
+        li.feedback__item
+          .feedback__item-header
+            .feedback__user-avatar
+              img.feedback__user-photo(src="")
+            .feedback__user-info
+              .feedback__user-name Владимир Сабанцев
+              .feedback__user-position Преподаватель
+          .feedback__desc-wrapper
+            p.feedback__work-desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+            .feedback__item-buttons-group
+              button.feedback__item-button
+                span.feedback__button-title Править
+                span.feedback__button-icon.works__button-icon_edit
+              button.feedback__item-button
+                span.feedback__button-title Удалить
+                span.feedback__button-icon.works__button-icon_remove
 </template>
 
 <style lang="postcss">
@@ -330,6 +366,10 @@
     @include tablets {
       padding: 40px 20px;
     }
+
+    @include big-phones {
+      padding: 20px 0;
+    }
   }
 
   .section__header {
@@ -343,7 +383,11 @@
 
   .admin-form {
     box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
-    padding: 30px;
+    padding: 30px; 
+
+    @include big-phones {
+      padding: 15px;
+    }
   }
 
   .admin-form__header {
@@ -424,6 +468,10 @@
     align-items: center;
     background-color: $dark-gray-bg;
     color: #fff;
+
+    @include phones {
+      padding: 15px;
+    }
   }
 
   .header__left {
@@ -460,6 +508,12 @@
     display: flex;
     align-items: center;
     padding: 0 60px;
+
+    @include phones {
+      padding: 0 40px;
+      justify-content: center;
+
+    }
   }
 
   .nav__list {
@@ -470,11 +524,16 @@
     text-decoration: none;
     display: block;
     padding: 29px 25px;
+    white-space: nowrap;
 
     &_active {
       color: $bright-blue;
       font-weight: 600;
       border-bottom: 3px solid $bright-blue;
+    }
+
+    @include phones {
+      padding: 25px 20px;
     }
   }
 
@@ -539,4 +598,183 @@
       width: 100%;
     }
   }
+  .feedback__list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+  }
+
+  .feedback__item {
+    background: #fff;
+    box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
+    width: 31%;
+    margin-bottom: 30px;
+
+    @include desktop-mini {
+      width: 48%;
+    }
+
+    @include big-phones {
+      width: 100%;
+    }
+
+    &_adding {
+      background-image: linear-gradient(to right, #006aed 0%, #3f35cb 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &_disabled {
+      position: relative;
+
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #ffffff;
+        opacity: 0.7;
+        z-index: 1;
+      }
+    }
+  }
+
+  .feedback__add-work-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @include big-phones {
+      flex-direction: row;
+      min-height: 100px;
+    }
+  }
+
+  .feedback__add-work-button {
+    font-size: 72px;
+    font-weight: 200;
+    color: #fff;
+    background: transparent;
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    border: 2px solid #ffffff;	
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+
+    @include big-phones {
+      font-size: 16px;
+      width: 50px;
+      height: 50px;
+      margin-bottom: 0;
+      margin-right: 15px;
+    }
+  }
+
+.feedback__item-header {
+  display: flex;
+  padding: 30px;
+  position: relative;
+  margin-bottom: 30px;
+
+  &:after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 100%;
+    background-color: #1f232d;
+    opacity: 0.15;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  @include big-phones {
+		padding: 15px;
+    margin-bottom: 15px;
+	}
+}
+
+.feedback__user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #ccc;
+  margin-right: 20px;
+}
+
+.feedback__user-name {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.feedback__user-position {
+  opacity: 0.5;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.feedback__desc-wrapper {
+	padding: 0 30px 20px 30px;
+
+	@include big-phones {
+		padding: 0 15px 20px 15px;
+	}
+}
+
+.feedback__work-desc {
+	opacity: 0.7;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 30px;
+	margin-bottom: 30px;
+}
+
+.feedback__item-buttons-group {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 40px;
+}
+
+.feedback__item-button {
+	display: flex;
+	align-items: center;
+  background: transparent;
+}
+
+.feedback__button-title {
+	font-size: 16px;
+	font-weight: 600;
+	opacity: 0.5;
+	margin-right: 10px;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+}
+
+.feedback__button-icon {
+	display: block;
+	width: 15px;
+	height: 15px;
+
+	&_edit {
+		background: svg-load('pencil.svg', fill=#383bcf, width=100%, height=100%) center center no-repeat;
+	}
+
+	&_remove {
+		background: svg-load('cross.svg', fill=#c92e2e, width=100%, height=100%) center center no-repeat;
+	}
+	
+}
 </style>
