@@ -20,6 +20,11 @@
 
 .about-me__user-info {
 	width: 30%;
+	margin-right: 50px;
+
+	@include tablets {
+		width: 45%
+	}
 
 	@include phones {
 		width: 100%;
@@ -34,6 +39,7 @@
 	margin-bottom: 70px;
 
 	@include phones {
+		margin: 0;
 		margin-bottom: 20px;
 	}
 }
@@ -48,6 +54,10 @@
 		padding: 5px;
 		min-width: 160px;
 
+		@include big-phones {
+			min-width: 130px;
+		}
+
 		&:nth-child(2) {
 			font-weight: 600;
 			opacity: 1;
@@ -56,6 +66,9 @@
 		&:nth-child(1) {
 			@include tablets {
 				min-width: 110px;
+			}
+			@include big-phones {
+				min-width: 100px;
 			}
 		}
 	}
@@ -79,6 +92,11 @@
 		font-size: 30px;
 	}
 
+	@include big-phones {
+		font-size: 24px;
+		line-height: 30px;
+	}
+
 	@include phones {
 		font-size: 30px;
 		line-height: 36px;
@@ -89,7 +107,7 @@
 .about-me__greeting {
 	margin-bottom: 100px;
 
-	@include phones {
+	@include big-phones {
 		margin-bottom: 50px;
 	}
 }
