@@ -1,7 +1,7 @@
 section.feedback-form
 	.container.feedback-form__wrapper
 		h3.title_h3.feedback-form__title Связаться со мной
-		form.feedback-form__form
+		form.feedback-form__form(@submit.prevent="submit")
 			.feedback-form__column
 				.feedback-form__row
 					label.feedback-form__block
@@ -10,23 +10,27 @@ section.feedback-form
 							type='text'
 							placeholder='Наталья Быстрова'
 							required=''
+							v-model='name'
 						)
-						span.feedback-form__block-error
+						span.feedback-form__error-message {{ validation.firstError('name') }}
 					label.feedback-form__block
 						.label.feedback-form__label Введите ваш email
 						input.input.feedback-form__input.feedback-form__input_email(
 							type='email'
 							placeholder='n.a.bystrova@gmail.com'
 							required=''
+							v-model='email'
 						)
-						span.feedback-form__block-error
+						span.feedback-form__error-message
 				.feedback-form__row
 					label.feedback-form__block
 						.label.feedback-form__label Сообщение к письму
 						textarea.textarea.feedback-form__textarea(
 							type='text'
 							placeholder='Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса'
+							v-model='message'
 						)
-						span.feedback-form__block-error
+						span.feedback-form__error-message
+					p {{ name}}
+			button.button.feedback-form__button(type='submit') Отправить
 			
-			button.button.button_type_submit.feedback-form__button(type='submit') Отправить

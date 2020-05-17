@@ -28,6 +28,5 @@ new Vue ({
 	created() {
 		const data = require('../data/feedback.json');
 		this.feedback = this.makeArrWithRequiredImages(data);
-		const buttonNext = this
 	}
 });
