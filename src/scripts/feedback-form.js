@@ -1,23 +1,29 @@
-import Vue from 'vue';
-import SimpleVueValidation from 'simple-vue-validator';
+import Vue from "vue";
+import SimpleVueValidator from 'simple-vue-validator';
+const Validator = SimpleVueValidator.Validator;
 
+Vue.use(SimpleVueValidator);
 
-
-module.exports = {
-	mixins: [SimpleVueValidator.mixin],
-	data: function () {
-		return {
-			name: ''
-		};
+new Vue ({
+	el: "#feedback-form-component",
+	template: "#feedback-form-container",
+	data: {
+		name: '',
+		email: '',
+		message: ''
 	},
 	validators: {
 		name: function (value) {
-			return Validator.value(value).required();
+			return Validator.value(value).required().minLength(6);
+		},
+		email: function(value) {
+			return Validator.value(value).required().email();
 		}
 	},
 	methods: {
-		submit: function () {
+		submit: function() {
 			this.$validate();
 		}
 	}
-}
+
+});
