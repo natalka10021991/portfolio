@@ -9,7 +9,7 @@
 				li.nav__item
 					router-link.nav__link(to="/feedback") Отзывы
 
-</template>
+</template> 
 
 <style lang="postcss">
   @import "normalize.css";
@@ -17,7 +17,9 @@
   @import "../../../styles/layout/base.pcss";
 	
 	.nav {
-    min-height: 80px;
+    @include phones {
+      margin-bottom: 30px;
+    }
   }
   .nav__container {
     display: flex; 
@@ -26,9 +28,13 @@
     margin: 0 auto;
     width: 100%;
     padding: 0px 60px;
+ 
+  	@include tablets {
+		  padding: 0 20px;
+	  }
 
     @include phones {
-      padding: 0 40px;
+      padding: 0 15px;
       justify-content: center;
     }
   }

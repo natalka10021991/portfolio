@@ -3,9 +3,9 @@
     
     Header
     Nav
-      
-    .sections-container
-      router-view
+    .sections-container-wrapper  
+      .sections-container
+        router-view
       
       
 </template>

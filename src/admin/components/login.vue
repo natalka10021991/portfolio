@@ -90,11 +90,16 @@ export default {
 		padding: 60px 30px;
 		display: flex;
 		align-items: center;
+		justify-content: center;
 	}
 }
 
 .login__form-wrapper {
 	margin-bottom: 40px;
+}
+
+.login__form {
+	width: 100%;
 }
 
 .login__close-button {
@@ -208,6 +213,7 @@ export default {
 	@include phones {
 		padding: 15px 75px;
 		margin: 0 auto;
+		display: block;
 	}
 }
 </style>
