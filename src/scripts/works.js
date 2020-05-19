@@ -5,7 +5,6 @@ const thumbs = {
 	template: "#slider-thumbs",
 	data() {
 		return {
-			activeClass: 'portfolio__thumbs-item_active'
 		}
 	},
 	props: ["works", "currentWork"]

@@ -1,0 +1,18 @@
+script(type="text/x-template")#mobile-menu-button-wrapper
+	button.header__mobile-menu-button(
+		@click="openMenu()"
+	)
+
+script(type="text/x-template")#mobile-menu-wrapper
+	.mobile-menu(
+		:class="[menuStatus ? 'mobile-menu_opened' : '']"
+		)
+		.mobile-menu__wrapper
+			button.mobile-menu__close-btn.close-btn(
+				@click="closeMenu()"
+			)
+				+icon('cross', 'close-btn__icon')
+			.mobile-menu__nav
+				+nav('nav', 'mobile', ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться'], '' )
+			.mobile-menu__socials
+				+socials('socials', '', ['insta', 'vk', 'github'])

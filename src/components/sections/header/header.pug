@@ -4,7 +4,10 @@ header.header
 
 	.header__nav
 		+nav('nav', 'light', ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться'], '' )
-	.header__socials
-		//- var links = { insta: 'https://www.instagram.com/natali_bystrova/', vk: 'https://vk.com/bystrova_natali', github: 'https://github.com/natalka10021991'}; 
-		+socials('socials', '', ['insta', 'vk', 'github'])
-	button#mobileMenuBtn.header__mobile-menu-button
+	
+	.header__buttons__wrapper
+		.header__socials
+			//- var links = { insta: 'https://www.instagram.com/natali_bystrova/', vk: 'https://vk.com/bystrova_natali', github: 'https://github.com/natalka10021991'}; 
+			+socials('socials', '', ['insta', 'vk', 'github'])
+		#mobile-menu-button-component
+		

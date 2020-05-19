@@ -55,6 +55,7 @@
 .feedback-form__block {
 	margin-right: 100px;
 	width: 100%;
+	position:relative;
 
 	&:last-child {
 		margin-right: 0;
@@ -63,6 +64,30 @@
 	@include phones {
 		margin-right: 0;
 		margin-bottom: 30px;
+	}
+
+	&_error {
+		.input {
+			border-bottom: 2px solid #cd1515;
+			color: #cd1515;
+		}
+
+		.textarea {
+			border-bottom: 2px solid #cd1515;
+			color: #cd1515;
+		}
+
+		.feedback-form__input_name {
+			background-image: svg-load('user.svg', fill=#cd1515, width=100%, height=100%);
+		}
+		
+		.feedback-form__input_email {
+			background-image: svg-load('envelope.svg', fill=#cd1515, width=100%, height=100%);
+		}
+		
+		.feedback-form__textarea {
+			background-image: svg-load('message.svg', fill=#cd1515, width=100%, height=100%);
+		}
 	}
 }
 
@@ -88,24 +113,39 @@
 }
 
 .feedback-form__input_name {
-	background-image: svg-load('user.svg', fill=#464d62, width=100%, height=100%, opacity=0.3);
+	background-image: svg-load('user.svg', fill=currentColor, width=100%, height=100%, opacity=0.3);
 	background-size: 26px 30px;
-	background-position: 0 22px;
+	background-position: 0 15px;
 	background-repeat: no-repeat;
+	color: #464d62;
+
+	&:focus {
+		background-image: svg-load('user.svg', fill=#5500f2, width=100%, height=100%);
+	}
 }
 
 .feedback-form__input_email {
-	background-image: svg-load('envelope.svg', fill=#464d62, width=100%, height=100%, opacity=0.3);
+	background-image: svg-load('envelope.svg', fill=currentColor, width=100%, height=100%, opacity=0.3);
 	background-size: 30px 23px;
-	background-position: 0 25px;
+	background-position: 0 20px;
 	background-repeat: no-repeat;
+
+	&:focus {
+		background-image: svg-load('envelope.svg', fill=#5500f2, width=100%, height=100%);
+
+	}
 }
 
 .feedback-form__textarea {
-	background-image: svg-load('message.svg', fill=#464d62, width=100%, height=100%, opacity=0.3);
+	background-image: svg-load('message.svg', fill=currentColor, width=100%, height=100%, opacity=0.3);
 	background-size: 30px 23px;
 	background-position: 0 25px;
 	background-repeat: no-repeat;
+
+	&:focus {
+		background-image: svg-load('message.svg', fill=#5500f2, width=100%, height=100%);
+
+	}
 }
 
 .feedback-form__textarea {
@@ -113,6 +153,33 @@
 
 	@include tablets {
 		min-height: 80px;
+	}
+}
+
+.feedback-form__error-message {
+	color: #ffffff;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 400;
+	background-color: #cd1515;
+	margin-left: 40px;
+	display: inline-block;
+	padding: 10px 25px;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	
+	&:before {
+		content: '';
+		display: block;
+		width: 1px;
+		height: 1px;
+		border: 8px solid transparent;
+		border-bottom: 8px solid #cd1515;
+		position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
 	}
 }
 

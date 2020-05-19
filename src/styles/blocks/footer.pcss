@@ -19,6 +19,7 @@
 
 .footer__left {
 	display: flex;
+	margin-right: 50px;
 
 	@include desktop {
 		flex-direction: column;
@@ -34,6 +35,7 @@
 
 	@include desktop {
 		margin-bottom: 30px;
+		margin-right: 0;
 	}
 }
 
@@ -85,8 +87,13 @@
 }
 
 .footer__owner-info {
+
+	@include desktop-mini {
+		margin-right: 50px;
+	}
 	
 	@include tablets {
+		margin-right: 0;
 		margin-bottom: 60px;
 	}	
 }

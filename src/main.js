@@ -7,3 +7,5 @@ import "./scripts/skills";
 import "./scripts/works";
 import "./scripts/parallax";
 import "./scripts/feedback-slider";
+import "./scripts/mobile-menu";
+import "./scripts/feedback-form";

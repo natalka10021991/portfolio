@@ -15,13 +15,13 @@ script(type="text/x-template")#slider-display
 	.portfolio__slider
 		.portfolio__preview-wrapper(:data-slide="currentIndex + 1")
 			img(:src="currentWork.photo").portfolio__preview
-		thumbs(
-			:works="reversedWorks",
-			:currentWork="currentWork"
-		)
-		buttons(
-			@slide="$emit('slide', $event)"
-		)
+			thumbs(
+				:works="reversedWorks",
+				:currentWork="currentWork"
+			)
+			buttons(
+				@slide="$emit('slide', $event)"
+			)
 
 script(type="text/x-template")#slider-thumbs
 	ul.portfolio__thumbs-list

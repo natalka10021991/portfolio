@@ -1,0 +1,179 @@
+.input {
+	color: $text-color;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 36px;
+	border: none;
+	border-bottom: 1px solid $text-color;
+	background-color: transparent;
+	width: 100%;
+	padding: 10px 10px 10px 0;
+
+	&:hover,
+	&:focus {
+		outline: none;
+		border-bottom: 1px solid $purple;
+	}
+
+	&_without-icons {
+		padding-left: 0;
+	}
+}
+
+.textarea {
+	color: $text-color;
+  font-size: 18px;
+  font-weight: 700;
+	border: none;
+	border-bottom: 1px solid $text-color;
+	background-color: transparent;
+	width: 100%;	
+	resize: none;
+	padding: 15px 47px;
+
+	&_bordered {
+		border: 1px solid rgba(65,76,99,0.2);
+		padding: 20px;
+	}
+
+	@include phones {
+		padding-right: 0;
+	}
+}
+
+.label {
+	opacity: 0.3;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 30px;
+
+	@include tablets {
+		font-size: 14px;
+	}
+}
+
+.button {
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 48px;
+	text-transform: uppercase;
+	border-radius: 40px 5px;
+	background-color: #ffffff;
+	background-image: linear-gradient(to right, #9300e8 0%, #4a00ed 100%);
+	padding: 20px 120px;
+
+	@include phones {
+		font-size: 16px;
+		padding: 6px 80px;
+	}
+
+	&:hover,
+	&:focus {
+		background-image: linear-gradient(to right, #bb00ff 0%, #5900ff 100%);
+		cursor: pointer;
+	}
+
+	&_cancel {
+		background: none;
+		border: none;
+		color: #383bcf;
+		padding: 6px 35px;
+		font-size: 16px;
+
+		&:hover,
+		&:focus {
+			text-decoration: underline;
+			background: none;
+		}
+	}
+
+	&_primary {
+		background-image: linear-gradient(to right, #006aed 0%, #3f35cb 100%);
+		border-radius: 30px;
+		padding: 6px 35px;
+		font-size: 16px;
+
+		&:hover,
+		&:focus {
+			background-image: linear-gradient(to right, #006AC7 0%, #3F3595 100%);
+			background-image: linear-gradient(90deg,#006AC7 0,#3F3595);
+		}
+	}
+
+	
+}
+
+.buttons-group {
+	display: flex;
+  justify-content: flex-end;
+}
+
+.input-type-file {
+	width: 100%;
+  position: relative;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.input-type-file__input {
+	opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+::-webkit-input-placeholder {
+	color: $text-color;
+	opacity: 0.5;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 30px;
+	max-width: 400px;
+
+	@include tablets {
+		font-size: 14px;
+		line-height: 24px;
+	}
+}
+
+::-moz-placeholder {
+	color: $text-color;
+	opacity: 0.5;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 30px;
+	max-width: 400px;
+
+	@include tablets {
+		font-size: 14px;
+		line-height: 24px;
+	}
+}
+
+:-moz-placeholder {
+	color: $text-color;
+	opacity: 0.5;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 30px;
+	max-width: 400px;
+
+	@include tablets {
+		font-size: 14px;
+		line-height: 24px;
+	}
+}
+
+:-ms-input-placeholder {
+	color: $text-color;
+	opacity: 0.5;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 30px;
+	max-width: 400px;
+
+	@include tablets {
+		font-size: 14px;
+		line-height: 24px;
+	}
+}

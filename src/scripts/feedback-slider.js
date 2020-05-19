@@ -1,25 +1,20 @@
 import Vue from "vue";
 
-const buttons = {
-	template: "#feedback-slider-buttons"
-}
-
-const slider = {
-	template: "#feedback-slider",
-	props: ["feedback"]
-}
+import { Carousel, Slide } from 'vue-carousel';
 
 new Vue ({
 	el: "#feedback-slider-component",
 	template: "#feedback-slider-container",
 	data() {
 		return {
-			feedback: []
+			feedback: [],
+			buttonNext: '',
+
 		}
 	},
 	components: {
-		buttons,
-		slider
+		Carousel,
+		Slide
 	},
 	methods: {
 		makeArrWithRequiredImages(array) {
@@ -34,5 +29,4 @@ new Vue ({
 		const data = require('../data/feedback.json');
 		this.feedback = this.makeArrWithRequiredImages(data);
 	}
-
 });

@@ -1,17 +1,42 @@
-const parallax = document.querySelector('.parallax');
-const layers = parallax.children;
+const parallax = document.querySelectorAll('.parallax');
 
-function moveLayersDependsOnScroll(wScroll) {
-	Array.from(layers).forEach(layer => {
+let windowWidth = null;
 
-		const divider = layer.dataset.speed;
-		const strafe = wScroll  * divider / 10;
+(() => {
+	const get = () => {
+		windowWidth = document.querySelector('body').clientWidth;
+	};
+	
+	get();
 
-		layer.style.transform = `translateY(-${strafe}%)`
-	})
-}
+	window.addEventListener('resize', () => get())	
+})();
 
-window.addEventListener('scroll', e => {
-	const wScroll = window.pageYOffset;
-	moveLayersDependsOnScroll(wScroll);
-})
+Array.from(parallax).forEach((parallax) => {
+	const layers = parallax.children;
+	const parent = parallax.parentNode;
+	const parentOffsetTop = parent.offsetTop;
+
+	function moveLayersDependsOnScroll(wScroll) {
+		Array.from(layers).forEach(layer => {
+	
+			const divider = layer.dataset.speed;
+			const strafe = wScroll  * divider / 10;
+	
+			layer.style.transform = `translateY(-${strafe}%)`
+		});
+	}
+
+	window.addEventListener('scroll', e => {
+		const wScroll = window.pageYOffset;
+		
+		if (windowWidth > 768 && wScroll - parentOffsetTop >= 0) {
+			moveLayersDependsOnScroll(wScroll  - parentOffsetTop);
+		}
+		
+	});
+});
+
+
+
+

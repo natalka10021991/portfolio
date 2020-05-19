@@ -1,0 +1,125 @@
+.sections-container {
+	max-width: 1080px;
+	margin: 0 auto;
+}
+
+.control-button {
+	display: block;
+	width: 15px;
+	height: 12px;
+
+	&_save {
+		background: svg-load('tick.svg', fill=#00d70a, width=100%, height=100%) center center no-repeat;
+	}
+
+	&_close {
+		background: svg-load('cross.svg', fill=#bf2929, width=100%, height=100%) center center no-repeat;
+	}
+
+	&_edit {
+		background: svg-load('pencil.svg', fill=#414c63, width=100%, height=100%) center center no-repeat;
+	}
+
+	&_remove {
+		background: svg-load('trash.svg', fill=#414c63, width=100%, height=100%) center center no-repeat;
+	}
+}
+
+.section {
+	padding: 60px 0;
+
+	@include tablets {
+		padding: 40px 20px;
+	}
+
+	@include big-phones {
+		padding: 20px 0;
+	}
+}
+
+.section__header {
+	margin-bottom: 60px;
+}
+
+.section__title {
+	font-size: 21px;
+	font-weight: 700;
+}
+
+.admin-form__wrapper {
+	max-width: 1080px;
+	margin-bottom: 30px;
+}
+
+.admin-form {
+	box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
+	padding: 30px; 
+
+	@include big-phones {
+		padding: 15px;
+	}
+}
+
+.admin-form__header {
+	position: relative;
+	padding-bottom: 30px;
+	margin-bottom: 50px;
+
+	&:after {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		content: "";
+		display: block;
+		height: 1px;
+		width: 100%;
+		background-color: #1f232d;
+		opacity: 0.15;
+	}
+}
+
+.admin-form__title {
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 34px;
+}
+
+.admin-form__body {
+	display: flex;
+	margin-bottom: 30px;
+
+	@include big-phones {
+		flex-direction: column;
+	}
+}
+
+.admin-form__column {
+	flex: 1 0 auto;
+	flex-wrap: wrap;
+	margin-right: 30px;
+
+	&:last-child {
+		margin-right: 0;
+	}
+
+	@include big-phones {
+		margin-bottom: 30px;
+		margin-right: 0;
+	}
+}
+ .admin-form__row {
+	 margin-bottom: 30px;
+
+	 &:last-child {
+		 margin-bottom: 0;
+	 }
+ }
+.button-add {
+	font-size: 30px;
+	font-weight: 600;
+	color: #fff;
+	width: 41px;
+	height: 41px;
+	border-radius: 50%;
+	background-image: linear-gradient(to right, #006aed 0%, #3f35cb 100%);
+}

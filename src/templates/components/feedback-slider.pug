@@ -2,30 +2,23 @@ script(type="text/x-template")#feedback-slider-container
 	div
 		.feedback__header
 			.title_h3.feedback__title Что обо мне говорят
-			buttons
+			.feedback__slider-buttons
+				button.feedback__button.feedback__button_left
+				button.feedback__button.feedback__button_right
 		.feedback__slider
-			slider(
-				:feedback="feedback"
-			)
-			
-
-script(type="text/x-template")#feedback-slider-buttons
-	.feedback__slider-buttons
-		button.feedback__button.feedback__button_left
-		button.feedback__button.feedback__button_right
-
-script(type="text/x-template")#feedback-slider
-	ul.feedback__slider-list
-		li.feedback__slider-item(v-for="slide in feedback" :key="slide.id")
-			.feedback__text {{slide.text}}
-			.feedback__user 
-				.feedback__user-avatar
-					.avatar
-						img(:src="slide.photo").avatar__photo
-				.feedback__avatar-description
-					.feedback__user-name {{slide.name}}
-					.feedback__user-position {{slide.position}}
-		
-		
+			Carousel.feedback__slider-list(
+				:perPage="1"
+				:perPageCustom="[[0, 1], [769, 2]]"
+				:navigationEnabled="true"
+				)
+				Slide.feedback__slider-item(v-for="slide in feedback" :key="slide.id")
+					.feedback__text {{slide.text}}
+					.feedback__user 
+						.feedback__user-avatar
+							.avatar
+								img(:src="slide.photo").avatar__photo
+						.feedback__avatar-description
+							.feedback__user-name {{slide.name}}
+							.feedback__user-position {{slide.position}}
 
 		
