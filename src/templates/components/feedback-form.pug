@@ -16,7 +16,6 @@ script(type="text/x-template")#feedback-form-container
 					input.input.feedback-form__input.feedback-form__input_email(
 						v-model="email" type='email'
 						placeholder='n.a.bystrova@gmail.com'
-						
 					)
 					span(:class="{'feedback-form__error-message': validation.hasError('email')}")  {{ validation.firstError('email') }}
 			.feedback-form__row
@@ -27,6 +26,6 @@ script(type="text/x-template")#feedback-form-container
 						placeholder='Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса'
 						v-model='message'
 					)
-				
+					span(:class="{'feedback-form__error-message': validation.hasError('message')}")  {{ validation.firstError('message') }}
 		button.button.feedback-form__button(type='submit') Отправить
 		

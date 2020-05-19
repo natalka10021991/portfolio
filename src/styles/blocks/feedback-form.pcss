@@ -55,6 +55,7 @@
 .feedback-form__block {
 	margin-right: 100px;
 	width: 100%;
+	position:relative;
 
 	&:last-child {
 		margin-right: 0;
@@ -164,7 +165,9 @@
 	margin-left: 40px;
 	display: inline-block;
 	padding: 10px 25px;
-	position: relative;
+	position: absolute;
+	top: 100%;
+	left: 0;
 	
 	&:before {
 		content: '';

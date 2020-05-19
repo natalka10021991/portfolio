@@ -1,24 +1,27 @@
 <template lang="pug">
   .main-wrapper
+    router-view
     header.header
-      .header__left
-        .header__user-avatar
-          .avatar
-            img(src="require('../images/content/user.jpg')")
-        .header__user-name Наталья Быстрова
-        h3.header__title Панель администрирования
-        
-      .header__right
-        a.header__logout(href="#") Выйти
+      .header__container
+        .header__left
+          .header__user-avatar
+            .avatar
+              img(src="require('../images/content/user.jpg')")
+          .header__user-name Наталья Быстрова
+          h3.header__title Панель администрирования
+          
+        .header__right
+          a.header__logout(href="#") Выйти
 
     nav.nav
-      ul.nav__list
-        li.nav__item
-          a.nav__link.nav__link_active(href="#") Обо мне
-        li.nav__item
-          a.nav__link(href="#") Работы
-        li.nav__item
-          a.nav__link(href="#") Отзывы
+      .nav__container
+        ul.nav__list
+          li.nav__item
+            a.nav__link.nav__link_active(href="#") Обо мне
+          li.nav__item
+            a.nav__link(href="#") Работы
+          li.nav__item
+            a.nav__link(href="#") Отзывы
 
     .sections-container
       section.section.about-me
@@ -340,6 +343,7 @@
 
   .sections-container {
     max-width: 1080px;
+    margin: 0 auto;
   }
 
   .control-button {
@@ -349,8 +353,6 @@
 
     &_save {
       background: svg-load('tick.svg', fill=#00d70a, width=100%, height=100%) center center no-repeat;
-      color: green;
-      margin-right: 16px;
     }
 
     &_close {
@@ -367,7 +369,7 @@
 }
 
   .section {
-    padding: 60px;
+    padding: 60px 0;
 
     @include tablets {
       padding: 40px 20px;
@@ -473,16 +475,25 @@
 
   .header {
     min-height: 80px;
-    padding: 0 60px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+    
     background-color: $dark-gray-bg;
     color: #fff;
 
     @include phones {
       padding: 15px;
     }
+  }
+
+  .header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1080px;
+    width: 100%;
+    margin: 0 auto;
+    
   }
 
   .header__left {
@@ -516,9 +527,15 @@
 
   .nav {
     min-height: 80px;
+    
+  }
+
+  .nav__container {
     display: flex;
     align-items: center;
-    padding: 0 60px;
+    max-width: 1080px;
+    margin: 0 auto;
+    width: 100%
 
     @include phones {
       padding: 0 40px;
