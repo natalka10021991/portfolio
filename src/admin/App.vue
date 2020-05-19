@@ -1,35 +1,28 @@
 <template lang="pug">
   .main-wrapper
-    router-view
+    
     Header
     Nav
+      
     .sections-container
-      AboutMe
-      Works
-      Feedback
+      router-view
+      
       
 </template>
 
 <script>
   import Header from '../admin/components/header/header'
   import Nav from '../admin/components/Nav/nav'
-  import AboutMe from '../admin/components/about-me/about-me'
-  import Works from '../admin/components/works/works'
-  import Feedback from '../admin/components/feedback/feedback'
 
   export default {
     data() {
       return {
-
       }
     },
     components: {
       Header,
-      Nav,
-      AboutMe,
-      Works,
-      Feedback
-    }
+      Nav
+    },
   }
 </script>
 

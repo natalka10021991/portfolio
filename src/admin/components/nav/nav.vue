@@ -3,28 +3,29 @@
 		.nav__container
 			ul.nav__list
 				li.nav__item
-					a.nav__link.nav__link_active(href="#") Обо мне
+					router-link.nav__link(to="/") Обо мне
 				li.nav__item
-					a.nav__link(href="#") Работы
+					router-link.nav__link(to="/works") Работы
 				li.nav__item
-					a.nav__link(href="#") Отзывы
+					router-link.nav__link(to="/feedback") Отзывы
 
 </template>
 
 <style lang="postcss">
   @import "normalize.css";
-  @import "../../../styles/mixins.pcss";
+  @import "../../../styles/mixins.pcss"; 
   @import "../../../styles/layout/base.pcss";
 	
-	 .nav {
+	.nav {
     min-height: 80px;
   }
   .nav__container {
-    display: flex;
+    display: flex; 
     align-items: center;
     max-width: 1080px;
     margin: 0 auto;
-    width: 100%
+    width: 100%;
+    padding: 0px 60px;
 
     @include phones {
       padding: 0 40px;
@@ -42,14 +43,18 @@
     padding: 29px 25px;
     white-space: nowrap;
 
-    &_active {
-      color: $bright-blue;
-      font-weight: 600;
-      border-bottom: 3px solid $bright-blue;
-    }
-
     @include phones {
       padding: 25px 20px;
     }
   }
+
+  .router-link-active {
+    color: $bright-blue;
+    font-weight: 600;
+    border-bottom: 3px solid $bright-blue;
+    }
 </style>
+
+<script>
+
+</script>
