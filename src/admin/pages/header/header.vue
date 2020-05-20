@@ -9,7 +9,7 @@
 				h3.header__title Панель администрирования
 				
 			.header__right
-				a.header__logout(href="#") Выйти
+				router-link.header__logout(to="/login") Выйти
 </template>
 
 <style lang="postcss">

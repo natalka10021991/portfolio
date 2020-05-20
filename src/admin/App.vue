@@ -1,17 +1,13 @@
 <template lang="pug">
   .main-wrapper
-    
     router-view(name="header")
     router-view(name="nav")
     router-view
-        
-      
-      
 </template>
 
 <script>
-  import Header from '../admin/components/header/header'
-  import Nav from '../admin/components/Nav/nav'
+  import Header from '../admin/pages/header/header'
+  import Nav from '../admin/pages/Nav/nav'
 
   export default {
     data() {

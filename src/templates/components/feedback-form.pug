@@ -28,4 +28,9 @@ script(type="text/x-template")#feedback-form-container
 					)
 					span(:class="{'feedback-form__error-message': validation.hasError('message')}")  {{ validation.firstError('message') }}
 		button.button.feedback-form__button(type='submit') Отправить
+		.feedback-tooltip(v-if="formState")
+			.feedback-tooltip__message {{ tooltipMessage }}
+			button.feedback__tooltip__close-btn(@click="closeTooltip")
+
+	
 		

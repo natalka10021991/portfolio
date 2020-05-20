@@ -4,13 +4,16 @@ const Validator = SimpleVueValidator.Validator;
 
 Vue.use(SimpleVueValidator);
 
+
 new Vue ({
 	el: "#feedback-form-component",
 	template: "#feedback-form-container",
 	data: {
 		name: '',
 		email: '',
-		message: ''
+		message: '',
+		formState: '',
+		tooltipMessage: ''
 	},
 	validators: {
 		name: function (value) {
@@ -26,11 +29,15 @@ new Vue ({
 	methods: {
 		submit: function() {
 			this.$validate()
-			.then(function (success) {
+			.then((success) => {
 				if (success) {
-					alert('Данные отправлены успешно');
+					this.formState = true;
+					this.tooltipMessage = 'Сообщение отправлено';
 				}
 			});
+		},
+		closeTooltip: function() {
+			this.formState = false;
 		}
 	}
 });

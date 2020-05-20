@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './App.vue';
-import Login from './components/login';
-import AboutMe from './components/about-me/about-me';
-import Works from './components/works/works';
-import Feedback from './components/feedback/feedback';
-import Header from './components/header/header';
-import Nav from './components/nav/nav';
+import Login from './pages/login';
+import AboutMe from './pages/about-me/about-me';
+import Works from './pages/works/works';
+import Feedback from './pages/feedback/feedback';
+import Header from './pages/header/header';
+import Nav from './pages/nav/nav';
 
 
 const router = new VueRouter({

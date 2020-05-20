@@ -63,8 +63,8 @@ export default {
 				name: this.name,
 				password: this.password
 			})
-			.then(function (response) {
-				this.$router.replace('/');
+			.then((response) => {
+				this.$router.replace({ path: '/'});
 			})
 			.catch(function (error) {
 				console.log(error);
