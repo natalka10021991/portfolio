@@ -3,12 +3,11 @@
 		.nav__container
 			ul.nav__list
 				li.nav__item
-					router-link.nav__link(to="/") Обо мне
+					router-link.nav__link(to="/" exact) Обо мне
 				li.nav__item
 					router-link.nav__link(to="/works") Работы
 				li.nav__item
 					router-link.nav__link(to="/feedback") Отзывы
-
 </template> 
 
 <style lang="postcss">
@@ -60,7 +59,3 @@
     border-bottom: 3px solid $bright-blue;
     }
 </style>
-
-<script>
-
-</script>

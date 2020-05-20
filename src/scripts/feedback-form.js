@@ -28,10 +28,9 @@ new Vue ({
 			this.$validate()
 			.then(function (success) {
 				if (success) {
-					alert('Данные отправлены успешно')
+					alert('Данные отправлены успешно');
 				}
 			});
 		}
 	}
-
 });

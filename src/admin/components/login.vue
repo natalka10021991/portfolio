@@ -1,5 +1,6 @@
 <template lang="pug">
 
+
 .login-wrapper
 	.login
 		button.login__close-button
@@ -31,8 +32,12 @@
 <script>
 
 import Vue from "vue";
+import axios from "axios";
 import SimpleVueValidator from 'simple-vue-validator';
 const Validator = SimpleVueValidator.Validator;
+
+
+const baseUrl = 'https://webdev-api.loftschool.com';
 
 Vue.use(SimpleVueValidator);
 
@@ -54,6 +59,17 @@ export default {
 	methods: {
 		submit: function() {
 			this.$validate();
+			axios.post(baseUrl + '/login', {
+				name: this.name,
+				password: this.password
+			})
+			.then(function (response) {
+				this.$router.replace('/');
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+			
 		}
 	}
 }

@@ -1,11 +1,10 @@
 <template lang="pug">
   .main-wrapper
     
-    Header
-    Nav
-    .sections-container-wrapper  
-      .sections-container
-        router-view
+    router-view(name="header")
+    router-view(name="nav")
+    router-view
+        
       
       
 </template>
