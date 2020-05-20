@@ -4,65 +4,19 @@
 			section.section.works
 				.section__header
 					h2.section__title Блок &laquo;Работы&raquo;
-				.admin-form__wrapper
-					form.admin-form.works-form
-						.admin-form__header.works-form__header
-							h3.form__title Редактирование Работы
-						.admin-form__body
-							.admin-form__column
-								.works__preview-loader-wrapper
-									.works__preview-loader
-										p.works__preview-loader-desc Перетащите или загрузите для загрузки изображения
-										label.input-type-file
-											.button.button_primary.works__button Загрузить
-											input.input-type-file__input(type='file')
-							.admin-form__column
-								.admin-form__row
-									label.feedback-form__block
-										.label.feedback-form__label Название
-										input.input.input_without-icons.feedback-form__input(
-											type='text'
-											placeholder='Дизайн сайта для авто салона Porsche'
-											required=''
-										)
-										span.feedback-form__block-error
-								.admin-form__row
-									label.feedback-form__block
-										.label.feedback-form__label Ссылка
-										input.input.input_without-icons.feedback-form__input(
-											type='text'
-											placeholder='https://www.porsche-pulkovo.ru'
-											required=''
-										)
-										span.feedback-form__block-error
-								.admin-form__row
-									label.feedback-form__block.feedback-form__block_full-width
-										.label.feedback-form__label Описание
-										textarea.textarea.textarea_bordered.feedback-form__textarea(
-											type='text'
-											placeholder='Порше Центр Пулково - является официальным дилером марки Порше в Санкт-Петербурге и предоставляет полный цикл услуг по продаже и сервисному обслуживанию автомобилей'
-										)
-										span.feedback-form__block-error
-								.admin-form__row
-									label.feedback-form__block
-										.label.feedback-form__label Добавление тэга
-										input.input.input_without-icons.feedback-form__input(
-											type='text'
-											placeholder='Jquery, Vue.js, HTML5'
-											required=''
-										)
-										span.feedback-form__block-error
-
-						.buttons-group.feedback-form__buttons
-							button.button.button_cancel.works-form__button(type="button") Отмена
-							button.button.button_primary.works-form__button(type='submit') Сохранить
+				NewWorkForm(
+					:formIsOpened = "formIsOpened"
+					v-if="formIsOpened"
+				)
+				
 
 				.works__list-wrapper
 					ul.works__list
 						li.works__item.works__item_adding
-							.works__add-work-wrapper
-								button.works__add-work-button +
-								.works__add-work-label Добавить работу
+							AddButton(
+								@click="openForm",
+								:buttonTitle="buttonTitle"
+							)
 						li.works__item
 							.works__preview-wrapper
 								.works__preview
@@ -100,6 +54,31 @@
 										span.works__button-title Удалить
 										span.works__button-icon.works__button-icon_remove
 </template>
+
+<script>
+import Vue from 'vue';
+import AddButton from "../../components/add-item-button";
+import NewWorkForm from "../../components/new-work-form";
+
+
+export default {
+	data() {
+		return {
+			formIsOpened: false,
+			buttonTitle: 'Добавить работу'
+		}
+	},
+	components: {
+		NewWorkForm,
+		AddButton
+	},
+	methods: {
+		openForm: function() {
+			this.formIsOpened = true;
+		}
+	}
+}
+</script>
 
 <style lang="postcss">
   @import "normalize.css";

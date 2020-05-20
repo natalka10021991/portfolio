@@ -5,13 +5,18 @@
 				.section__header
 					h2.section__title.feedback__title Блок &laquo;Отзывы&raquo;
 
-				FeedbackForm#feedback-form-component
+				FeedbackForm(
+					:formIsOpened = "formIsOpened"
+					v-if="formIsOpened"
+				)
 
 				ul.feedback__list
 					li.feedback__item.feedback__item_adding
-						.feedback__add-work-wrapper
-							button.feedback__add-work-button +
-							.feedback__add-work-label Добавить отзыв
+						AddButton(
+							@click="openForm",
+							:buttonTitle="buttonTitle"
+						)
+						
 					li.feedback__item
 						.feedback__item-header
 							.feedback__user-avatar
@@ -49,19 +54,24 @@
 <script>
 import Vue from 'vue';
 import FeedbackForm from "../../components/feedback-form";
+import AddButton from "../../components/add-item-button";
 
 
 export default {
 	data() {
 		return {
-
+			formIsOpened: false,
+			buttonTitle: 'Добавить отзыв'
 		}
 	},
 	components: {
 		FeedbackForm,
+		AddButton
 	},
 	methods: {
-
+		openForm: function() {
+			this.formIsOpened = true;
+		}
 	}
 }
 </script>

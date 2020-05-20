@@ -20,7 +20,6 @@
 								type='text'
 								placeholder='Наталья Быстрова'
 								v-model='name'
-
 							)
 							span(:class="{'feedback-form__error-message': validation.hasError('name')}") {{ validation.firstError('name') }}
 						label.feedback-form__block
@@ -61,6 +60,7 @@ export default {
 			photo: ''
 		}
 	},
+	props: ['formIsOpened'],
 	validators: {
 		name: function (value) {
 			return Validator.value(value).required('Поле обязательно для заполнения');
