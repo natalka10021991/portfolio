@@ -4,7 +4,7 @@
 			.header__left
 				.header__user-avatar
 					.avatar
-						img(src="require('../images/content/user.jpg')")
+						img(src="../../../images/content/user.jpg")
 				.header__user-name Наталья Быстрова
 				h3.header__title Панель администрирования
 				

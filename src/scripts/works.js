@@ -92,7 +92,8 @@ new Vue ({
 				item.photo = requirePic;
 				return item;
 			})
-		}
+		},
+		
 	},
 	created() {
 		const data = require("../data/works.json");

@@ -8,8 +8,6 @@
 					:formIsOpened = "formIsOpened"
 					v-if="formIsOpened"
 				)
-				
-
 				.works__list-wrapper
 					ul.works__list
 						li.works__item.works__item_adding

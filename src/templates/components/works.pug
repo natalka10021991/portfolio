@@ -4,7 +4,7 @@ script(type="text/x-template")#slider-container
 			:currentWork="currentWork",
 			:works="works",
 			:currentIndex="currentIndex",
-			@slide="handleSlide"
+			@slide="handleSlide",
 		)
 		info(
 			:currentWork="currentWork"
@@ -17,11 +17,12 @@ script(type="text/x-template")#slider-display
 			img(:src="currentWork.photo").portfolio__preview
 			thumbs(
 				:works="reversedWorks",
-				:currentWork="currentWork"
+				:currentWork="currentWork",
+
 			)
-			buttons(
-				@slide="$emit('slide', $event)"
-			)
+		buttons(
+			@slide="$emit('slide', $event)"
+		)
 
 script(type="text/x-template")#slider-thumbs
 	ul.portfolio__thumbs-list

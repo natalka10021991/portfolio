@@ -38,6 +38,7 @@ const Validator = SimpleVueValidator.Validator;
 
 
 const baseUrl = 'https://webdev-api.loftschool.com';
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTAwODQzMjQsImV4cCI6MTU5MDEwMjMyNCwibmJmIjoxNTkwMDg0MzI0LCJqdGkiOiJ6TzVRN3VFejFXNlpXR3VMIn0.iGI7tMOmifjYhy9Pwtl5MM_TUX1rSzNXrB2Rj9s5vYI';
 
 Vue.use(SimpleVueValidator);
 

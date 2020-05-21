@@ -7,7 +7,7 @@
 
 <script>
   import Header from '../admin/pages/header/header'
-  import Nav from '../admin/pages/Nav/nav'
+  import Nav from '../admin/pages/nav/nav'
 
   export default {
     data() {
