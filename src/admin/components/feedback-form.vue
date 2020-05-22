@@ -1,17 +1,17 @@
 <template lang="pug">
 	.admin-form__wrapper
-		form.admin-form.feedback-form(@submit.prevent="submit")
+		form.admin-form.feedback-form(@submit.prevent="createReview")
 			.admin-form__header.feedback-form__header
 				h3.admin-form__title.feedback-form__title Новый отзыв
 			.admin-form__body.feedback-form__body
 				.feedback-form__column
 					.feedback-form__image-placeholder
 						.avatar
-							img(src="required('../images/content/admin/user-photo-placeholder.png')")
+							img(src="")
 					label.feedback-form__file-block.input-type-file
 						.label.feedback-form__file-label.input-type-file__label Добавить фото
-						input.input-type-file__input(type='file')
-						span(:class="{'feedback-form__error-message': validation.hasError('photo')}") {{ validation.firstError('photo') }}
+						input.input-type-file__input(type='file' ref="image")
+						span(:class="{'feedback-form__error-message': validation.hasError('image')}") {{ validation.firstError('image') }}
 				.feedback-form__column
 					.feedback-form__row
 						label.feedback-form__block
@@ -47,6 +47,14 @@
 <script>
 import Vue from "vue";
 import SimpleVueValidator from 'simple-vue-validator';
+import axios from "axios";
+
+const baseUrl = 'https://webdev-api.loftschool.com';
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTAxMzcwMDcsImV4cCI6MTU5MDE1NTAwNywibmJmIjoxNTkwMTM3MDA3LCJqdGkiOiJKTFRxUW1KMmRPTEozd3NZIn0.IqwQQ5uvvPgkCquL6LOz3NmsCvBjdEam8jwNU7I5juc';
+
+axios.defaults.baseURL = baseUrl;
+axios.defaults.headers['Authorization'] = `Bearer ${token}`;
+
 const Validator = SimpleVueValidator.Validator;
 
 Vue.use(SimpleVueValidator);
@@ -57,10 +65,10 @@ export default {
 			name: '',
 			position: '',
 			review: '',
-			photo: ''
+			image: ''
 		}
 	},
-	props: ['formIsOpened'],
+	props: ['formIsOpened','reviews'],
 	validators: {
 		name: function (value) {
 			return Validator.value(value).required('Поле обязательно для заполнения');
@@ -71,19 +79,25 @@ export default {
 		review: function(value) {
 			return Validator.value(value).required('Поле обязательно для заполнения');
 		},
-		photo: function(value) {
+		image: function(value) {
 			return Validator.value(value).required('Поле обязательно для заполнения');
 		}
 	},
 	methods: {
-		submit: function() {
-			this.$validate()
-			.then((success) => {
-				if (success) {
-					
-				}
-			});
-			
+		createReview: function() {
+			let formData = new FormData();
+			formData.append('author', this.name)
+			formData.append('occ', this.position)
+			formData.append('text', this.review)
+			formData.append('photo', this.$refs.image.files[0])
+
+			axios.post('/reviews', formData).then(response => {
+				console.log(response.data)
+				this.$emit('reviewAdded', {
+					data: response.data,
+					formIsOpened: false
+				});
+			})
 		},
 		reset: function () {
 			this.name = '';
