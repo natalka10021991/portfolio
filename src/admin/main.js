@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import { store } from "./store"
 import App from './App.vue';
 import Login from './pages/login';
 import AboutMe from './pages/about-me/about-me';
@@ -36,5 +37,6 @@ Vue.use(VueRouter)
 new Vue({
   el: "#app-root",
   router,
+  store,
   render: h => h(App)
 });

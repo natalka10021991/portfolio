@@ -37,8 +37,9 @@ import SimpleVueValidator from 'simple-vue-validator';
 const Validator = SimpleVueValidator.Validator;
 
 
-const baseUrl = 'https://webdev-api.loftschool.com';
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTAxMzcwMDcsImV4cCI6MTU5MDE1NTAwNywibmJmIjoxNTkwMTM3MDA3LCJqdGkiOiJKTFRxUW1KMmRPTEozd3NZIn0.IqwQQ5uvvPgkCquL6LOz3NmsCvBjdEam8jwNU7I5juc';
+axios.defaults.baseURL = 'https://webdev-api.loftschool.com';
+axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTAzOTg0MDEsImV4cCI6MTU5MDQxNjQwMSwibmJmIjoxNTkwMzk4NDAxLCJqdGkiOiJNRGJ4eHBGV0k5eXpIVFFnIn0.YGSVxUodQTsurdDwj8nKk2qhIGX3ZbUIbLJq2eHpyw4';
 
 Vue.use(SimpleVueValidator);
 
@@ -60,11 +61,13 @@ export default {
 	methods: {
 		submit: function() {
 			this.$validate();
-			axios.post(baseUrl + '/login', {
+			axios.post('/login', {
 				name: this.name,
 				password: this.password
 			})
 			.then((response) => {
+				const token = localStorage.getItem('token') || '';
+				axios.defaults.headers["Authorization"] = `Bearer ${token}`;
 				this.$router.replace({ path: '/'});
 			})
 			.catch(function (error) {

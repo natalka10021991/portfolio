@@ -22,7 +22,7 @@
 					li.feedback__item(v-for="review in reviews" :key="review.id")
 						.feedback__item-header
 							.feedback__user-avatar
-								img.feedback__user-photo(:src="review.photo")
+								img.feedback__user-photo(:src="'https://webdev-api.loftschool.com/' + review.photo")
 							.feedback__user-info
 								.feedback__user-name {{review.author}}
 								.feedback__user-position {{review.occ}}
@@ -44,7 +44,7 @@ import AddButton from "../../components/add-item-button";
 import axios from "axios";
 
 const baseUrl = 'https://webdev-api.loftschool.com';
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTAxMzcwMDcsImV4cCI6MTU5MDE1NTAwNywibmJmIjoxNTkwMTM3MDA3LCJqdGkiOiJKTFRxUW1KMmRPTEozd3NZIn0.IqwQQ5uvvPgkCquL6LOz3NmsCvBjdEam8jwNU7I5juc';
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTAzOTg0MDEsImV4cCI6MTU5MDQxNjQwMSwibmJmIjoxNTkwMzk4NDAxLCJqdGkiOiJNRGJ4eHBGV0k5eXpIVFFnIn0.YGSVxUodQTsurdDwj8nKk2qhIGX3ZbUIbLJq2eHpyw4';
 
 axios.defaults.baseURL = baseUrl;
 axios.defaults.headers['Authorization'] = `Bearer ${token}`;
@@ -72,16 +72,14 @@ export default {
 			this.formIsOpened = true;
 		},
 		addReview(data, formIsOpened) {
-			console.log(data);
-			this.reviews.push(data); 
+			this.reviews.unshift(data.data); 
 			this.formIsOpened = formIsOpened;
-			console.log(this.reviews);
 
 		},
 		getReviews() {
 			axios.get('/reviews/311').then(response => {
 				console.log(response.data)
-				this.reviews = response.data;
+				this.reviews = response.data.reverse();
 			})
 		},
 		removeReview(id) {
