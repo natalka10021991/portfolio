@@ -10,6 +10,7 @@
 					v-if="formIsOpened"
 					@reviewAdded="addReview"
 					:reviews="reviews"
+					:currentReview="currentReview"
 				)
 
 				ul.feedback__list
@@ -29,7 +30,7 @@
 						.feedback__desc-wrapper
 							p.feedback__work-desc {{review.text}}
 							.feedback__item-buttons-group
-								button.feedback__item-button
+								button.feedback__item-button(@click="editReview(review)")
 									span.feedback__button-title Править
 									span.feedback__button-icon.works__button-icon_edit
 								button.feedback__item-button(@click="removeReview(review.id)")
@@ -44,7 +45,7 @@ import AddButton from "../../components/add-item-button";
 import axios from "axios";
 
 const baseUrl = 'https://webdev-api.loftschool.com';
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTAzOTg0MDEsImV4cCI6MTU5MDQxNjQwMSwibmJmIjoxNTkwMzk4NDAxLCJqdGkiOiJNRGJ4eHBGV0k5eXpIVFFnIn0.YGSVxUodQTsurdDwj8nKk2qhIGX3ZbUIbLJq2eHpyw4';
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTA0MjUxNjIsImV4cCI6MTU5MDQ0MzE2MiwibmJmIjoxNTkwNDI1MTYyLCJqdGkiOiIyeTZCNUV1eUZmR0MwZHJqIn0.7TRxMTmwYauRejeS-HLbk0jCpV35mBjCZ0rnyZIXTPk';
 
 axios.defaults.baseURL = baseUrl;
 axios.defaults.headers['Authorization'] = `Bearer ${token}`;
@@ -56,7 +57,8 @@ export default {
 			formIsOpened: false,
 			buttonTitle: 'Добавить отзыв',
 			userId: '',
-			reviews: []
+			reviews: [],
+			currentReview: {}
 		}
 	},
 	components: {
@@ -86,6 +88,11 @@ export default {
 			axios.delete('/reviews/' + id).then(response => {
 				this.reviews = this.reviews.filter(item => item.id != id);
 			})
+		},
+		editReview(review) {
+			this.currentReview = review;
+			this.formIsOpened = true;
+			
 		},
 		getUserId() {
 			axios.get('/user').then(response => {

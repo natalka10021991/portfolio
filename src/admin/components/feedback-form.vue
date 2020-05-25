@@ -7,10 +7,17 @@
 				.feedback-form__column
 					.feedback-form__image-placeholder
 						.avatar
-							img(src="")
+							img(
+								v-if="url"
+								:src="url"
+							)
 					label.feedback-form__file-block.input-type-file
 						.label.feedback-form__file-label.input-type-file__label Добавить фото
-						input.input-type-file__input(type='file' ref="image")
+						input.input-type-file__input(
+							type='file' 
+							ref="image"
+							@change="uploadImage"
+						)
 						span(:class="{'feedback-form__error-message': validation.hasError('image')}") {{ validation.firstError('image') }}
 				.feedback-form__column
 					.feedback-form__row
@@ -50,7 +57,7 @@ import SimpleVueValidator from 'simple-vue-validator';
 import axios from "axios";
 
 const baseUrl = 'https://webdev-api.loftschool.com';
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTAzOTg0MDEsImV4cCI6MTU5MDQxNjQwMSwibmJmIjoxNTkwMzk4NDAxLCJqdGkiOiJNRGJ4eHBGV0k5eXpIVFFnIn0.YGSVxUodQTsurdDwj8nKk2qhIGX3ZbUIbLJq2eHpyw4';
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTA0MjUxNjIsImV4cCI6MTU5MDQ0MzE2MiwibmJmIjoxNTkwNDI1MTYyLCJqdGkiOiIyeTZCNUV1eUZmR0MwZHJqIn0.7TRxMTmwYauRejeS-HLbk0jCpV35mBjCZ0rnyZIXTPk';
 
 axios.defaults.baseURL = baseUrl;
 axios.defaults.headers['Authorization'] = `Bearer ${token}`;
@@ -65,10 +72,11 @@ export default {
 			name: '',
 			position: '',
 			review: '',
-			image: ''
+			image: '',
+			url: ''
 		}
 	},
-	props: ['formIsOpened','reviews'],
+	props: ['formIsOpened','reviews', 'currentReview'],
 	validators: {
 		name: function (value) {
 			return Validator.value(value).required('Поле обязательно для заполнения');
@@ -86,24 +94,39 @@ export default {
 	methods: {
 		createReview: function() {
 			let formData = new FormData();
-			formData.append('author', this.name)
-			formData.append('occ', this.position)
-			formData.append('text', this.review)
-			formData.append('photo', this.$refs.image.files[0])
+			formData.append('author', this.name);
+			formData.append('occ', this.position);
+			formData.append('text', this.review);
+			formData.append('photo', this.$refs.image.files[0]);
 
-			axios.post('/reviews', formData).then(response => {
-				console.log(response.data)
-				this.$emit('reviewAdded', {
-					data: response.data,
-					formIsOpened: false
+			this.$validate()
+				.then((success) => {
+					if (success) {
+						axios.post('/reviews', formData).then(response => {
+							console.log(response.data)
+							this.$emit('reviewAdded', {
+								data: response.data,
+								formIsOpened: false
+							});
+							this.name = '';
+							this.position = '';
+							this.review = '';
+							this.photo = '';
+						})
+					}
 				});
-			})
 		},
 		reset: function () {
 			this.name = '';
       this.position = '';
 			this.review = '';
 			this.photo = '';
+		},
+		uploadImage: function(e) {
+			const file = e.target.files[0];
+			this.url = URL.createObjectURL(file);
+			this.image = URL.createObjectURL(file);
+
 		}
 	}
 }
