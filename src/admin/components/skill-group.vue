@@ -38,7 +38,9 @@ export default {
 			},
 		}
 	},
-	props: [ 'categoryId'],
+	props: {
+		category: Object
+	},
 	methods: {
 		createSkill() {
 			axios.post('/skills', this.skill).then(response => {

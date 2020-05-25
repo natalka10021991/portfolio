@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { store } from "./store"
+import $axios from "./requests"
 import App from './App.vue';
 import Login from './pages/login';
 import AboutMe from './pages/about-me/about-me';
@@ -9,6 +10,7 @@ import Feedback from './pages/feedback/feedback';
 import Header from './pages/header/header';
 import Nav from './pages/nav/nav';
 
+store.$axios = $axios;
 
 const router = new VueRouter({
   routes: [

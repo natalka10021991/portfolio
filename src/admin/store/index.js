@@ -3,10 +3,10 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-import feedback from "./modules/feedback";
+import aboutMe from "./modules/about-me";
 
 export const store = new Vuex.Store ({
 	modules: {
-		feedback
+		aboutMe
 	}
 });

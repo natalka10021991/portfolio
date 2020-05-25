@@ -4,7 +4,7 @@
 .login-wrapper
 	.login
 		button.login__close-button
-		form.login__form(@submit.prevent="submit")
+		form.login__form(@submit.prevent="loginUser")
 			.login__form-wrapper
 				h3.login__title Авторизация
 				.login__form-block(:class="{'login__form-block_error': validation.hasError('name')}")
@@ -13,7 +13,7 @@
 						type='text'
 						placeholder='Terminator'
 						name="name"
-						v-model="name"
+						v-model="user.name"
 					)
 					span(:class="{'login__error-message': validation.hasError('name')}") {{ validation.firstError('name') }}
 				.login__form-block(:class="{'login__form-block_error': validation.hasError('password')}")
@@ -22,7 +22,7 @@
 						type='password'
 						placeholder='*************'
 						name="password"
-						v-model="password"
+						v-model="user.password"
 					)
 					span(:class="{'login__error-message': validation.hasError('password')}") {{ validation.firstError('password') }}
 			button.login__submit-button Отправить
@@ -32,22 +32,21 @@
 <script>
 
 import Vue from "vue";
-import axios from "axios";
+import $axios from "../requests";
 import SimpleVueValidator from 'simple-vue-validator';
 const Validator = SimpleVueValidator.Validator;
 
 
-axios.defaults.baseURL = 'https://webdev-api.loftschool.com';
-axios.defaults.headers["Authorization"] = `Bearer ${token}`;
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTAzOTg0MDEsImV4cCI6MTU5MDQxNjQwMSwibmJmIjoxNTkwMzk4NDAxLCJqdGkiOiJNRGJ4eHBGV0k5eXpIVFFnIn0.YGSVxUodQTsurdDwj8nKk2qhIGX3ZbUIbLJq2eHpyw4';
 
 Vue.use(SimpleVueValidator);
 
 export default {
 	data() {
 		return {
-			name: '',
-			password: '',
+			user: {
+				name: "",
+				password: ""
+			}
 		}
 	},
 	validators: {
@@ -59,21 +58,17 @@ export default {
 		}
 	},
 	methods: {
-		submit: function() {
-			this.$validate();
-			axios.post('/login', {
-				name: this.name,
-				password: this.password
-			})
-			.then((response) => {
-				const token = localStorage.getItem('token') || '';
-				axios.defaults.headers["Authorization"] = `Bearer ${token}`;
-				this.$router.replace({ path: '/'});
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
-			
+		async loginUser() {
+			try {
+				const response = await $axios.post('/login', this.user);
+				const token = response.data.token;
+
+				localStorage.setItem('token', token);
+				$axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+				this.$router.replace("/");
+			} catch (error) {
+				console.log(error)
+			}
 		}
 	}
 }

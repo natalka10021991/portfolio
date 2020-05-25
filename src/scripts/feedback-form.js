@@ -33,8 +33,13 @@ new Vue ({
 				if (success) {
 					this.formState = true;
 					this.tooltipMessage = 'Сообщение отправлено';
+					this.name = "";
+					this.email = "";
+					this.message = "";
+					this.validation.reset();
 				}
 			});
+			
 		},
 		closeTooltip: function() {
 			this.formState = false;
