@@ -67,13 +67,7 @@
 <script>
 import Vue from "vue";
 import SimpleVueValidator from 'simple-vue-validator';
-import axios from "axios";
-
-const baseUrl = 'https://webdev-api.loftschool.com';
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTA0ODMzNDQsImV4cCI6MTU5MDUwMTM0NCwibmJmIjoxNTkwNDgzMzQ0LCJqdGkiOiJvcDg5dzVSNjdNMVdVQ2xRIn0.rBCCRchOYLZWVXRxuTySEoUMCUjvnUt5G7dIiLecP4k';
-
-axios.defaults.baseURL = baseUrl;
-axios.defaults.headers['Authorization'] = `Bearer ${token}`;
+import $axios from "../requests";
 
 const Validator = SimpleVueValidator.Validator;
 
@@ -101,7 +95,7 @@ export default {
 			formData.append('techs', this.tags);
 			formData.append('photo', this.$refs.image.files[0]);
 
-			axios.post('/works', formData).then(response => {
+			$axios.post('/works', formData).then(response => {
 				console.log(response.data)
 				this.$emit('workAdded', {
 					data: response.data,

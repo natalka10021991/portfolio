@@ -42,14 +42,7 @@
 import Vue from 'vue';
 import FeedbackForm from "../../components/feedback-form";
 import AddButton from "../../components/add-item-button";
-import axios from "axios";
-
-const baseUrl = 'https://webdev-api.loftschool.com';
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTA0ODMzNDQsImV4cCI6MTU5MDUwMTM0NCwibmJmIjoxNTkwNDgzMzQ0LCJqdGkiOiJvcDg5dzVSNjdNMVdVQ2xRIn0.rBCCRchOYLZWVXRxuTySEoUMCUjvnUt5G7dIiLecP4k';
-
-axios.defaults.baseURL = baseUrl;
-axios.defaults.headers['Authorization'] = `Bearer ${token}`;
-
+import $axios from "../../requests";
 
 export default {
 	data() {
@@ -79,13 +72,13 @@ export default {
 
 		},
 		getReviews() {
-			axios.get('/reviews/311').then(response => {
+			$axios.get('/reviews/311').then(response => {
 				console.log(response.data)
 				this.reviews = response.data.reverse();
 			})
 		},
 		removeReview(id) {
-			axios.delete('/reviews/' + id).then(response => {
+			$axios.delete('/reviews/' + id).then(response => {
 				this.reviews = this.reviews.filter(item => item.id != id);
 			})
 		},
@@ -95,7 +88,7 @@ export default {
 
 		},
 		getUserId() {
-			axios.get('/user').then(response => {
+			$axios.get('/user').then(response => {
 				console.log(response.data)
 			})
 		}

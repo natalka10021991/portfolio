@@ -41,15 +41,7 @@
 import Vue from 'vue';
 import AddButton from "../../components/add-item-button";
 import NewWorkForm from "../../components/new-work-form";
-
-import axios from "axios";
-
-const baseUrl = 'https://webdev-api.loftschool.com';
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTA0ODMzNDQsImV4cCI6MTU5MDUwMTM0NCwibmJmIjoxNTkwNDgzMzQ0LCJqdGkiOiJvcDg5dzVSNjdNMVdVQ2xRIn0.rBCCRchOYLZWVXRxuTySEoUMCUjvnUt5G7dIiLecP4k';
-
-axios.defaults.baseURL = baseUrl;
-axios.defaults.headers['Authorization'] = `Bearer ${token}`;
-
+import $axios from "../../requests";
 
 export default {
 	data() {
@@ -72,13 +64,11 @@ export default {
 			this.formIsOpened = true;
 		},
 		getWorks() {
-			axios.get('/works/311').then(response => {
+			$axios.get('/works/311').then(response => {
 				console.log(response.data)
 				this.works = response.data.reverse();
 				
 				this.tags = this.works.map( (work) => work.techs);
-				console.log(this.tags)
-				this.tags = this.tags.forEach( (tag) => tag.split(','))
 				console.log(this.tags)
 			})
 		},

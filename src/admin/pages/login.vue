@@ -1,6 +1,4 @@
 <template lang="pug">
-
-
 .login-wrapper
 	.login
 		button.login__close-button
@@ -26,7 +24,6 @@
 					)
 					span(:class="{'login__error-message': validation.hasError('password')}") {{ validation.firstError('password') }}
 			button.login__submit-button Отправить
-
 </template>
 
 <script>
@@ -35,8 +32,6 @@ import Vue from "vue";
 import $axios from "../requests";
 import SimpleVueValidator from 'simple-vue-validator';
 const Validator = SimpleVueValidator.Validator;
-
-
 
 Vue.use(SimpleVueValidator);
 
