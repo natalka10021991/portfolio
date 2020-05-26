@@ -1,9 +1,8 @@
 <template lang="pug">
-
 .login-wrapper
 	.login
 		button.login__close-button
-		form.login__form(@submit.prevent="submit")
+		form.login__form(@submit.prevent="loginUser")
 			.login__form-wrapper
 				h3.login__title Авторизация
 				.login__form-block(:class="{'login__form-block_error': validation.hasError('name')}")
@@ -12,7 +11,7 @@
 						type='text'
 						placeholder='Terminator'
 						name="name"
-						v-model="name"
+						v-model="user.name"
 					)
 					span(:class="{'login__error-message': validation.hasError('name')}") {{ validation.firstError('name') }}
 				.login__form-block(:class="{'login__form-block_error': validation.hasError('password')}")
@@ -21,16 +20,16 @@
 						type='password'
 						placeholder='*************'
 						name="password"
-						v-model="password"
+						v-model="user.password"
 					)
 					span(:class="{'login__error-message': validation.hasError('password')}") {{ validation.firstError('password') }}
 			button.login__submit-button Отправить
-
 </template>
 
 <script>
 
 import Vue from "vue";
+import $axios from "../requests";
 import SimpleVueValidator from 'simple-vue-validator';
 const Validator = SimpleVueValidator.Validator;
 
@@ -39,8 +38,10 @@ Vue.use(SimpleVueValidator);
 export default {
 	data() {
 		return {
-			name: '',
-			password: '',
+			user: {
+				name: "",
+				password: ""
+			}
 		}
 	},
 	validators: {
@@ -52,8 +53,17 @@ export default {
 		}
 	},
 	methods: {
-		submit: function() {
-			this.$validate();
+		async loginUser() {
+			try {
+				const response = await $axios.post('/login', this.user);
+				const token = response.data.token;
+
+				localStorage.setItem('token', token);
+				$axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+				this.$router.replace("/");
+			} catch (error) {
+				console.log(error)
+			}
 		}
 	}
 }
@@ -90,11 +100,16 @@ export default {
 		padding: 60px 30px;
 		display: flex;
 		align-items: center;
+		justify-content: center;
 	}
 }
 
 .login__form-wrapper {
 	margin-bottom: 40px;
+}
+
+.login__form {
+	width: 100%;
 }
 
 .login__close-button {
@@ -208,6 +223,7 @@ export default {
 	@include phones {
 		padding: 15px 75px;
 		margin: 0 auto;
+		display: block;
 	}
 }
 </style>

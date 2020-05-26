@@ -1,8 +1,6 @@
 .header {
 	min-height: 80px;
 	display: flex;
-
-	
 	background-color: $dark-gray-bg;
 	color: #fff;
 
@@ -18,7 +16,15 @@
 	max-width: 1080px;
 	width: 100%;
 	margin: 0 auto;
-	
+	padding: 0 60px;
+
+	@include tablets {
+		padding: 0 20px;
+	}
+
+	@include phones {
+		padding: 0 15px;
+	}
 }
 
 .header__left {
@@ -29,6 +35,8 @@
 
 .header__user-avatar {
 	margin-right: 20px;
+	width: 45px;
+	height: 45px;
 }
 
 .header__user-name {
