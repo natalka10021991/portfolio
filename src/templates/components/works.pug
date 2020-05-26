@@ -5,6 +5,7 @@ script(type="text/x-template")#slider-container
 			:works="works",
 			:currentIndex="currentIndex",
 			@slide="handleSlide",
+			@changeSlide="changeSlide"
 		)
 		info(
 			:currentWork="currentWork"
@@ -18,11 +19,12 @@ script(type="text/x-template")#slider-display
 			thumbs(
 				:works="reversedWorks",
 				:currentWork="currentWork",
-
+				:currentIndex="currentIndex",
+				@changeSlide="$emit('changeSlide', $event)"
 			)
-		buttons(
-			@slide="$emit('slide', $event)"
-		)
+			buttons(
+				@slide="$emit('slide', $event)"
+			)
 
 script(type="text/x-template")#slider-thumbs
 	ul.portfolio__thumbs-list
@@ -31,7 +33,7 @@ script(type="text/x-template")#slider-thumbs
 			:key="item.id"
 			:class="{'portfolio__thumbs-item_active': currentWork.id === item.id}"
 			)
-			button.portfolio__thumbs-link
+			button.portfolio__thumbs-link(@click="$emit('changeSlide', item.id)")
 				img.portfolio__thumbs-image(:src="item.photo")
 
 script(type="text/x-template")#slider-buttons

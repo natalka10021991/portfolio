@@ -1,6 +1,6 @@
 <template lang="pug">
 	.admin-form__wrapper
-		form.admin-form.works-form(@submit.prevent="submit")
+		form.admin-form.works-form(@submit.prevent="createNewWork")
 			.admin-form__header.works-form__header
 				h3.form__title Редактирование Работы
 			.admin-form__body
@@ -10,16 +10,21 @@
 							p.works__preview-loader-desc Перетащите или загрузите для загрузки изображения
 							label.input-type-file
 								.button.button_primary.works__button Загрузить
-								input.input-type-file__input(type='file')
+								input.input-type-file__input(
+									type='file'
+									ref='image'
+									@change='uploadImage'
+								)
 				.admin-form__column
 					.admin-form__row
 						label.feedback-form__block
-							.label.feedback-form__label(v-model="name") Название
+							.label.feedback-form__label Название
 							input.input.input_without-icons.feedback-form__input(
 								type='text'
 								placeholder='Дизайн сайта для авто салона Porsche'
+								v-model="title"
 							)
-							span(:class="{'feedback-form__error-message': validation.hasError('name')}") {{ validation.firstError('name') }}
+							span
 					.admin-form__row
 						label.feedback-form__block
 							.label.feedback-form__label Ссылка
@@ -28,7 +33,7 @@
 								placeholder='https://www.porsche-pulkovo.ru'
 								v-model="link"
 							)
-							span(:class="{'feedback-form__error-message': validation.hasError('link')}") {{ validation.firstError('link') }}
+							span
 					.admin-form__row
 						label.feedback-form__block.feedback-form__block_full-width
 							.label.feedback-form__label Описание
@@ -37,14 +42,21 @@
 								placeholder='Порше Центр Пулково - является официальным дилером марки Порше в Санкт-Петербурге и предоставляет полный цикл услуг по продаже и сервисному обслуживанию автомобилей'
 								v-model="desc"
 							)
-							span(:class="{'feedback-form__error-message': validation.hasError('desc')}") {{ validation.firstError('desc') }}
+							span
 					.admin-form__row
 						label.feedback-form__block
 							.label.feedback-form__label Добавление тэга
 							input.input.input_without-icons.feedback-form__input(
 								type='text'
 								placeholder='Jquery, Vue.js, HTML5'
+								v-model='tags'
+								@change="splitTags"
 							)
+							ul.tags-list
+								li.tags-item 
+									span {{this.tags}}
+									button.tags-item-button X
+
 							span.feedback-form__block-error
 
 			.buttons-group.feedback-form__buttons
@@ -55,6 +67,14 @@
 <script>
 import Vue from "vue";
 import SimpleVueValidator from 'simple-vue-validator';
+import axios from "axios";
+
+const baseUrl = 'https://webdev-api.loftschool.com';
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTA0ODMzNDQsImV4cCI6MTU5MDUwMTM0NCwibmJmIjoxNTkwNDgzMzQ0LCJqdGkiOiJvcDg5dzVSNjdNMVdVQ2xRIn0.rBCCRchOYLZWVXRxuTySEoUMCUjvnUt5G7dIiLecP4k';
+
+axios.defaults.baseURL = baseUrl;
+axios.defaults.headers['Authorization'] = `Bearer ${token}`;
+
 const Validator = SimpleVueValidator.Validator;
 
 Vue.use(SimpleVueValidator);
@@ -62,38 +82,59 @@ Vue.use(SimpleVueValidator);
 export default {
 	data() {
 		return {
-			name: '',
+			title: '',
 			link: '',
-			desc: ''
+			desc: '',
+			tags: '',
+			image: '',
+			url: ''
 		}
 	},
 	props: ['formIsOpened'],
-	validators: {
-		name: function (value) {
-			return Validator.value(value).required('Поле обязательно для заполнения');
-		},
-		link: function(value) {
-			return Validator.value(value).required('Поле обязательно для заполнения');
-		},
-		desc: function(value) {
-			return Validator.value(value).required('Поле обязательно для заполнения');
-		}
-	},
+	
 	methods: {
-		submit: function() {
-			this.$validate()
-			.then((success) => {
-				if (success) {
-					
-				}
-			});
+		createNewWork: function() {
+			let formData = new FormData();
+			formData.append('title', this.title);
+			formData.append('link', this.link);
+			formData.append('description', this.desc);
+			formData.append('techs', this.tags);
+			formData.append('photo', this.$refs.image.files[0]);
+
+			axios.post('/works', formData).then(response => {
+				console.log(response.data)
+				this.$emit('workAdded', {
+					data: response.data,
+					formIsOpened: false
+				});
+				this.title = '';
+				this.link = '';
+				this.desc = '';
+				this.tags = '';
+				this.image = '';
+			})
 			
+		},
+		uploadImage: function(e) {
+			const file = e.target.files[0];
+			this.url = URL.createObjectURL(file);
+			this.image = URL.createObjectURL(file);
 		},
 		reset: function () {
 			this.name = '';
       this.link = '';
 			this.desc = '';
+		},
+		splitTags() {
 		}
 	}
 }
 </script>
+
+<style lang="postcss">
+
+.tags-item {
+	border-radius: 15px;
+	background-color: #f4f4f4;
+}
+<style>

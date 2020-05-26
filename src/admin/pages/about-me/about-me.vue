@@ -25,6 +25,7 @@
 							skillGroupItem(
 								v-for="skill in category.skills" 
 								:key="skill.id"
+								:skill="skill"
 							)
 						skillGroup
 					ul.about-me__blocks
@@ -70,7 +71,7 @@ import skillGroupItem from "../../components/skill-group-item"
 import { mapActions, mapState } from "vuex";
 
 const baseUrl = 'https://webdev-api.loftschool.com';
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTAzOTg0MDEsImV4cCI6MTU5MDQxNjQwMSwibmJmIjoxNTkwMzk4NDAxLCJqdGkiOiJNRGJ4eHBGV0k5eXpIVFFnIn0.YGSVxUodQTsurdDwj8nKk2qhIGX3ZbUIbLJq2eHpyw4';
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTA0ODMzNDQsImV4cCI6MTU5MDUwMTM0NCwibmJmIjoxNTkwNDgzMzQ0LCJqdGkiOiJvcDg5dzVSNjdNMVdVQ2xRIn0.rBCCRchOYLZWVXRxuTySEoUMCUjvnUt5G7dIiLecP4k';
 
 axios.defaults.baseURL = baseUrl;
 axios.defaults.headers['Authorization'] = `Bearer ${token}`;
@@ -104,7 +105,6 @@ export default {
 			} catch (error) {
 				alert(error.message);
 			}
-			
 		},
 
 		getCategories() {

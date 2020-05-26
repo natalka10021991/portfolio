@@ -7,7 +7,7 @@ const thumbs = {
 		return {
 		}
 	},
-	props: ["works", "currentWork"]
+	props: ["works", "currentWork", "currentIndex"]
 }
 
 const buttons = {
@@ -85,6 +85,11 @@ new Vue ({
 					this.currentIndex--;
 					break;
 			}
+		},
+		changeSlide(index) {
+			console.log(this.works)
+			return this.currentIndex = index - 1;
+
 		},
 		makeArrWithRequiredImages(array) {
 			return array.map(item => {

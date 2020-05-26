@@ -45,7 +45,7 @@ import AddButton from "../../components/add-item-button";
 import axios from "axios";
 
 const baseUrl = 'https://webdev-api.loftschool.com';
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTA0MjUxNjIsImV4cCI6MTU5MDQ0MzE2MiwibmJmIjoxNTkwNDI1MTYyLCJqdGkiOiIyeTZCNUV1eUZmR0MwZHJqIn0.7TRxMTmwYauRejeS-HLbk0jCpV35mBjCZ0rnyZIXTPk';
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMxMSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTA0ODMzNDQsImV4cCI6MTU5MDUwMTM0NCwibmJmIjoxNTkwNDgzMzQ0LCJqdGkiOiJvcDg5dzVSNjdNMVdVQ2xRIn0.rBCCRchOYLZWVXRxuTySEoUMCUjvnUt5G7dIiLecP4k';
 
 axios.defaults.baseURL = baseUrl;
 axios.defaults.headers['Authorization'] = `Bearer ${token}`;
@@ -92,7 +92,7 @@ export default {
 		editReview(review) {
 			this.currentReview = review;
 			this.formIsOpened = true;
-			
+
 		},
 		getUserId() {
 			axios.get('/user').then(response => {

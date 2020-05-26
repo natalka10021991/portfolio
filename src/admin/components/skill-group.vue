@@ -3,23 +3,23 @@
 		.table-row
 			.table-cell
 				input.input.about-me__item-skill(
-																					type="text" 
-																					placeholder="Новый навык" 
-																					:disabled="inputDisabled ? true : false"
-																					v-model="skill.title"
-																				) 
+					type="text" 
+					placeholder="Новый навык" 
+					:disabled="inputDisabled ? true : false"
+					v-model="skill.title"
+				) 
 			.table-cell 
 				input.input.about-me__item-percent(
-																						type="text" 
-																						placeholder="100%" 
-																						:disabled="inputDisabled ? true : false"
-																						v-model="skill.percent"
-																						) 
+					type="text" 
+					placeholder="100%" 
+					:disabled="inputDisabled ? true : false"
+					v-model="skill.percent"
+				) 
 			.table-cell
 				button.button-add(
-													type="submit"
-													:disabled="inputDisabled ? true : false"
-													) +
+					type="submit"
+					:disabled="inputDisabled ? true : false"
+				) +
 </template>
 
 <script>

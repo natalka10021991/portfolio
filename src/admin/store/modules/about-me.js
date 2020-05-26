@@ -8,12 +8,16 @@ export default {
 	mutations: {
 		SET_CATEGORIES(state, categories) {
 			state.categories = categories;
+		},
+		ADD_CATEGORY(state, newCategory) {
+			state.categories.push(newCategory);
 		}
 	},
 	actions: {
-		async addCategory(store, title) {
+		async addCategory({commit}, title) {
 			try {
-				const response = await this.$axios.post("/categories", { title });
+				const {data} = await this.$axios.post("/categories", { title });
+				commit("ADD_CATEGORY", data);
 				console.log(response);
 			} catch (error) {
 				throw new Error(
