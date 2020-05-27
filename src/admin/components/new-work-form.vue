@@ -50,12 +50,11 @@
 								type='text'
 								placeholder='Jquery, Vue.js, HTML5'
 								v-model='tags'
-								@change="splitTags"
 							)
 							ul.tags-list
-								li.tags-item 
-									span {{this.tags}}
-									button.tags-item-button X
+								li.tags-item(v-for="tag in getTags" :key="tag")
+									span {{tag}}
+									button.tags-item-button x
 
 							span.feedback-form__block-error
 
@@ -81,11 +80,15 @@ export default {
 			desc: '',
 			tags: '',
 			image: '',
-			url: ''
+			url: '',
 		}
 	},
 	props: ['formIsOpened'],
-	
+	computed: {
+		getTags() {
+			this.tags.split(',')
+		},
+	},
 	methods: {
 		createNewWork: function() {
 			let formData = new FormData();
@@ -119,8 +122,6 @@ export default {
       this.link = '';
 			this.desc = '';
 		},
-		splitTags() {
-		}
 	}
 }
 </script>

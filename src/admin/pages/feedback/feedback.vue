@@ -10,7 +10,7 @@
 					v-if="formIsOpened"
 					@reviewAdded="addReview"
 					:reviews="reviews"
-					:currentReview="currentReview"
+					:current="currentReview"
 				)
 
 				ul.feedback__list
@@ -44,6 +44,7 @@ import FeedbackForm from "../../components/feedback-form";
 import AddButton from "../../components/add-item-button";
 import $axios from "../../requests";
 
+
 export default {
 	data() {
 		return {
@@ -60,9 +61,10 @@ export default {
 	},
 	created() {
 		this.getReviews();
-		this.getUserId();
+		//this.getUserId();
 	},
 	methods: {
+	
 		openForm: function() {
 			this.formIsOpened = true;
 		},

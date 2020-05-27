@@ -14,6 +14,9 @@ export default {
 		}
 	},
 	actions: {
+		test() {
+			console.log('test');
+		},
 		async addCategory({commit}, title) {
 			try {
 				const {data} = await this.$axios.post("/categories", { title });

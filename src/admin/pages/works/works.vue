@@ -22,7 +22,7 @@
 									img(:src="'https://webdev-api.loftschool.com/' + work.photo")
 								.works__tags
 									ul.works__tags-list
-										li.works__tags-item
+										li.works__tags-item {{work.techs}}
 							.works__desc-wrapper
 								h3.works__work-title {{work.title}}
 								p.works__work-desc {{work.description}}
@@ -31,7 +31,7 @@
 									button.works__item-button
 										span.works__button-title Править
 										span.works__button-icon.works__button-icon_edit
-									button.works__item-button
+									button.works__item-button(@click="removeWork(work.id)")
 										span.works__button-title Удалить
 										span.works__button-icon.works__button-icon_remove
 						
@@ -67,16 +67,18 @@ export default {
 			$axios.get('/works/311').then(response => {
 				console.log(response.data)
 				this.works = response.data.reverse();
-				
-				this.tags = this.works.map( (work) => work.techs);
-				console.log(this.tags)
 			})
 		},
 		addWork(data, formIsOpened) {
 			this.works.unshift(data.data); 
 			this.formIsOpened = formIsOpened;
-
 		},
+		removeWork(id) {
+			console.log(id)
+			$axios.delete('/works/id').then(response => {
+				console.log(response.data)
+			})
+		}
 	}
 }
 </script>
