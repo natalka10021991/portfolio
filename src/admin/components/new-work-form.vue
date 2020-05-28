@@ -110,7 +110,6 @@ export default {
 				this.tags = '';
 				this.image = '';
 			})
-			
 		},
 		uploadImage: function(e) {
 			const file = e.target.files[0];

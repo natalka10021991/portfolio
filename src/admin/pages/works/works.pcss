@@ -38,6 +38,9 @@
 	box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
 	width: 31%;
 	margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 
 	@include desktop-mini {
 		width: 48%;
@@ -112,6 +115,11 @@
 .works__preview-wrapper {
 	position: relative;
 	margin-bottom: 40px;
+}
+
+.works__preview {
+	max-height: 180px;
+	overflow: hidden;
 }
 
 .works__tags {

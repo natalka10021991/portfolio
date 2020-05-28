@@ -3,7 +3,8 @@
 export default {
 	namespaced: true,
 	state: {
-		categories: []
+		categories: [],
+		reviews: []
 	},
 	mutations: {
 		SET_CATEGORIES(state, categories) {
@@ -11,11 +12,18 @@ export default {
 		},
 		ADD_CATEGORY(state, newCategory) {
 			state.categories.push(newCategory);
+		},
+		ADD_REVIEW(state, review) {
+			state.reviews.push(review);
 		}
 	},
 	actions: {
-		test() {
-			console.log('test');
+		test({commit}, payload) {
+			this.$axios.post('/reviews', payload).then(response => {
+					console.log(response.data)
+					commit("ADD_REVIEW", data);
+					this.currentReview = {...initialData}
+				})
 		},
 		async addCategory({commit}, title) {
 			try {

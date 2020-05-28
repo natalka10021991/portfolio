@@ -9,8 +9,36 @@
 				h3.header__title Панель администрирования
 				
 			.header__right
-				router-link.header__logout(to="/login") Выйти
+				a.header__logout(href="#" @click="logoutUser") Выйти
 </template>
+
+<script>
+import Vue from "vue";
+import $axios from "../../requests";
+
+export default {
+	data() {
+		return {
+
+		}
+	},
+	methods: {
+
+		async logoutUser() {
+			try {
+				const response = await $axios.post('/logout');
+				console.log(response)
+
+				localStorage.removeItem('token');
+				this.$router.replace("/login");
+
+			} catch (error) {
+				console.log(error)
+			}
+		}
+	}
+}
+</script>
 
 <style lang="postcss">
   @import "normalize.css";

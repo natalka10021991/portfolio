@@ -43,7 +43,6 @@
 											:value="cat.category" 
 											readonly
 											) 
-
 									.table-cell
 										span.control-button.control-button_save
 									.table-cell

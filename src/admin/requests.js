@@ -11,7 +11,7 @@ axios.interceptors.response.use(
 		const originRequest = error.config;
 
 		if (error.response.status === 401) {
-			return axios.post("/refreshToken")
+			return axios.post('/refreshToken')
 			.then(response => {
 				const token = response.data.token;
 

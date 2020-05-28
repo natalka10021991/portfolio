@@ -25,15 +25,9 @@
     align-items: center;
     max-width: 1080px;
     margin: 0 auto;
-    width: 100%;
-    padding: 0px 60px;
- 
-  	@include tablets {
-		  padding: 0 20px;
-	  }
+    width: 95%;
 
     @include phones {
-      padding: 0 15px;
       justify-content: center;
     }
   }

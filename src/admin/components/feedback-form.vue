@@ -18,7 +18,7 @@
 							ref="image"
 							@change="uploadImage"
 						)
-						span(:class="{'feedback-form__error-message': validation.hasError('currentReview.image')}") {{ validation.firstError('currentReview.image') }}
+						span(:class="{'feedback-form__error-message': validation.hasError('currentReview.photo')}") {{ validation.firstError('currentReview.photo') }}
 				.feedback-form__column
 					.feedback-form__row
 						label.feedback-form__block
@@ -34,18 +34,18 @@
 							input.input.input_without-icons.feedback-form__input(
 								type='text'
 								placeholder='Frontend разработчик'
-								v-model='currentReview.position'
+								v-model='currentReview.occ'
 							)
-							span(:class="{'feedback-form__error-message': validation.hasError('currentReview.position')}") {{ validation.firstError('currentReview.position') }}
+							span(:class="{'feedback-form__error-message': validation.hasError('currentReview.occ')}") {{ validation.firstError('currentReview.occ') }}
 					.feedback-form__row
 						label.feedback-form__block.feedback-form__block_full-width
 							.label.feedback-form__label Отзыв
 							textarea.textarea.textarea_bordered.feedback-form__textarea(
 								type='text'
 								placeholder='Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!'
-								v-model='currentReview.review'
+								v-model='currentReview.text'
 							)
-							span(:class="{'feedback-form__error-message': validation.hasError('currentReview.review')}") {{ validation.firstError('currentReview.review') }}
+							span(:class="{'feedback-form__error-message': validation.hasError('currentReview.text')}") {{ validation.firstError('currentReview.text') }}
 			.buttons-group.feedback-form__buttons
 				button.button.button_cancel.feedback-form__button(type="button" @click="reset") Отмена
 				button.button.button_primary.feedback-form__button(type='submit') Сохранить
@@ -62,9 +62,9 @@ const Validator = SimpleVueValidator.Validator;
 Vue.use(SimpleVueValidator);
 const initialData = {
 	author: '',
-	position: '',
-	review: '',
-	image: ''
+	occ: '',
+	text: '',
+	photo: {}
 };
 export default {
 	data() {
@@ -79,10 +79,10 @@ export default {
 		'currentReview.author': function (value) {
 			return Validator.value(value).required('Поле обязательно для заполнения');
 		},
-		'currentReview.position': function(value) {
+		'currentReview.occ': function(value) {
 			return Validator.value(value).required('Поле обязательно для заполнения');
 		},
-		'currentReview.review': function(value) {
+		'currentReview.text': function(value) {
 			return Validator.value(value).required('Поле обязательно для заполнения');
 		},
 		// 'currentReview.image': function(value) {
@@ -98,17 +98,17 @@ export default {
 		...mapActions('aboutMe', ['test']),
 		createReview: function() {
 			let formData = new FormData();
-			formData.append('author', this.name);
-			formData.append('occ', this.position);
-			formData.append('text', this.review);
-			formData.append('photo', this.$refs.image.files[0]);
+			formData.append('author', this.currentReview.author);
+			formData.append('occ', this.currentReview.occ);
+			formData.append('text', this.currentReview.text);
+			formData.append('photo', this.currentReview.photo);
 
 			this.$validate()
 				.then((success) => {
 					if (success) {
 						console.log('success')
 						this.test();
-						$axios.post('/reviews', this.currentReview).then(response => {
+						$axios.post('/reviews', formData).then(response => {
 							console.log(response.data)
 							this.$emit('reviewAdded', {
 								data: response.data,
@@ -124,8 +124,10 @@ export default {
 		},
 		uploadImage: function(e) {
 			const file = e.target.files[0];
+			this.currentReview.photo = file;
 			this.url = URL.createObjectURL(file);
-			this.image = URL.createObjectURL(file);
+			
+			
 
 		}
 	}

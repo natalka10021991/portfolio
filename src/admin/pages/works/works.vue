@@ -75,8 +75,8 @@ export default {
 		},
 		removeWork(id) {
 			console.log(id)
-			$axios.delete('/works/id').then(response => {
-				console.log(response.data)
+			$axios.delete('/works/' + id).then(response => {
+				this.works = this.works.filter(item => item.id != id);
 			})
 		}
 	}
