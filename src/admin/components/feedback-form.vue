@@ -64,16 +64,16 @@ const initialData = {
 	author: '',
 	occ: '',
 	text: '',
-	photo: {}
+	photo: {},
 };
 export default {
 	data() {
 		return {
 			currentReview: {...initialData},
-			url: ''
+			url: '',
+			id: ''
 		}
 	},
-	
 	props: ['formIsOpened','reviews', 'current'],
 	validators: {
 		'currentReview.author': function (value) {
@@ -103,19 +103,34 @@ export default {
 			formData.append('text', this.currentReview.text);
 			formData.append('photo', this.currentReview.photo);
 
+			this.id = this.currentReview.id
+
 			this.$validate()
 				.then((success) => {
 					if (success) {
-						console.log('success')
-						this.test();
-						$axios.post('/reviews', formData).then(response => {
-							console.log(response.data)
-							this.$emit('reviewAdded', {
-								data: response.data,
-								formIsOpened: false
-							});
-							this.currentReview = {...initialData}
-						})
+						//this.test();
+
+						if (!this.id) {
+							$axios.post('/reviews', formData).then(response => {
+								console.log(response.data)
+								this.$emit('reviewAdded', {
+									data: response.data,
+									formIsOpened: false
+								});
+								this.currentReview = {...initialData}
+							})
+						} else {
+							$axios.post('/reviews/' + this.id, formData).then(response => {
+								console.log(this.currentReview)
+								this.$emit('closeForm', {
+									formIsOpened: false
+									
+								});
+								this.currentReview = {...initialData}
+								console.log(this.currentReview)
+							})
+						}
+						
 					}
 				});
 		},

@@ -14,25 +14,44 @@ store.$axios = axios;
 
 const router = new VueRouter({
   routes: [
-    { path: '/login', component: Login},
-    { path: '/', components: {
+    { 
+      path: '/login', component: Login
+    },
+
+    { 
+      path: '/', 
+      components: {
         default: AboutMe,
         header: Header,
         nav: Nav
       }
     },
-    { path: '/works', components: {
+    { 
+      path: '/works', 
+      components: {
       default: Works,
       header: Header,
       nav: Nav
-    }},
-    { path: '/feedback', components: {
+      }
+    },
+    { 
+      path: '/feedback', 
+      components: {
       default: Feedback,
       header: Header,
       nav: Nav
-    }}
+      }
+    }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  if(to.path !== '/login' && !localStorage.getItem('token')) {
+    return next('/login')
+  }
+
+  next();
+})
 
 Vue.use(VueRouter)
 

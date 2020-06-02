@@ -3,22 +3,42 @@ script(type="text/x-template")#feedback-slider-container
 		.feedback__header
 			.title_h3.feedback__title Что обо мне говорят
 			.feedback__slider-buttons
-				button.feedback__button.feedback__button_left
-				button.feedback__button.feedback__button_right
-		.feedback__slider
-			Carousel.feedback__slider-list(
-				:perPage="1"
-				:perPageCustom="[[0, 1], [769, 2]]"
-				:navigationEnabled="true"
+				controls(
+					@previous="previous"
+					@next="next"
 				)
-				Slide.feedback__slider-item(v-for="slide in feedback" :key="slide.id")
-					.feedback__text {{slide.text}}
-					.feedback__user 
-						.feedback__user-avatar
-							.avatar
-								img(:src="slide.photo").avatar__photo
-						.feedback__avatar-description
-							.feedback__user-name {{slide.name}}
-							.feedback__user-position {{slide.position}}
+				
+		.feedback__slider
+			CarouselComponent(
+				:reviews='reviews'
+			)
+			
+script(type="text/x-template")#controls
+	div
+		button.feedback__button.feedback__button_left(
+			@click="$emit('previous')"
+			:disabled="hasPrevious"
+			)
+		button.feedback__button.feedback__button_right(
+			@click="$emit('next')"
+			:disabled="hasNext"
+			)
 
+script(type="text/x-template")#feedback-carousel
+	Carousel.feedback__slider-list(
+		:perPage="1"
+		:perPageCustom="[[0, 1], [769, 2]]"
+		:navigationEnabled="true"
+		:paginationEnabled="false"
+		@pageChange="pageChange"
+		)
+		Slide.feedback__slider-item(v-for="slide in reviews" :key="slide.id")
+			.feedback__text {{slide.text}}
+			.feedback__user 
+				.feedback__user-avatar
+					.avatar
+						img(:src="slide.photo").avatar__photo
+				.feedback__avatar-description
+					.feedback__user-name {{slide.author}}
+					.feedback__user-position {{slide.occ}}
 		

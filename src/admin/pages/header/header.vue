@@ -29,7 +29,7 @@ export default {
 				const response = await $axios.post('/logout');
 				console.log(response)
 
-				localStorage.removeItem('token');
+				await localStorage.removeItem('token');
 				this.$router.replace("/login");
 
 			} catch (error) {

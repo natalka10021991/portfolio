@@ -9,8 +9,9 @@
 					:formIsOpened = "formIsOpened"
 					v-if="formIsOpened"
 					@reviewAdded="addReview"
+					@closeForm="closeForm"
 					:reviews="reviews"
-					:current="currentReview"
+					:current="current"
 				)
 
 				ul.feedback__list
@@ -43,6 +44,7 @@ import Vue from 'vue';
 import FeedbackForm from "../../components/feedback-form";
 import AddButton from "../../components/add-item-button";
 import $axios from "../../requests";
+import { mapState } from "vuex";
 
 
 export default {
@@ -52,7 +54,7 @@ export default {
 			buttonTitle: 'Добавить отзыв',
 			userId: '',
 			reviews: [],
-			currentReview: {}
+			current: {}
 		}
 	},
 	components: {
@@ -63,13 +65,20 @@ export default {
 		this.getReviews();
 		//this.getUserId();
 	},
+	computed: {
+		...mapState("Feedback", {
+			reviews: state => state.reviews
+		})
+	},
 	methods: {
-	
 		openForm: function() {
 			this.formIsOpened = true;
 		},
 		addReview(data, formIsOpened) {
 			this.reviews.unshift(data.data); 
+			this.formIsOpened = formIsOpened;
+		},
+		closeForm(formIsOpened) {
 			this.formIsOpened = formIsOpened;
 
 		},
@@ -85,9 +94,8 @@ export default {
 			})
 		},
 		editReview(review) {
-			this.currentReview = review;
+			this.current = review;
 			this.formIsOpened = true;
-
 		},
 		getUserId() {
 			$axios.get('/user').then(response => {
