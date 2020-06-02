@@ -4,6 +4,8 @@ script(type="text/x-template")#feedback-slider-container
 			.title_h3.feedback__title Что обо мне говорят
 			.feedback__slider-buttons
 				controls(
+					:has-previous="activePage === 0"
+					:has-next="activePage === pages"
 					@previous="previous"
 					@next="next"
 				)

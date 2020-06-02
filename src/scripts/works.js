@@ -1,4 +1,5 @@
 import Vue from "vue";
+import axios from 'axios'
 
 
 const thumbs = {
@@ -42,7 +43,7 @@ const info = {
 	props: ["currentWork"],
 	computed: {
 		tagsArray() {
-			return this.currentWork.skills.split(",");
+			return this.currentWork.techs.split(",");
 		}
 	}
 };
@@ -57,17 +58,27 @@ new Vue ({
 	data() {
 		return {
 			works: [],
-			currentIndex: 0
+			currentIndex: 0,
+		}
+	},
+	created() {
+		axios.get('https://webdev-api.loftschool.com/works/311')
+			.then( works => {
+				this.works = works.data;
+				console.log(this.works)
+				this.works.map( (work) => {
+					return work.photo = 'https://webdev-api.loftschool.com/' + work.photo;
+				})
+			})
+	},
+	watch: {
+		currentIndex(value) {
+			this.makeInfiniteLoopForIndex(value);
 		}
 	},
 	computed: {
 		currentWork() {
 			return this.works[this.currentIndex];
-		}
-	},
-	watch: {
-		currentIndex(value) {
-			this.makeInfiniteLoopForIndex(value);
 		}
 	},
 	methods: {
@@ -91,18 +102,5 @@ new Vue ({
 			return this.currentIndex = index - 1;
 
 		},
-		makeArrWithRequiredImages(array) {
-			return array.map(item => {
-				const requirePic = require(`../images/content/previews/${item.photo}`);
-				item.photo = requirePic;
-				return item;
-			})
-		},
-		
 	},
-	created() {
-		const data = require("../data/works.json");
-		this.works = this.makeArrWithRequiredImages(data);
-		
-	}
 });
