@@ -13,7 +13,7 @@ script(type="text/x-template")#slider-container
 		
 
 script(type="text/x-template")#slider-display
-	.portfolio__slider
+	.portfolio__slider(v-if="works.length")
 		.portfolio__preview-wrapper(:data-slide="currentIndex + 1")
 			img(:src="currentWork.photo").portfolio__preview
 			thumbs(
@@ -42,7 +42,7 @@ script(type="text/x-template")#slider-buttons
 		button(@click="$emit('slide', 'prev')").portfolio__button.portfolio__button_down
 
 script(type="text/x-template")#slider-info
-	.portfolio__slider-description
+	.portfolio__slider-description(v-if="currentWork")
 		tags(
 			:tags="tagsArray"
 		)

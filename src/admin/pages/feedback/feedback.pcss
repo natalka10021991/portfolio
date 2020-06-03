@@ -67,7 +67,8 @@
 .feedback__list {
 display: flex;
 flex-wrap: wrap;
-justify-content: space-between;
+justify-content: flex-start;
+margin-left: -2%;
 }
 
 .feedback__item {
@@ -75,6 +76,7 @@ justify-content: space-between;
 	box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
 	width: 31%;
 	margin-bottom: 30px;
+	margin-left: 2%;
 
 	@include desktop-mini {
 		width: 48%;
