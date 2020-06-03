@@ -74,7 +74,6 @@ export default {
 			id: ''
 		}
 	},
-	props: ['formIsOpened','reviews', 'current'],
 	validators: {
 		'currentReview.author': function (value) {
 			return Validator.value(value).required('Поле обязательно для заполнения');
@@ -95,7 +94,7 @@ export default {
 		}
 	},
 	methods: {
-		...mapActions('aboutMe', ['test']),
+		...mapActions('feedback', ['addReview']),
 		createReview: function() {
 			let formData = new FormData();
 			formData.append('author', this.currentReview.author);
@@ -108,17 +107,9 @@ export default {
 			this.$validate()
 				.then((success) => {
 					if (success) {
-						//this.test();
 
 						if (!this.id) {
-							$axios.post('/reviews', formData).then(response => {
-								console.log(response.data)
-								this.$emit('reviewAdded', {
-									data: response.data,
-									formIsOpened: false
-								});
-								this.currentReview = {...initialData}
-							})
+							addReview(state, review);
 						} else {
 							$axios.post('/reviews/' + this.id, formData).then(response => {
 								console.log(this.currentReview)

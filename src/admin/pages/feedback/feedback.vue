@@ -6,12 +6,9 @@
 					h2.section__title.feedback__title Блок &laquo;Отзывы&raquo;
 
 				FeedbackForm(
-					:formIsOpened = "formIsOpened"
 					v-if="formIsOpened"
 					@reviewAdded="addReview"
 					@closeForm="closeForm"
-					:reviews="reviews"
-					:current="current"
 				)
 
 				ul.feedback__list
@@ -44,17 +41,12 @@ import Vue from 'vue';
 import FeedbackForm from "../../components/feedback-form";
 import AddButton from "../../components/add-item-button";
 import $axios from "../../requests";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 
 export default {
 	data() {
 		return {
-			formIsOpened: false,
-			buttonTitle: 'Добавить отзыв',
-			userId: '',
-			reviews: [],
-			current: {}
 		}
 	},
 	components: {
@@ -66,8 +58,12 @@ export default {
 		//this.getUserId();
 	},
 	computed: {
-		...mapState("Feedback", {
-			reviews: state => state.reviews
+		...mapState("feedback", {
+			reviews: state => state.reviews,
+			current: state => state.current,
+			formIsOpened: state => state.formIsOpened,
+			userId: state => state.userId,
+			buttonTitle: state => state.buttonTitle
 		})
 	},
 	methods: {

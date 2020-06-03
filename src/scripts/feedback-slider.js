@@ -84,14 +84,6 @@ new Vue ({
 	},
 	created() {
 		axios.get('https://webdev-api.loftschool.com/reviews/311')
-		// .then( reviews => {
-		// 	console.log(reviews.data)
-		// 	return reviews.data.map( review => {
-		// 		return (review.photo = 'https://webdev-api.loftschool.com/' + review.photo)
-		// 	})
-		// })
-		// .then( reviews => this.reviews = reviews)
-		// console.log(this.reviews)
 			.then( reviews => {
 				this.reviews = reviews.data;
 				this.reviews.map( (review) => {
