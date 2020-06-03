@@ -18,7 +18,7 @@
 							:buttonTitle="buttonTitle"
 						)
 						
-					li.feedback__item(v-for="review in reviews" :key="review.id")
+					li.feedback__item(v-for="review in fetchReviews" :key="review.id")
 						.feedback__item-header
 							.feedback__user-avatar
 								img.feedback__user-photo(:src="'https://webdev-api.loftschool.com/' + review.photo")
@@ -41,7 +41,7 @@ import Vue from 'vue';
 import FeedbackForm from "../../components/feedback-form";
 import AddButton from "../../components/add-item-button";
 import $axios from "../../requests";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 
 
 export default {
@@ -53,11 +53,9 @@ export default {
 		FeedbackForm,
 		AddButton
 	},
-	created() {
-		this.getReviews();
-		//this.getUserId();
-	},
+	
 	computed: {
+		...mapGetters("feedback", ["fetchReviews"]),
 		...mapState("feedback", {
 			reviews: state => state.reviews,
 			current: state => state.current,
@@ -67,6 +65,7 @@ export default {
 		})
 	},
 	methods: {
+		...mapActions("feedback", "getReviews"),
 		openForm: function() {
 			this.formIsOpened = true;
 		},
@@ -78,27 +77,30 @@ export default {
 			this.formIsOpened = formIsOpened;
 
 		},
-		getReviews() {
-			$axios.get('/reviews/311').then(response => {
-				console.log(response.data)
-				this.reviews = response.data.reverse();
-			})
-		},
-		removeReview(id) {
-			$axios.delete('/reviews/' + id).then(response => {
-				this.reviews = this.reviews.filter(item => item.id != id);
-			})
-		},
-		editReview(review) {
-			this.current = review;
-			this.formIsOpened = true;
-		},
-		getUserId() {
-			$axios.get('/user').then(response => {
-				console.log(response.data)
-			})
-		}
-	}
+		// getReviews() {
+		// 	$axios.get('/reviews/311').then(response => {
+		// 		console.log(response.data)
+		// 		this.reviews = response.data.reverse();
+		// 	})
+		// },
+		// removeReview(id) {
+		// 	$axios.delete('/reviews/' + id).then(response => {
+		// 		this.reviews = this.reviews.filter(item => item.id != id);
+		// 	})
+		// },
+		// editReview(review) {
+		// 	this.current = review;
+		// 	this.formIsOpened = true;
+		// },
+		// getUserId() {
+		// 	$axios.get('/user').then(response => {
+		// 		console.log(response.data)
+		// 	})
+		// }
+	},
+	created() {
+		this.getReviews();
+	},
 }
 </script>
 

@@ -10,6 +10,9 @@ export default {
 	mutations: {
 		ADD_REVIEW(state, review) {
 			state.reviews.push(review);
+		},
+		GET_REVIEWS(state, reviews) {
+			state.reviews = reviews;
 		}
 	},
 	actions: {
@@ -23,7 +26,23 @@ export default {
 					error.response.data.error || error.response.data.message
 				);
 			}
+		},
+
+		async getReviews({commit}) {
+			try {
+				const {data} = await this.$axios.get('/reviews/311');
+				commit("GET_REVIEWS", data);
+			} catch (error) {
+				throw new Error(
+					error.response.data.error || error.response.data.message
+				);
+			}
 		}
 	
 	},
+	getters: {
+		fetchReviews(state) {
+			return state.reviews.reverse();
+		}
+	}
 };
