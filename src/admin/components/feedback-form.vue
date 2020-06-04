@@ -67,11 +67,14 @@ const initialData = {
 	photo: {},
 };
 export default {
+	model: {
+		prop: 'currentData'
+	},
+	props: ["currentData"],
 	data() {
 		return {
 			currentReview: {...initialData},
 			url: '',
-			id: ''
 		}
 	},
 	validators: {
@@ -89,39 +92,33 @@ export default {
 		// }
 	},
 	watch: {
-		current() {
-			this.currentReview = this.current;
+		currentData() {
+			this.currentReview = {...this.currentData};
 		}
 	},
 	methods: {
-		...mapActions('feedback', ['addReview']),
+		...mapActions('feedback', ['addReview', 'updateReview', 'hideForm']),
+
 		createReview: function() {
+			console.log('create')
 			let formData = new FormData();
 			formData.append('author', this.currentReview.author);
 			formData.append('occ', this.currentReview.occ);
 			formData.append('text', this.currentReview.text);
 			formData.append('photo', this.currentReview.photo);
-
-			this.id = this.currentReview.id
+			formData.append('id', this.currentReview.id);
 
 			this.$validate()
 				.then((success) => {
 					if (success) {
-
-						if (!this.id) {
-							addReview(state, review);
+				
+						if (!this.currentReview.id) {
+							this.addReview(formData);
 						} else {
-							$axios.post('/reviews/' + this.id, formData).then(response => {
-								console.log(this.currentReview)
-								this.$emit('closeForm', {
-									formIsOpened: false
-									
-								});
-								this.currentReview = {...initialData}
-								console.log(this.currentReview)
-							})
+							console.log(this.currentReview)
+							this.updateReview(this.currentReview);
 						}
-						
+						this.hideForm();
 					}
 				});
 		},

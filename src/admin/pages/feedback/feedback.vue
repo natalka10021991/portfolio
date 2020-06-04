@@ -6,9 +6,8 @@
 					h2.section__title.feedback__title Блок &laquo;Отзывы&raquo;
 
 				FeedbackForm(
+					v-model:reviewData="currentReview"
 					v-if="formIsOpened"
-					@reviewAdded="addReview"
-					@closeForm="closeForm"
 				)
 
 				ul.feedback__list
@@ -47,6 +46,7 @@ import { mapState, mapActions, mapGetters } from "vuex";
 export default {
 	data() {
 		return {
+			currentReview: {}
 		}
 	},
 	components: {
@@ -65,33 +65,32 @@ export default {
 		})
 	},
 	methods: {
-		...mapActions("feedback", "getReviews"),
-		openForm: function() {
-			this.formIsOpened = true;
+		...mapActions("feedback", ["getReviews", "addReview", "deleteReview", "showForm"]),
+		openForm() {
+			this.showForm();
 		},
-		addReview(data, formIsOpened) {
-			this.reviews.unshift(data.data); 
-			this.formIsOpened = formIsOpened;
-		},
-		closeForm(formIsOpened) {
-			this.formIsOpened = formIsOpened;
+		// addReview(data, formIsOpened) {
+		// 	this.reviews.unshift(data.data); 
+		// 	this.formIsOpened = formIsOpened;
+		// },
+		// closeForm(formIsOpened) {
+		// 	this.formIsOpened = formIsOpened;
 
-		},
+		// },
 		// getReviews() {
 		// 	$axios.get('/reviews/311').then(response => {
 		// 		console.log(response.data)
 		// 		this.reviews = response.data.reverse();
 		// 	})
 		// },
-		// removeReview(id) {
-		// 	$axios.delete('/reviews/' + id).then(response => {
-		// 		this.reviews = this.reviews.filter(item => item.id != id);
-		// 	})
-		// },
-		// editReview(review) {
-		// 	this.current = review;
-		// 	this.formIsOpened = true;
-		// },
+		removeReview(id) {
+			this.deleteReview(id);
+		},
+		editReview(review) {
+			this.currentReview = review;
+			console.log(review)
+			//this.formIsOpened = true;
+		},
 		// getUserId() {
 		// 	$axios.get('/user').then(response => {
 		// 		console.log(response.data)

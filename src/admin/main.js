@@ -45,13 +45,13 @@ const router = new VueRouter({
   ]
 });
 
-router.beforeEach((to, from, next) => {
-  if(to.path !== '/login' && !localStorage.getItem('token')) {
-    return next('/login')
-  }
+// router.beforeEach((to, from, next) => {
+//   if(to.path !== '/login' && !localStorage.getItem('token')) {
+//     return next('/login')
+//   }
 
-  next();
-})
+//   next();
+// })
 
 Vue.use(VueRouter)
 
